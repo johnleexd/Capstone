@@ -1,0 +1,6 @@
+[submodule "travelmate-backend-api"]
+	path = travelmate-backend-api
+	url = https://github.com/johnleexd/travelmate-backend-api.git
+[submodule "travelmate-frontend-new"]
+	path = travelmate-frontend-new
+	url = https://github.com/johnleexd/travelmate-frontend-new.git

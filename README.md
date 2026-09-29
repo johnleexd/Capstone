@@ -26,6 +26,12 @@ than acting as unrelated products.
 
 ## First-time setup
 
+Clone the parent repository with its frontend and backend submodules:
+
+```powershell
+git clone --recurse-submodules https://github.com/johnleexd/Capstone.git
+```
+
 Install each project's dependencies separately:
 
 ```powershell
@@ -65,12 +71,12 @@ npm.cmd run dev
 Open http://localhost:3000 in the browser. The backend API and health endpoint
 run at http://localhost:5000.
 
-Use `npm run dev` instead of `npm.cmd run dev` when running from Command Prompt,
+Use `npm run dev` instead of `npm.cmd run dev` from Command Prompt,
 Git Bash, or a PowerShell installation that permits `npm.ps1`.
 
 ## Verification and CI
 
-Each Git repository contains its own `.github/workflows/ci.yml`. The backend
+Each project repository contains its own `.github/workflows/ci.yml`. The backend
 workflow runs unit/type/build checks and database integration against ephemeral
 PostgreSQL. The frontend workflow runs lint/unit/build checks and the complete
 Playwright suite against a separately migrated and seeded PostgreSQL service.
