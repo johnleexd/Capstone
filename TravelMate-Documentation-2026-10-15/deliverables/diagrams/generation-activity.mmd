@@ -1,0 +1,13 @@
+flowchart TB
+  brief["Validate brief and idempotency<br/>Role, locality, currency, party, dates and hash"]
+  ground["Load and validate physical venues<br/>Country/admin evidence, source identity and costs"]
+  ai["Configured AI schedule<br/>Allowed IDs/times only; <=7 day batches; one repair then next configured provider"]
+  fallback["AI unavailable or invalid<br/>Use permitted catalog suggestions; preserve unavailable/incomplete disclosures"]
+  reconcile["Deterministic reconciliation<br/>Windows, transfers, duplicates, meals, costs, coverage and evidence"]
+  return["Return grounded result or safe failure<br/>Saving is a separate validated operation"]
+  brief -->|"valid"| ground
+  ground -->|"enough evidence"| ai
+  ground -->|"sparse / no AI"| fallback
+  ai -->|"validated"| reconcile
+  fallback --> reconcile
+  reconcile --> return

@@ -1,0 +1,306 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1900" viewBox="0 0 2400 1900" role="img" aria-labelledby="title desc">
+  <title id="title">TravelMate current system entity relationship diagram</title>
+  <desc id="desc">A consolidated entity relationship diagram of the 24 persisted models in the current Prisma schema, grouped into trip planning, identity and operations, plan access, and marketplace data.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52645b"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; fill: #17231d; }
+      .title { font-size: 40px; font-weight: 700; }
+      .subtitle { font-size: 21px; fill: #52645b; }
+      .panel-title { font-size: 25px; font-weight: 700; }
+      .panel-note { font-size: 16px; fill: #53635b; }
+      .entity-title { font-size: 20px; font-weight: 700; }
+      .entity-fields { font-family: Consolas, "Courier New", monospace; font-size: 15px; fill: #33453b; }
+      .rel-label { font-size: 15px; font-weight: 600; fill: #40534a; }
+      .foot { font-size: 16px; fill: #45574d; }
+      .edge { fill: none; stroke: #52645b; stroke-width: 2.4; marker-end: url(#arrow); }
+      .card { fill: #ffffff; stroke: #a8b9ad; stroke-width: 1.8; }
+    </style>
+  </defs>
+  <rect width="2400" height="1900" fill="#f5f8f5"/>
+  <text class="title" x="60" y="65">TRAVELMATE · CURRENT SYSTEM ERD</text>
+  <text class="subtitle" x="60" y="105">24 persisted models · PostgreSQL / Prisma · Updated for monthly AI allowance and test checkout</text>
+
+  <rect x="50" y="140" width="1130" height="800" rx="22" fill="#edf5ef" stroke="#bfd2c4" stroke-width="2"/>
+  <text class="panel-title" x="82" y="183">1 · Trip planning &amp; traveler records</text>
+  <text class="panel-note" x="82" y="211">Saved trips, version history, generation idempotency, feedback and actual visits</text>
+
+  <path class="edge" d="M 370 310 H 435"/>
+  <text class="rel-label" x="379" y="298">1:N</text>
+  <path class="edge" d="M 235 355 V 455"/>
+  <text class="rel-label" x="248" y="416">1:N</text>
+  <path class="edge" d="M 770 315 C 825 330 835 405 850 455"/>
+  <text class="rel-label" x="810" y="384">1:N</text>
+  <path class="edge" d="M 370 326 C 405 380 440 432 480 485"/>
+  <text class="rel-label" x="394" y="412">0..N</text>
+  <path class="edge" d="M 770 330 C 790 390 735 438 700 485"/>
+  <text class="rel-label" x="747" y="425">0..N</text>
+  <path class="edge" d="M 370 340 C 420 465 460 600 500 690"/>
+  <text class="rel-label" x="416" y="602">1:N</text>
+  <path class="edge" d="M 770 340 C 765 475 700 610 660 690"/>
+  <text class="rel-label" x="728" y="608">0..1 trip</text>
+
+  <g>
+    <rect class="card" x="90" y="255" width="280" height="100" rx="12"/>
+    <path d="M 90 267 Q 90 255 102 255 H 358 Q 370 255 370 267 V 291 H 90 Z" fill="#397656"/>
+    <text x="108" y="280" font-size="19" font-weight="700" fill="#fff">User</text>
+    <text class="entity-fields" x="108" y="320">PK id · UQ email</text>
+    <text class="entity-fields" x="108" y="342">role · accountStatus</text>
+  </g>
+  <g>
+    <rect class="card" x="435" y="245" width="335" height="120" rx="12"/>
+    <path d="M 435 257 Q 435 245 447 245 H 758 Q 770 245 770 257 V 281 H 435 Z" fill="#397656"/>
+    <text x="453" y="270" font-size="19" font-weight="700" fill="#fff">Trip</text>
+    <text class="entity-fields" x="453" y="309">PK id · FK userId · status</text>
+    <text class="entity-fields" x="453" y="332">destination · dates · budget</text>
+    <text class="entity-fields" x="453" y="354">currency · partyType · itinerary</text>
+  </g>
+  <g>
+    <rect class="card" x="90" y="455" width="320" height="155" rx="12"/>
+    <path d="M 90 467 Q 90 455 102 455 H 398 Q 410 455 410 467 V 491 H 90 Z" fill="#397656"/>
+    <text x="108" y="480" font-size="19" font-weight="700" fill="#fff">ItineraryGeneration</text>
+    <text class="entity-fields" x="108" y="520">PK id · FK userId</text>
+    <text class="entity-fields" x="108" y="543">UQ userId + idempotencyKey</text>
+    <text class="entity-fields" x="108" y="566">allowancePeriod · allowanceState</text>
+    <text class="entity-fields" x="108" y="589">charged · relatedTripId (scalar)</text>
+  </g>
+  <g>
+    <rect class="card" x="480" y="485" width="300" height="125" rx="12"/>
+    <path d="M 480 497 Q 480 485 492 485 H 768 Q 780 485 780 497 V 521 H 480 Z" fill="#397656"/>
+    <text x="498" y="510" font-size="19" font-weight="700" fill="#fff">Feedback</text>
+    <text class="entity-fields" x="498" y="550">PK id · FK userId? · FK itineraryId?</text>
+    <text class="entity-fields" x="498" y="573">rating · sentiment · category</text>
+    <text class="entity-fields" x="498" y="596">UQ userId + itineraryId</text>
+  </g>
+  <g>
+    <rect class="card" x="825" y="455" width="300" height="120" rx="12"/>
+    <path d="M 825 467 Q 825 455 837 455 H 1113 Q 1125 455 1125 467 V 491 H 825 Z" fill="#397656"/>
+    <text x="843" y="480" font-size="19" font-weight="700" fill="#fff">ItineraryVersion</text>
+    <text class="entity-fields" x="843" y="520">PK id · FK tripId</text>
+    <text class="entity-fields" x="843" y="543">UQ tripId + version · kind</text>
+    <text class="entity-fields" x="843" y="566">itinerary · weather</text>
+  </g>
+  <g>
+    <rect class="card" x="480" y="690" width="330" height="150" rx="12"/>
+    <path d="M 480 702 Q 480 690 492 690 H 798 Q 810 690 810 702 V 726 H 480 Z" fill="#397656"/>
+    <text x="498" y="715" font-size="19" font-weight="700" fill="#fff">VisitedPlace</text>
+    <text class="entity-fields" x="498" y="755">PK id · FK userId · FK tripId?</text>
+    <text class="entity-fields" x="498" y="778">placeKey · visitDate · coordinates</text>
+    <text class="entity-fields" x="498" y="801">place · imageUrl · attribution</text>
+    <text class="entity-fields" x="498" y="824">UQ userId + placeKey + visitDate</text>
+  </g>
+  <text class="panel-note" x="90" y="885">? = nullable FK · deleting a trip cascades versions and clears optional trip references</text>
+
+  <rect x="1220" y="140" width="1130" height="800" rx="22" fill="#edf2f8" stroke="#c2cede" stroke-width="2"/>
+  <text class="panel-title" x="1252" y="183">2 · Identity &amp; platform operations</text>
+  <text class="panel-note" x="1252" y="211">Authentication, account notices, audit, moderation and rate limiting</text>
+
+  <path class="edge" d="M 1570 330 C 1535 360 1520 400 1510 435"/>
+  <path class="edge" d="M 1570 330 C 1530 390 1520 470 1510 540"/>
+  <path class="edge" d="M 1570 330 C 1525 440 1520 565 1510 645"/>
+  <path class="edge" d="M 1645 330 L 1632 395"/>
+  <path class="edge" d="M 1680 330 C 1700 390 1680 455 1632 500"/>
+  <path class="edge" d="M 1710 330 C 1740 430 1700 535 1632 605"/>
+  <text class="rel-label" x="1542" y="365">1:N</text>
+
+  <g>
+    <rect class="card" x="1505" y="235" width="280" height="95" rx="12"/>
+    <path d="M 1505 247 Q 1505 235 1517 235 H 1773 Q 1785 235 1785 247 V 271 H 1505 Z" fill="#416a9e"/>
+    <text x="1523" y="260" font-size="19" font-weight="700" fill="#fff">User</text>
+    <text class="entity-fields" x="1523" y="300">PK id · UQ email · role</text>
+    <text class="entity-fields" x="1523" y="321">accountStatus · sessionVersion</text>
+  </g>
+  <g>
+    <rect class="card" x="1255" y="395" width="255" height="95" rx="12"/>
+    <path d="M 1255 407 Q 1255 395 1267 395 H 1498 Q 1510 395 1510 407 V 431 H 1255 Z" fill="#416a9e"/>
+    <text x="1273" y="420" font-size="18" font-weight="700" fill="#fff">AccountToken</text>
+    <text class="entity-fields" x="1273" y="459">FK userId · UQ tokenHash</text>
+    <text class="entity-fields" x="1273" y="481">kind · expiresAt</text>
+  </g>
+  <g>
+    <rect class="card" x="1255" y="500" width="255" height="95" rx="12"/>
+    <path d="M 1255 512 Q 1255 500 1267 500 H 1498 Q 1510 500 1510 512 V 536 H 1255 Z" fill="#416a9e"/>
+    <text x="1273" y="525" font-size="18" font-weight="700" fill="#fff">OAuthAccount</text>
+    <text class="entity-fields" x="1273" y="564">FK userId · provider</text>
+    <text class="entity-fields" x="1273" y="586">UQ provider + accountId</text>
+  </g>
+  <g>
+    <rect class="card" x="1255" y="605" width="255" height="95" rx="12"/>
+    <path d="M 1255 617 Q 1255 605 1267 605 H 1498 Q 1510 605 1510 617 V 641 H 1255 Z" fill="#416a9e"/>
+    <text x="1273" y="630" font-size="18" font-weight="700" fill="#fff">RevokedSession</text>
+    <text class="entity-fields" x="1273" y="669">PK tokenHash · FK userId</text>
+    <text class="entity-fields" x="1273" y="691">expiresAt</text>
+  </g>
+  <g>
+    <rect class="card" x="1505" y="395" width="255" height="95" rx="12"/>
+    <path d="M 1505 407 Q 1505 395 1517 395 H 1748 Q 1760 395 1760 407 V 431 H 1505 Z" fill="#416a9e"/>
+    <text x="1523" y="420" font-size="18" font-weight="700" fill="#fff">Notification</text>
+    <text class="entity-fields" x="1523" y="459">PK id · FK userId</text>
+    <text class="entity-fields" x="1523" y="481">readAt · createdAt</text>
+  </g>
+  <g>
+    <rect class="card" x="1505" y="500" width="255" height="95" rx="12"/>
+    <path d="M 1505 512 Q 1505 500 1517 500 H 1748 Q 1760 500 1760 512 V 536 H 1505 Z" fill="#416a9e"/>
+    <text x="1523" y="525" font-size="18" font-weight="700" fill="#fff">OwnerDocument</text>
+    <text class="entity-fields" x="1523" y="564">PK id · FK ownerId</text>
+    <text class="entity-fields" x="1523" y="586">type · status · fileUrl</text>
+  </g>
+  <g>
+    <rect class="card" x="1505" y="605" width="255" height="95" rx="12"/>
+    <path d="M 1505 617 Q 1505 605 1517 605 H 1748 Q 1760 605 1760 617 V 641 H 1505 Z" fill="#416a9e"/>
+    <text x="1523" y="630" font-size="18" font-weight="700" fill="#fff">AuditEvent</text>
+    <text class="entity-fields" x="1523" y="669">PK id · FK actorId</text>
+    <text class="entity-fields" x="1523" y="691">action · targetId (scalar)</text>
+  </g>
+  <g>
+    <rect class="card" x="1805" y="395" width="300" height="110" rx="12"/>
+    <path d="M 1805 407 Q 1805 395 1817 395 H 2093 Q 2105 395 2105 407 V 431 H 1805 Z" fill="#416a9e"/>
+    <text x="1823" y="420" font-size="18" font-weight="700" fill="#fff">Moderation</text>
+    <text class="entity-fields" x="1823" y="460">PK id · kind · status</text>
+    <text class="entity-fields" x="1823" y="483">subjectId (scalar, not FK)</text>
+  </g>
+  <g>
+    <rect class="card" x="1805" y="530" width="300" height="100" rx="12"/>
+    <path d="M 1805 542 Q 1805 530 1817 530 H 2093 Q 2105 530 2105 542 V 566 H 1805 Z" fill="#416a9e"/>
+    <text x="1823" y="555" font-size="18" font-weight="700" fill="#fff">RateLimitBucket</text>
+    <text class="entity-fields" x="1823" y="595">PK key · count · resetAt</text>
+    <text class="entity-fields" x="1823" y="618">No user foreign key</text>
+  </g>
+  <text class="panel-note" x="1255" y="760">Moderation.subjectId and AuditEvent.targetId are scalar identifiers, not FK relationships.</text>
+  <text class="panel-note" x="1255" y="787">RateLimitBucket is keyed independently and has no User relation.</text>
+
+  <rect x="50" y="970" width="1130" height="800" rx="22" fill="#f7f2e9" stroke="#d8c9aa" stroke-width="2"/>
+  <text class="panel-title" x="82" y="1013">3 · AI allowance &amp; plan access</text>
+  <text class="panel-note" x="82" y="1041">Subscriptions, test checkout, admin grants and monthly generation tracking</text>
+
+  <path class="edge" d="M 370 1190 C 410 1160 440 1150 480 1150"/>
+  <path class="edge" d="M 370 1210 C 410 1250 440 1300 480 1320"/>
+  <path class="edge" d="M 370 1230 C 405 1360 440 1470 480 1490"/>
+  <path class="edge" d="M 370 1170 C 415 1160 445 1160 480 1160"/>
+  <path class="edge" d="M 370 1260 C 415 1380 450 1490 480 1500"/>
+  <text class="rel-label" x="396" y="1140">1:0..1</text>
+  <text class="rel-label" x="394" y="1280">1:N</text>
+  <text class="rel-label" x="394" y="1445">1:N</text>
+
+  <g>
+    <rect class="card" x="90" y="1145" width="280" height="105" rx="12"/>
+    <path d="M 90 1157 Q 90 1145 102 1145 H 358 Q 370 1145 370 1157 V 1181 H 90 Z" fill="#a47725"/>
+    <text x="108" y="1170" font-size="19" font-weight="700" fill="#fff">User</text>
+    <text class="entity-fields" x="108" y="1210">PK id · traveler / admin</text>
+    <text class="entity-fields" x="108" y="1233">shared parent for plan records</text>
+  </g>
+  <g>
+    <rect class="card" x="480" y="1095" width="315" height="125" rx="12"/>
+    <path d="M 480 1107 Q 480 1095 492 1095 H 783 Q 795 1095 795 1107 V 1131 H 480 Z" fill="#a47725"/>
+    <text x="498" y="1120" font-size="19" font-weight="700" fill="#fff">PlanSubscription</text>
+    <text class="entity-fields" x="498" y="1160">PK/FK userId · UQ activationKey</text>
+    <text class="entity-fields" x="498" y="1183">source · startsAt · expiresAt</text>
+    <text class="entity-fields" x="498" y="1206">actorId? FK User (admin grant)</text>
+  </g>
+  <g>
+    <rect class="card" x="480" y="1280" width="315" height="130" rx="12"/>
+    <path d="M 480 1292 Q 480 1280 492 1280 H 783 Q 795 1280 795 1292 V 1316 H 480 Z" fill="#a47725"/>
+    <text x="498" y="1305" font-size="19" font-weight="700" fill="#fff">PlanCheckoutOrder</text>
+    <text class="entity-fields" x="498" y="1345">PK id · FK userId</text>
+    <text class="entity-fields" x="498" y="1368">UQ userId + idempotencyKey</text>
+    <text class="entity-fields" x="498" y="1391">status · amount · payment IDs</text>
+  </g>
+  <g>
+    <rect class="card" x="480" y="1460" width="315" height="130" rx="12"/>
+    <path d="M 480 1472 Q 480 1460 492 1460 H 783 Q 795 1460 795 1472 V 1496 H 480 Z" fill="#a47725"/>
+    <text x="498" y="1485" font-size="19" font-weight="700" fill="#fff">PlanActivation</text>
+    <text class="entity-fields" x="498" y="1525">PK key · FK userId · FK actorId</text>
+    <text class="entity-fields" x="498" y="1548">reason · expiresAt · createdAt</text>
+    <text class="entity-fields" x="498" y="1571">actor is the granting admin</text>
+  </g>
+  <g>
+    <rect class="card" x="835" y="1280" width="285" height="110" rx="12"/>
+    <path d="M 835 1292 Q 835 1280 847 1280 H 1108 Q 1120 1280 1120 1292 V 1316 H 835 Z" fill="#a47725"/>
+    <text x="853" y="1305" font-size="19" font-weight="700" fill="#fff">GenerationTracking</text>
+    <text class="entity-fields" x="853" y="1345">PK id · startedAt</text>
+    <text class="entity-fields" x="853" y="1368">No user foreign key</text>
+  </g>
+  <text class="panel-note" x="90" y="1660">Monthly usage reservations and charges live on ItineraryGeneration in panel 1.</text>
+  <text class="panel-note" x="90" y="1687">GenerationTracking is independent; it does not reference a User or subscription.</text>
+
+  <rect x="1220" y="970" width="1130" height="800" rx="22" fill="#f8eeee" stroke="#dfc3c3" stroke-width="2"/>
+  <text class="panel-title" x="1252" y="1013">4 · Marketplace schema</text>
+  <text class="panel-note" x="1252" y="1041">Persisted listing, booking, payment-record and review models; presence does not mean live payments</text>
+
+  <path class="edge" d="M 1540 1160 H 1620"/>
+  <text class="rel-label" x="1550" y="1148">owner 1:N</text>
+  <path class="edge" d="M 1755 1220 V 1270"/>
+  <text class="rel-label" x="1768" y="1253">1:N</text>
+  <path class="edge" d="M 1755 1200 C 1680 1320 1550 1390 1515 1445"/>
+  <path class="edge" d="M 1755 1200 C 1800 1320 1810 1400 1810 1460"/>
+  <path class="edge" d="M 1540 1200 C 1570 1240 1595 1300 1620 1330"/>
+  <path class="edge" d="M 1885 1325 H 1930"/>
+  <text class="rel-label" x="1885" y="1311">0..1</text>
+  <path class="edge" d="M 1540 1170 C 1650 1170 1810 1200 1930 1285"/>
+  <path class="edge" d="M 1755 1220 C 1820 1235 1875 1260 1930 1300"/>
+  <text class="rel-label" x="1570" y="1250">traveler 1:N</text>
+  <path class="edge" d="M 1885 1340 C 1905 1370 1918 1420 1930 1460"/>
+  <text class="rel-label" x="1898" y="1400">1:N</text>
+
+  <g>
+    <rect class="card" x="1255" y="1110" width="285" height="110" rx="12"/>
+    <path d="M 1255 1122 Q 1255 1110 1267 1110 H 1528 Q 1540 1110 1540 1122 V 1146 H 1255 Z" fill="#a34e4e"/>
+    <text x="1273" y="1135" font-size="19" font-weight="700" fill="#fff">User</text>
+    <text class="entity-fields" x="1273" y="1175">PK id · role traveler/admin</text>
+    <text class="entity-fields" x="1273" y="1198">listing owner / booking traveler</text>
+  </g>
+  <g>
+    <rect class="card" x="1620" y="1095" width="265" height="125" rx="12"/>
+    <path d="M 1620 1107 Q 1620 1095 1632 1095 H 1873 Q 1885 1095 1885 1107 V 1131 H 1620 Z" fill="#a34e4e"/>
+    <text x="1638" y="1120" font-size="19" font-weight="700" fill="#fff">Listing</text>
+    <text class="entity-fields" x="1638" y="1160">PK id · FK ownerId</text>
+    <text class="entity-fields" x="1638" y="1183">category · status · price</text>
+    <text class="entity-fields" x="1638" y="1206">name · availability</text>
+  </g>
+  <g>
+    <rect class="card" x="1620" y="1270" width="265" height="125" rx="12"/>
+    <path d="M 1620 1282 Q 1620 1270 1632 1270 H 1873 Q 1885 1270 1885 1282 V 1306 H 1620 Z" fill="#a34e4e"/>
+    <text x="1638" y="1295" font-size="19" font-weight="700" fill="#fff">Booking</text>
+    <text class="entity-fields" x="1638" y="1335">PK id · FK travelerId</text>
+    <text class="entity-fields" x="1638" y="1358">FK listingId · status</text>
+    <text class="entity-fields" x="1638" y="1381">paymentStatus · amount</text>
+  </g>
+  <g>
+    <rect class="card" x="1255" y="1445" width="260" height="110" rx="12"/>
+    <path d="M 1255 1457 Q 1255 1445 1267 1445 H 1503 Q 1515 1445 1515 1457 V 1481 H 1255 Z" fill="#a34e4e"/>
+    <text x="1273" y="1470" font-size="17" font-weight="700" fill="#fff">ListingBlockedDate</text>
+    <text class="entity-fields" x="1273" y="1510">PK id · FK listingId</text>
+    <text class="entity-fields" x="1273" y="1533">UQ listingId + date</text>
+  </g>
+  <g>
+    <rect class="card" x="1620" y="1460" width="265" height="110" rx="12"/>
+    <path d="M 1620 1472 Q 1620 1460 1632 1460 H 1873 Q 1885 1460 1885 1472 V 1496 H 1620 Z" fill="#a34e4e"/>
+    <text x="1638" y="1485" font-size="19" font-weight="700" fill="#fff">Promotion</text>
+    <text class="entity-fields" x="1638" y="1525">PK id · FK listingId</text>
+    <text class="entity-fields" x="1638" y="1548">discountPct · date range</text>
+  </g>
+  <g>
+    <rect class="card" x="1930" y="1270" width="325" height="125" rx="12"/>
+    <path d="M 1930 1282 Q 1930 1270 1942 1270 H 2243 Q 2255 1270 2255 1282 V 1306 H 1930 Z" fill="#a34e4e"/>
+    <text x="1948" y="1295" font-size="19" font-weight="700" fill="#fff">Review</text>
+    <text class="entity-fields" x="1948" y="1335">PK id · UQ/FK bookingId</text>
+    <text class="entity-fields" x="1948" y="1358">FK listingId · FK travelerId</text>
+    <text class="entity-fields" x="1948" y="1381">rating · comment</text>
+  </g>
+  <g>
+    <rect class="card" x="1930" y="1460" width="325" height="110" rx="12"/>
+    <path d="M 1930 1472 Q 1930 1460 1942 1460 H 2243 Q 2255 1460 2255 1472 V 1496 H 1930 Z" fill="#a34e4e"/>
+    <text x="1948" y="1485" font-size="19" font-weight="700" fill="#fff">PaymentTransaction</text>
+    <text class="entity-fields" x="1948" y="1525">PK id · FK bookingId</text>
+    <text class="entity-fields" x="1948" y="1548">kind · status · amount</text>
+  </g>
+  <text class="panel-note" x="1255" y="1645">Listing.ownerId is a User FK; the current User role enum has no separate owner role.</text>
+  <text class="panel-note" x="1255" y="1672">Booking/listing records remain schema data; no real payment processing is implied.</text>
+
+  <path d="M 60 1815 H 140" stroke="#52645b" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <text class="foot" x="155" y="1821">Foreign-key relationship; 1:N = one parent to many child rows</text>
+  <text class="foot" x="60" y="1860">PK primary key · FK foreign key · UQ unique constraint · ? nullable · Scalar IDs shown without a relationship are not foreign keys.</text>
+  <text class="foot" x="60" y="1885">User appears in multiple panels for readability; each occurrence represents the same users table. Enum definitions and JSON internals are omitted.</text>
+</svg>

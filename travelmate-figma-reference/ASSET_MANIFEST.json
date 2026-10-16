@@ -1,0 +1,82 @@
+[
+  {
+    "path": "public/beach-bg.png",
+    "bytes": 849305,
+    "sha256": "62abcfd91806bce813fcb14d8aa5e97b2e10cdd063ce5dd655946d16a4a6b246"
+  },
+  {
+    "path": "public/cordova-10000-roses.png",
+    "bytes": 2257090,
+    "sha256": "d66228030751bfd80910edf3c3a4f5bc6650180c1897d25102705797fc859222"
+  },
+  {
+    "path": "public/cordova-cclex.png",
+    "bytes": 2515862,
+    "sha256": "d9e46827a8340421135230ed3fd0d8b22477732023b844ea020a0db69e001478"
+  },
+  {
+    "path": "public/cordova-gilutongan.png",
+    "bytes": 2827160,
+    "sha256": "443a5255e88438fdf88db443b64f3dd61c42cd7f8a21375ffe917d5a52e11c70"
+  },
+  {
+    "path": "public/cordova-mangrove.png",
+    "bytes": 2351962,
+    "sha256": "ee96c49ebbd4ff8c8789b3795504168550cb560b14db0a68af9df8686c6c22bf"
+  },
+  {
+    "path": "public/cordova-nalusuan.png",
+    "bytes": 2366099,
+    "sha256": "f7f9dd740de2811550ac008606576dae49133554bb98c9997343189bd380857f"
+  },
+  {
+    "path": "public/cordova-resort.png",
+    "bytes": 3030246,
+    "sha256": "ccfa00b5d3b0e28d46ce680b30e6d286a46bffa0bf8bda9934085533837b398d"
+  },
+  {
+    "path": "public/cordova-seafood.png",
+    "bytes": 2372475,
+    "sha256": "698ac75a7bbf8b766ac81146b698d9c5938c6ff28cd32e8aaefaa4ab7035b511"
+  },
+  {
+    "path": "public/file.svg",
+    "bytes": 391,
+    "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4"
+  },
+  {
+    "path": "public/globe.svg",
+    "bytes": 1035,
+    "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf"
+  },
+  {
+    "path": "public/mountain-hero-bg.png",
+    "bytes": 571138,
+    "sha256": "1cdafd77f0cd5d598f175dc71ff244a4b29c47b7cb1512a40ae0bc72f3b48312"
+  },
+  {
+    "path": "public/next.svg",
+    "bytes": 1375,
+    "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc"
+  },
+  {
+    "path": "public/solea-mactan.jpg",
+    "bytes": 110080,
+    "sha256": "33abb3854681239ecf3d67b4e5cf87ac1ae023f4b58fc5087fab7a4ddbcaeccd"
+  },
+  {
+    "path": "public/travel-illustration.png",
+    "bytes": 546354,
+    "sha256": "555ff5eef8a90d370daff5229cb6c22d0955a0cc9238f4d18fee2e9022e583a0"
+  },
+  {
+    "path": "public/vercel.svg",
+    "bytes": 128,
+    "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4"
+  },
+  {
+    "path": "public/window.svg",
+    "bytes": 385,
+    "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1"
+  }
+]

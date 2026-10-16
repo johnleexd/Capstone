@@ -1,0 +1,12 @@
+flowchart TB
+  browser["Browser<br/>Public Earth and account dialogs; traveler and admin workspaces"]
+  next["Next.js App Router<br/>React state, same-origin API services, proxy and OAuth forwarding"]
+  express["Express API<br/>Auth and owner checks; schemas; controllers and business services"]
+  db["Prisma and PostgreSQL<br/>Users, trips, versions, visits, moderation and history"]
+  geo["Local reference data<br/>GeoNames, PSGC and country/photo manifests"]
+  providers["External adapters<br/>AI, mail, reference places, lodging, maps and weather"]
+  browser -->|"HTTP"| next
+  next -->|"HTTP / SSE"| express
+  express -->|"transactions"| db
+  express -->|"read"| geo
+  express -->|"bounded requests"| providers

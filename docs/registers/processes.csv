@@ -1,0 +1,11 @@
+﻿id,process,implementation,features,behavior_and_evidence_boundary
+PROC-01,Express process / graceful shutdown,server.ts; app.ts,TM-F-085,Request server; SIGINT/SIGTERM closes HTTP/Prisma. No autonomous trip-generation worker.
+PROC-02,Admin SSE connection,controllers/admin-reports-stream.ts,TM-F-075,Local events + 5s cross-instance reconciliation; rotates after 300s; closes on invalid session/backpressure/disconnect.
+PROC-03,Limiter cleanup,middlewares/rate-limit-middleware.ts,TM-F-082,1% of limiter calls trigger best-effort deletion of expired buckets/revocations; request-driven.
+PROC-04,Provider request caches/queues,services/cache; services/destination/geocoder-client.ts,TM-F-083,In-memory coalescing/TTL and paced requests; not a persistent queue or scheduled ETL.
+PROC-05,Frontend advisory polling / requests,TravelerDashboard.tsx; AdminDashboard.tsx,"TM-F-057, TM-F-075",Account-scoped notices; cleanup on lifecycle changes.
+PROC-06,Globe rendering and media loads,DiscoveryGlobeCanvas.tsx,"TM-F-002, TM-F-003, TM-F-004","requestAnimationFrame, quality adaptation, visibility/reduced-motion cleanup and exact-code async ownership."
+PROC-07,Location watch / route guidance,hooks/use-trip-location.ts; hooks/use-route-guidance.ts,TM-F-062,"Explicit opt-in browser geolocation, stop/cleanup on navigation or changes."
+PROC-08,Maintenance/build/CI scripts,scripts/; .github/workflows/,"TM-F-086, TM-F-087","Explicitly invoked codegen, seed, migrations, catalogue builders and release jobs; not evidence they ran."
+PROC-09,Photo curation workflow,scripts/curate-worldwide-discovery.mjs,"TM-F-004, TM-F-005",Offline preparation/publication with provider cache and manifest; no hover-time photo search.
+PROC-10,Missing automatic daily backup worker,No implementation located,TM-F-093,Historical requirement only; operational backup/restore evidence pending.

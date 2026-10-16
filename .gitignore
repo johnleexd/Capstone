@@ -1,6 +1,51 @@
+# Local credentials and private data; keep safe configuration templates.
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+*service-account*.json
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.bak
 
-# Local audit reports and verification artifacts.
+# Dependencies, build products, local test output and browser/provider captures.
+node_modules/
+.cache/
+.next/
+.next-production/
+dist/
+build/
+coverage/
+test-results/
+playwright-report/
+__pycache__/
+*.pyc
+*.log
+*.tsbuildinfo
 /audit/
+/.codex-build/
+
+# Intermediate defense-packet build sources; final reviewers and DOCX are kept.
+/deliverables/capstone-defense-2026-10-17/_docx_build/
+/deliverables/capstone-defense-2026-10-17/TravelMate_Capstone_Defense_Reviewer_Packet.html
+/deliverables/capstone-defense-2026-10-17/build_*
+/deliverables/capstone-defense-2026-10-17/convert_packet.ps1
+/deliverables/capstone-defense-2026-10-17/package_docx.ps1
+
+# Completed deliverables are saved; isolated source copies/render work stay local.
+/TravelMate-Documentation-2026-10-15/work/
+/TravelMate-Documentation-2026-10-15/evidence/
+/TravelMate-Documentation-2026-10-15/*.zip
+/TravelMate-Documentation-2026-10-15/deliverables/SHA256SUMS.txt
+
+# Reference handoff notes are saved; duplicate source/media archives stay local.
+/travelmate-figma-reference/source/
+/travelmate-figma-reference/baseline/
+/travelmate-figma-reference/historical-screenshots/
+/travelmate-figma-reference/*.zip

@@ -1,0 +1,11 @@
+erDiagram
+ User ||--o{ Listing : owner_named_FK
+ User ||--o{ Booking : traveler
+ Listing ||--o{ Booking : listing
+ Listing ||--o{ ListingBlockedDate : blocks
+ Listing ||--o{ Promotion : promotions
+ Booking ||--o| Review : review
+ Listing ||--o{ Review : reviews
+ User ||--o{ Review : traveler
+ Booking ||--o{ PaymentTransaction : transactions
+ User ||--o{ OwnerDocument : owner_named_FK

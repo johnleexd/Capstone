@@ -1,0 +1,35 @@
+classDiagram
+ class User {
+  +String id
+  +String email
+  +Role role
+  +AccountStatus accountStatus
+  +Int sessionVersion
+ }
+ class Trip {
+  +String id
+  +String userId
+  +Decimal budget
+  +Json itinerary
+  +TripStatus status
+ }
+ class ItineraryVersion {
+  +String tripId
+  +Int version
+  +Json itinerary
+ }
+ class ItineraryGeneration {
+  +String userId
+  +String attemptId
+  +GenerationStatus status
+ }
+ class PublicUser {
+  +String id
+  +String name
+  +String email
+  +Role role
+ }
+ User "1" --> "0..*" Trip : owns
+ User "1" --> "0..*" ItineraryGeneration : requests
+ Trip "1" --> "0..*" ItineraryVersion : versions
+ User ..> PublicUser : sanitized projection

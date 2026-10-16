@@ -1,0 +1,13 @@
+sequenceDiagram
+ participant A0 as Traveler UI
+ participant A1 as Replan service
+ participant A2 as AI and routing
+ participant A3 as PostgreSQL
+ A0->>A1: 1. Request remaining-day preview for owned trip/revision
+ A1->>A3: 2. Read current trip and enforce shared rate budget
+ A1->>A2: 3. Validate only remaining IDs, durations and transfers
+ A1->>A0: 4. Return signed 15-minute owner/trip/revision preview
+ A0->>A1: 5. Accept with confirmation, or cancel without plan write
+ A1->>A3: 6. Lock and reject stale/expired/wrong-owner preview
+ A1->>A3: 7. Apply permitted changes and append version/history
+ A1->>A0: 8. Return saved plan and new revision

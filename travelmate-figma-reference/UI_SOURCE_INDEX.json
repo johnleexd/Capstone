@@ -1,0 +1,1700 @@
+[
+  {
+    "path": "app/account/appeal/page.tsx",
+    "matches": [
+      {
+        "line": 21,
+        "text": "    const response = await fetch('/api/account/appeal', { cache: 'no-store' });"
+      },
+      {
+        "line": 36,
+        "text": "  return <main className=\"min-h-screen bg-[#0b1d1a] px-4 py-8 text-white sm:px-6\">"
+      },
+      {
+        "line": 38,
+        "text": "      <header className=\"flex items-center justify-between gap-4 border-b border-white/15 pb-5\"><Link href=\"/\" className=\"text-xl font-bold text-[#ffcf70]\">TravelMate</Link><button type=\"button\" className=\"min-h-11 border border-white/20 px-4 text-sm\" onClick={async () => { setMessage(''); try { router.replace(signedOutLocation(await signOut())); } catch (error) { setMessage(error instanceof Error ? error.message : 'Could not sign out. Please try again.'); } }}>Sign out</button></header>"
+      },
+      {
+        "line": 39,
+        "text": "      <h1 className=\"mt-8 text-3xl font-bold\">{data?.user.accountStatus === 'active' ? 'Your account access is restored' : 'Account suspension & appeal'}</h1>"
+      },
+      {
+        "line": 42,
+        "text": "      {loadError && <div role=\"alert\" className=\"mt-6 border border-red-300/30 bg-[#102622] p-5\"><p className=\"text-sm text-red-200\">{loadError}</p><button type=\"button\" className=\"mt-4 min-h-11 bg-[#ffcf70] px-5 text-sm font-bold text-[#102824]\" onClick={() => { setLoadError(''); void refresh().catch(handleLoadError); }}>Try again</button></div>}"
+      },
+      {
+        "line": 44,
+        "text": "        {data.user.accountStatus === 'active' ? <Link href=\"/dashboard\" className=\"mt-6 inline-block bg-[#ffcf70] px-5 py-3 font-bold text-[#102824]\">Return to dashboard</Link> : pending ? <div className=\"mt-6 border border-[#ffcf70]/40 bg-[#102622] p-5\"><h2 className=\"font-bold text-[#ffcf70]\">Appeal awaiting review</h2><p className=\"mt-2 text-sm text-white/70\">An admin will review your message. Their decision will appear here. You already have a pending appeal.</p></div> : <form className=\"mt-6 border border-white/15 bg-[#102622] p-5\" onSubmit={async event => {"
+      },
+      {
+        "line": 49,
+        "text": "            await handleResponse(await fetch('/api/account/appeal', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: details.trim() }) }));"
+      },
+      {
+        "line": 54,
+        "text": "        }}><label className=\"block font-bold\">Your appeal<textarea required minLength={10} maxLength={2000} rows={6} value={details} onChange={event => setDetails(event.target.value)} className=\"mt-3 block w-full border border-white/25 bg-[#071a16] p-3 text-base font-normal\" placeholder=\"Explain what happened and why your account should be restored.\"/></label><p className=\"mt-2 text-right text-xs text-white/50\">{details.length}/2000</p><button disabled={busy} className=\"mt-4 min-h-11 bg-[#ffcf70] px-5 font-bold text-[#102824] disabled:opacity-50\">{busy ? 'Sending…' : 'Send appeal'}</button></form>}"
+      },
+      {
+        "line": 55,
+        "text": "        <section className=\"mt-8\"><h2 className=\"text-xl font-bold\">Your appeals</h2>{data.appeals.length === 0 ? <p className=\"mt-3 text-sm text-white/60\">No appeals submitted yet.</p> : data.appeals.map(appeal => <article key={appeal.id} className=\"mt-3 border border-white/15 bg-[#102622] p-5\"><p className=\"font-bold capitalize text-[#ffcf70]\">{appeal.status === 'pending' ? 'Awaiting review' : appeal.status}</p><time className=\"mt-2 block text-xs text-white/50\">{new Date(appeal.createdAt).toLocaleString()}</time><p className=\"mt-3 whitespace-pre-wrap text-sm leading-6 [overflow-wrap:anywhere]\">{appeal.details}</p></article>)}</section>"
+      },
+      {
+        "line": 56,
+        "text": "        <section className=\"mt-8\"><h2 className=\"text-xl font-bold\">Account notices & decisions</h2>{data.notifications.map(notice => <details key={notice.id} className=\"mt-3 border border-white/15 bg-[#102622] p-5\" open={notice.title.startsWith('Appeal') || notice.title.startsWith('Account suspended')}><summary className=\"cursor-pointer font-bold [overflow-wrap:anywhere]\">{notice.title}</summary><time className=\"mt-3 block text-xs text-white/50\">{new Date(notice.createdAt).toLocaleString()}</time><p className=\"mt-3 whitespace-pre-wrap text-sm leading-6 [overflow-wrap:anywhere]\">{notice.body}</p></details>)}</section>"
+      }
+    ]
+  },
+  {
+    "path": "app/error.tsx",
+    "matches": [
+      {
+        "line": 7,
+        "text": "  return <main className=\"grid min-h-screen place-items-center bg-[#071817] px-5 text-white\"><section className=\"max-w-md text-center\" role=\"alert\"><p className=\"text-sm font-bold uppercase tracking-widest text-amber-300\">Something went wrong</p><h1 className=\"mt-3 text-3xl font-black\">TravelMate could not open this page.</h1><p className=\"mt-3 text-white/60\">Your saved data has not been changed. Try loading the page again.</p><button type=\"button\" onClick={reset} className=\"mt-6 min-h-11 rounded-full bg-amber-300 px-6 py-3 font-bold text-slate-950\">Try again</button></section></main>;"
+      }
+    ]
+  },
+  {
+    "path": "app/not-found.tsx",
+    "matches": [
+      {
+        "line": 4,
+        "text": "  return <main className=\"grid min-h-screen place-items-center bg-[#071817] px-5 text-white\"><section className=\"max-w-md text-center\"><p className=\"text-sm font-bold uppercase tracking-widest text-amber-300\">404</p><h1 className=\"mt-3 text-3xl font-black\">That route is not on the itinerary.</h1><p className=\"mt-3 text-white/60\">The page may have moved or the address may be incomplete.</p><Link href=\"/\" className=\"mt-6 inline-flex min-h-11 items-center rounded-full bg-amber-300 px-6 py-3 font-bold text-slate-950\">Return home</Link></section></main>;"
+      }
+    ]
+  },
+  {
+    "path": "components/common/ContentSkeletons.tsx",
+    "matches": [
+      {
+        "line": 14,
+        "text": "  return <SkeletonRegion label=\"Generating your itinerary...\" showLabel className=\"my-6 border border-white/10 bg-[#102824] p-5 sm:p-6\">"
+      },
+      {
+        "line": 22,
+        "text": "    <div className=\"border border-white/15 bg-[#102622] p-5\"><Skeleton className=\"h-5 w-40\" /><Skeleton className=\"mt-4 h-36 w-full\" /><Skeleton className=\"mt-5 h-11 w-32\" /></div>"
+      },
+      {
+        "line": 23,
+        "text": "    {[0, 1].map(index => <div key={index} className=\"mt-8\"><Skeleton className=\"h-6 w-48\" /><div className=\"mt-3 space-y-3 border border-white/15 bg-[#102622] p-5\"><Skeleton className=\"h-4 w-2/3\" /><Skeleton className=\"h-3 w-full\" /><Skeleton className=\"h-3 w-4/5\" /></div></div>)}"
+      }
+    ]
+  },
+  {
+    "path": "components/common/DashboardLoadState.tsx",
+    "matches": [
+      {
+        "line": 12,
+        "text": "    <main className=\"grid min-h-screen place-items-center bg-[#07111f] px-5 text-slate-100\">"
+      },
+      {
+        "line": 15,
+        "text": "        <h1 id=\"load-error-title\" className=\"mt-4 text-xl font-bold\">Workspace unavailable</h1>"
+      }
+    ]
+  },
+  {
+    "path": "components/common/Skeleton.tsx",
+    "matches": [
+      {
+        "line": 13,
+        "text": "  return <div role=\"status\" aria-label={label} aria-busy=\"true\" className={className}>"
+      }
+    ]
+  },
+  {
+    "path": "components/common/UserAvatar.tsx",
+    "matches": [
+      {
+        "line": 10,
+        "text": "  return <span className=\"grid size-10 shrink-0 place-items-center overflow-hidden rounded-full border border-white/15 bg-[#ffcf70]/15 text-xs font-bold text-[#ffcf70]\">"
+      },
+      {
+        "line": 14,
+        "text": "      <img src={url} alt={`Profile photo of ${user.name}`} width={40} height={40} loading=\"lazy\" referrerPolicy=\"no-referrer\" onError={() => setFailedUrl(url)} className=\"size-full object-cover\"/> : <span role=\"img\" aria-label={`Default avatar for ${user.name}`}>{initials}</span>}"
+      }
+    ]
+  },
+  {
+    "path": "components/common/WorkspaceSkeleton.tsx",
+    "matches": [
+      {
+        "line": 7,
+        "text": "  return <div className=\"border border-white/10 bg-[#102824] p-6\">"
+      },
+      {
+        "line": 19,
+        "text": "  return <main className=\"min-h-screen overflow-x-clip bg-[#0b1d1a] pt-20 text-white\">"
+      },
+      {
+        "line": 22,
+        "text": "        <div className=\"mx-auto flex h-16 max-w-[1380px] items-center justify-between border border-white/15 bg-[#102824] px-4 sm:px-6\">"
+      },
+      {
+        "line": 23,
+        "text": "          <div className=\"flex items-center gap-3\"><span className=\"grid size-9 place-items-center bg-[#ffcf70] text-[#102824]\"><Compass size={20} /></span><span className=\"text-lg font-semibold\">TravelMate</span></div>"
+      },
+      {
+        "line": 27,
+        "text": "      {variant === 'planner' && <div className=\"border-b border-white/10 bg-[#102622] px-4 py-3 sm:px-6\"><Skeleton className=\"mx-auto h-4 max-w-[1600px]\" /></div>}"
+      },
+      {
+        "line": 31,
+        "text": "            {Array.from({ length: variant === 'admin' ? 4 : 6 }, (_, index) => <div key={index} className=\"flex h-[49px] min-w-36 items-center gap-3 bg-[#0b1d1a] px-4 lg:min-w-0\"><Skeleton className=\"size-4 shrink-0\" /><Skeleton className=\"h-3 w-24\" /></div>)}"
+      },
+      {
+        "line": 38,
+        "text": "            <div className=\"border border-white/10 bg-[#102824] p-6 sm:p-9\"><Skeleton className=\"h-3 w-48\" /><Skeleton className=\"mt-5 h-10 w-full max-w-2xl sm:h-14\" /><Skeleton className=\"mt-5 h-4 w-4/5\" /><Skeleton className=\"mt-2 h-4 w-2/3\" /><div className=\"mt-6 flex flex-wrap gap-3\"><Skeleton className=\"h-12 w-36\" /><Skeleton className=\"h-12 w-36\" /></div></div>"
+      },
+      {
+        "line": 42,
+        "text": "            <div className=\"mt-5 grid gap-5 border border-white/10 bg-[#102824] p-6 sm:grid-cols-2\">{[0, 1, 2, 3, 4, 5].map(index => <div key={index}><Skeleton className=\"mb-3 h-3 w-24\" /><Skeleton className=\"h-12 w-full\" /></div>)}<Skeleton className=\"h-12 w-48\" /></div>"
+      },
+      {
+        "line": 44,
+        "text": "            <div className=\"grid border border-white/15 bg-[#102824] lg:grid-cols-3\">"
+      },
+      {
+        "line": 46,
+        "text": "              <div className=\"space-y-5 border-t border-white/10 bg-[#ffcf70]/[0.06] p-6 sm:p-10 lg:border-l lg:border-t-0\"><Skeleton className=\"h-3 w-24\" /><Skeleton className=\"h-8 w-full\" /><Skeleton className=\"h-4 w-4/5\" /><Skeleton className=\"mt-12 h-24 w-full\" /></div>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/admin/AdminDashboard.tsx",
+    "matches": [
+      {
+        "line": 32,
+        "text": "  const response = await fetch(body ? '/api/platform' : '/api/platform?scope=admin', body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : undefined);"
+      },
+      {
+        "line": 88,
+        "text": "  return <div ref={pageRef} className=\"admin-dashboard min-h-screen w-full max-w-full overflow-x-clip bg-[#0b1d1a] pt-20 text-slate-100\">"
+      },
+      {
+        "line": 89,
+        "text": "    <a href=\"#admin-main-content\" className=\"sr-only z-[100] bg-[#f1ead8] px-4 py-2 font-bold text-[#14231f] focus:not-sr-only focus:fixed focus:left-4 focus:top-4\">Skip to admin workspace</a>"
+      },
+      {
+        "line": 91,
+        "text": "      <div className=\"mx-auto flex h-16 w-full max-w-[1380px] items-center justify-between border border-white/15 bg-[#102824]/88 px-4 text-white shadow-[0_18px_50px_rgba(8,24,22,.22)] backdrop-blur-xl sm:px-6\">"
+      },
+      {
+        "line": 92,
+        "text": "        <button onClick={() => router.push('/')} className=\"group flex items-center gap-3 text-left\" aria-label=\"TravelMate home\">"
+      },
+      {
+        "line": 93,
+        "text": "          <span className=\"grid size-9 place-items-center bg-[#ffcf70] text-[#102824] transition-transform duration-500 group-hover:-rotate-6\"><Compass size={20} strokeWidth={2.2}/></span>"
+      },
+      {
+        "line": 97,
+        "text": "          <button type=\"button\" onClick={() => setProfileMenuOpen(true)} aria-label={`Open profile menu for ${data.user.name}`} aria-haspopup=\"dialog\" aria-expanded={profileMenuOpen} aria-controls=\"admin-profile-menu\" className=\"flex min-w-0 items-center gap-2 border border-white/15 bg-white/[0.04] py-1.5 pl-1.5 pr-3 text-left transition-colors hover:border-[#ffcf70]/50 hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#ffcf70] sm:gap-3\">"
+      },
+      {
+        "line": 108,
+        "text": "      <button type=\"button\" aria-label=\"Close profile menu\" onClick={() => setProfileMenuOpen(false)} className=\"traveler-profile-backdrop absolute inset-0 bg-[#061714]/65 backdrop-blur-sm\" />"
+      },
+      {
+        "line": 109,
+        "text": "      <aside ref={profileMenuRef} id=\"admin-profile-menu\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"admin-profile-menu-title\" tabIndex={-1} className=\"traveler-profile-drawer absolute inset-y-0 right-0 flex w-full max-w-sm flex-col border-l border-white/15 bg-[#102824] text-white shadow-[-24px_0_70px_rgba(0,0,0,.35)]\">"
+      },
+      {
+        "line": 111,
+        "text": "          <div><p className=\"text-[10px] font-bold uppercase tracking-[.16em] text-[#ffcf70]\">TravelMate</p><h2 id=\"admin-profile-menu-title\" className=\"mt-1 text-lg font-semibold\">Admin account</h2></div>"
+      },
+      {
+        "line": 112,
+        "text": "          <button ref={profileMenuCloseRef} type=\"button\" aria-label=\"Close profile menu\" onClick={() => setProfileMenuOpen(false)} className=\"grid size-10 place-items-center border border-white/20 text-white/75 transition-colors hover:bg-white/10 hover:text-white\"><X size={18}/></button>"
+      },
+      {
+        "line": 116,
+        "text": "            <span className=\"grid size-12 shrink-0 place-items-center bg-[#ffcf70] text-sm font-black text-[#102824]\">{adminInitials}</span>"
+      },
+      {
+        "line": 119,
+        "text": "          <div className=\"mt-4 flex items-center justify-between border-b border-white/10 pb-4 text-xs\"><span className=\"text-white/55\">Account role</span><span className=\"border border-[#ffcf70]/35 bg-[#ffcf70]/10 px-2 py-1 font-bold text-[#ffcf70]\">Administrator</span></div>"
+      },
+      {
+        "line": 122,
+        "text": "          <button type=\"button\" onClick={() => { setProfileMenuOpen(false); openTab('reports'); }} className=\"flex min-h-12 w-full items-center gap-3 border border-white/15 px-4 text-sm font-semibold text-white/85 transition-colors hover:border-[#ffcf70]/50 hover:bg-white/[0.06]\"><Bell size={17} className=\"text-[#ffcf70]\"/>Reports{pending > 0 && <span className=\"ml-auto bg-[#ffcf70] px-1.5 py-0.5 text-[10px] font-black text-[#102824]\">{pending}</span>}</button>"
+      },
+      {
+        "line": 132,
+        "text": "          <nav aria-label=\"Admin workspace\" className=\"traveler-mobile-nav flex max-w-full snap-x gap-px overflow-x-auto border border-white/10 bg-white/10 p-px lg:flex-col lg:overflow-visible\">"
+      },
+      {
+        "line": 133,
+        "text": "            {nav.map(([id, label, Icon]) => <button key={id} aria-current={tab === id ? 'page' : undefined} onClick={() => openTab(id)} className={`group relative flex shrink-0 snap-start items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-colors lg:w-full ${tab === id ? 'bg-[#f1ead8] text-[#14231f]' : 'bg-[#0b1d1a] text-white/55 hover:bg-[#16302b] hover:text-white'}`}><span className={`absolute inset-y-0 left-0 w-0.5 ${tab === id ? 'bg-amber-400' : 'bg-transparent'}`}/><Icon size={17}/>{label}{id === 'reports' && pending > 0 && <span className=\"ml-auto bg-amber-300 px-1.5 py-0.5 text-[10px] font-black text-[#14231f]\">{pending}</span>}</button>)}"
+      },
+      {
+        "line": 139,
+        "text": "      <main id=\"admin-main-content\" tabIndex={-1} className=\"min-w-0 w-full max-w-[calc(100vw-2rem)] overflow-x-hidden pb-20 pt-5 outline-none lg:max-w-none lg:pt-10\"><div data-admin-reveal className=\"mb-7 border-b border-white/10 pb-6\"><h1 className=\"max-w-6xl text-[clamp(2rem,4vw,3.75rem)] font-black leading-[0.96] tracking-[-0.05em]\">{copy.title}</h1><p className=\"mt-3 max-w-2xl text-sm leading-6 text-white/52\">{copy.description}{tab === 'users' && <span className=\"mt-1 block text-emerald-200\">Active users: {data.directory.filter(user => user.accountStatus === 'active').length.toLocaleString()}</span>}</p></div>{message && <div role=\"status\" aria-live=\"polite\" className=\"mb-6 border-l-2 border-amber-300 bg-white/[0.055] px-4 py-3 text-sm text-white/80\">{message}</div>}"
+      }
+    ]
+  },
+  {
+    "path": "components/features/admin/AdminPanels.tsx",
+    "matches": [
+      {
+        "line": 13,
+        "text": "const panel = 'min-w-0 border border-white/10 bg-[#102622] p-5 sm:p-7';"
+      },
+      {
+        "line": 25,
+        "text": "    <section data-admin-card className=\"border border-white/10 bg-[#efe8d6] p-6 text-[#14231f] sm:p-9\">"
+      },
+      {
+        "line": 27,
+        "text": "      <h2 className=\"mt-4 max-w-3xl text-3xl font-black tracking-tight sm:text-5xl\">Keep trip planning running smoothly.</h2>"
+      },
+      {
+        "line": 29,
+        "text": "      <div className=\"mt-6 flex flex-wrap gap-3\"><button className=\"min-h-12 bg-[#14231f] px-5 font-bold text-white\" onClick={() => onOpen('reports')}>Review reports</button><button className=\"min-h-12 border border-[#14231f] px-5 font-bold\" onClick={() => onOpen('users')}>Manage users</button></div>"
+      },
+      {
+        "line": 47,
+        "text": "      <label className=\"text-sm\">Search users<input value={search} onChange={event => onSearch(event.target.value)} placeholder=\"Name, email, or account status\" className=\"mt-2 min-h-12 w-full border border-white/20 bg-[#102622] px-4 text-base\"/></label>"
+      },
+      {
+        "line": 48,
+        "text": "      <label className=\"text-sm\">Filter users<select value={filter} onChange={event => onFilter(event.target.value)} className=\"mt-2 min-h-12 w-full border border-white/20 bg-[#102622] px-4 text-base\">{[['all','All users'],['traveler','Travelers'],['admin','Admins'],['active','Active'],['suspended','Suspended']].map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></label>"
+      },
+      {
+        "line": 50,
+        "text": "    <div className=\"max-w-full overflow-x-auto border border-white/10 bg-[#102622]\" role=\"region\" aria-label=\"User accounts\" tabIndex={0}>"
+      },
+      {
+        "line": 61,
+        "text": "        if (suspend && !window.confirm(`Suspend access for ${user.name}? Their saved trips will be preserved.`)) return;"
+      },
+      {
+        "line": 69,
+        "text": "      <div ref={warningRef} role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"warning-title\" aria-describedby=\"warning-description\" className=\"max-h-[calc(100dvh-1.5rem)] w-full max-w-lg overflow-y-auto border border-white/20 bg-[#102622] p-5 sm:p-6\">"
+      },
+      {
+        "line": 70,
+        "text": "        <div className=\"flex items-center justify-between gap-4\"><h2 id=\"warning-title\" className=\"flex items-center gap-2 text-xl font-bold text-[#ffcf70]\"><TriangleAlert size={22}/>Send account warning</h2><button type=\"button\" disabled={busy} onClick={closeWarning} aria-label=\"Close warning\" className=\"grid size-11 shrink-0 place-items-center border border-white/20 disabled:opacity-50\"><X size={20}/></button></div>"
+      },
+      {
+        "line": 83,
+        "text": "          <label className=\"block text-sm font-semibold\">Warning message<textarea ref={messageRef} required minLength={10} maxLength={2000} rows={5} value={warning} onChange={event => setWarning(event.target.value)} placeholder=\"Explain the issue and what the traveler needs to change.\" className=\"mt-2 block w-full resize-y border border-white/25 bg-[#071a16] p-3 text-base font-normal\"/></label>"
+      },
+      {
+        "line": 86,
+        "text": "          <div className=\"mt-5 flex justify-end gap-3\"><button type=\"button\" disabled={busy} className={button} onClick={closeWarning}>Cancel</button><button type=\"submit\" disabled={busy} className={`${button} bg-[#ffcf70] text-[#102824] hover:bg-[#ffdb94]`}>{busy ? 'Sending...' : 'Send warning'}</button></div>"
+      },
+      {
+        "line": 104,
+        "text": "    <div className=\"flex flex-wrap items-start justify-between gap-3\"><h2 className=\"min-w-0 break-words text-lg font-bold\"><button type=\"button\" className=\"text-left [overflow-wrap:anywhere] hover:underline\" onClick={() => { setSelectedId(report.id); setDecisionMessage(''); setDecisionError(''); }} aria-haspopup=\"dialog\">{report.title}</button></h2>{report.status !== 'pending' && <span className=\"text-sm text-[#ffcf70]\"><span className=\"sr-only\">Status: </span>{report.status === 'approved' ? 'Approved' : report.status === 'rejected' ? 'Rejected' : 'Resolved'}</span>}</div>"
+      },
+      {
+        "line": 110,
+        "text": "    <div ref={modalRef} role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"report-dialog-title\" tabIndex={-1} className=\"flex max-h-[calc(100dvh-1.5rem)] w-full min-w-0 max-w-2xl flex-col border border-white/20 bg-[#102622] shadow-2xl sm:max-h-[calc(100dvh-3rem)]\">"
+      },
+      {
+        "line": 111,
+        "text": "      <div className=\"flex shrink-0 items-center justify-between gap-4 border-b border-white/15 p-4 sm:px-6\"><h2 id=\"report-dialog-title\" className=\"text-lg font-bold\">Full report</h2><button ref={closeRef} type=\"button\" aria-label=\"Close full report\" className=\"grid size-11 shrink-0 place-items-center border border-white/20 hover:bg-white/10\" onClick={() => setSelectedId(null)}><X size={20}/></button></div>"
+      },
+      {
+        "line": 113,
+        "text": "        <h3 className=\"text-xl font-bold [overflow-wrap:anywhere]\">{selectedReport.title}</h3>"
+      },
+      {
+        "line": 120,
+        "text": "        <h4 className=\"mt-6 font-bold\">Details</h4><p className=\"mt-2 whitespace-pre-wrap text-sm leading-7 text-white/80 [overflow-wrap:anywhere]\">{selectedReport.details}</p>"
+      },
+      {
+        "line": 129,
+        "text": "        }}><label className=\"block text-sm font-bold\">Decision message to traveler<textarea required minLength={10} maxLength={2000} rows={4} value={decisionMessage} onChange={event => setDecisionMessage(event.target.value)} className=\"mt-2 block w-full border border-white/25 bg-[#071a16] p-3 text-base font-normal\" placeholder=\"Explain why access is being restored or why the suspension remains.\"/></label>{decisionError && <p role=\"alert\" className=\"mt-3 text-sm text-red-300\">{decisionError}</p>}<div className=\"mt-4 flex flex-wrap gap-3\"><button type=\"submit\" value=\"approved\" disabled={busy} className={`${button} bg-[#ffcf70] text-[#102824]`}>Approve & restore access</button><button type=\"submit\" value=\"rejected\" disabled={busy} className={button}>Reject appeal</button></div></form>}"
+      },
+      {
+        "line": 148,
+        "text": "    <section data-admin-card className={panel}><h2 className=\"text-xl font-bold\">API Monitoring</h2><p className=\"mt-2 text-sm leading-6 text-white/55\">Configuration is shown below. A configured external service is not a guarantee of live availability.</p><div className=\"mt-4 divide-y divide-white/10\">{services.map(([label, ready, status]) => <div key={label} className=\"flex flex-wrap justify-between gap-3 py-4 text-sm\"><span>{label}</span><span className={ready ? 'text-emerald-200' : 'text-amber-200'}>{ready ? status : 'Not configured'}</span></div>)}</div></section>"
+      },
+      {
+        "line": 149,
+        "text": "    <section data-admin-card className={panel}><h2 className=\"text-xl font-bold\">Recent generation failures</h2><p className=\"mt-2 text-sm text-white/55\">From the latest 25 generation attempts.</p>{failures.length === 0 ? <p className=\"mt-5 text-sm\">No failures in recent attempts.</p> : failures.map(item => <div key={item.id} className=\"mt-4 flex flex-wrap justify-between gap-3 border-t border-white/10 pt-4 text-sm\"><span>{item.errorCode || 'Generation failed'}</span><time>{new Date(item.updatedAt).toLocaleString()}</time></div>)}</section>"
+      },
+      {
+        "line": 150,
+        "text": "    <section data-admin-card className={panel}><h2 className=\"text-xl font-bold\">Activity log</h2><label className=\"mt-4 block text-sm\">Search activity<input value={search} onChange={event => onSearch(event.target.value)} className=\"mt-2 min-h-12 w-full border border-white/20 bg-[#071a16] px-4 text-base\" placeholder=\"Action or record ID\"/></label><div className=\"mt-4 divide-y divide-white/10\">{events.map(item => <div key={item.id} className=\"grid gap-2 py-4 text-xs sm:grid-cols-[1fr_1fr_1fr]\"><time className=\"text-white/50\">{new Date(item.createdAt).toLocaleString()}</time><span className=\"break-all text-cyan-200\">{item.action}</span><span className=\"break-all\">{item.targetId}</span></div>)}</div>{events.length === 0 && <p className=\"mt-4 text-sm text-white/55\">No matching activity.</p>}</section>"
+      },
+      {
+        "line": 160,
+        "text": "    <div className=\"flex items-center gap-3\"><UserAvatar user={user}/><div><h2 className=\"text-xl font-bold\">Admin profile</h2><p className=\"text-sm text-white/60\">{user.email}</p></div></div>"
+      },
+      {
+        "line": 167,
+        "text": "        await handleResponse(await fetch('/api/profile', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: fields.get('name'), phone: fields.get('phone'), bio: fields.get('bio'), avatarUrl: fields.get('avatarUrl') }) }));"
+      },
+      {
+        "line": 172,
+        "text": "      <label className=\"text-sm\">Full name<input required minLength={2} maxLength={80} name=\"name\" defaultValue={user.name} autoComplete=\"name\" className=\"mt-2 min-h-12 w-full border border-white/20 bg-[#071a16] px-4\"/></label>"
+      },
+      {
+        "line": 173,
+        "text": "      <label className=\"text-sm\">Phone number<input maxLength={30} name=\"phone\" defaultValue={user.phone || ''} autoComplete=\"tel\" className=\"mt-2 min-h-12 w-full border border-white/20 bg-[#071a16] px-4\"/></label>"
+      },
+      {
+        "line": 174,
+        "text": "      <label className=\"text-sm sm:col-span-2\">Profile photo URL<input type=\"url\" maxLength={2048} name=\"avatarUrl\" defaultValue={user.avatarUrl || ''} placeholder=\"https://?\" aria-describedby=\"admin-photo-note\" className=\"mt-2 min-h-12 w-full border border-white/20 bg-[#071a16] px-4\"/><span id=\"admin-photo-note\" className=\"mt-2 block text-xs text-white/50\">Use an HTTPS image URL. Clear it to use your initials.</span></label>"
+      },
+      {
+        "line": 175,
+        "text": "      <label className=\"text-sm sm:col-span-2\">Bio<textarea maxLength={500} name=\"bio\" defaultValue={user.bio || ''} rows={4} className=\"mt-2 w-full border border-white/20 bg-[#071a16] p-3\"/></label>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/admin/UserFeedbackView.tsx",
+    "matches": [
+      {
+        "line": 15,
+        "text": "const input = 'mt-2 min-h-12 w-full border border-white/20 bg-[#102622] px-3 text-base';"
+      },
+      {
+        "line": 45,
+        "text": "      void fetch(`/api/feedback?${params}`, { signal: controller.signal, cache: 'no-store' }).then(handleResponse<FeedbackListResponse>).then(result => {"
+      },
+      {
+        "line": 56,
+        "text": "    void fetch(`/api/feedback/${encodeURIComponent(selected.id)}/itinerary`, { signal: controller.signal, cache: 'no-store' }).then(handleResponse<FeedbackItineraryResponse>).then(result => {"
+      },
+      {
+        "line": 72,
+        "text": "      <label className=\"text-sm\">Rating<select aria-label=\"Rating\" value={rating} onChange={event => changeFilter(setRating, event.target.value)} className={input}><option value=\"\">All ratings</option>{[5,4,3,2,1].map(value => <option key={value} value={value}>{value} star{value === 1 ? '' : 's'}</option>)}</select></label>"
+      },
+      {
+        "line": 73,
+        "text": "      <label className=\"text-sm\">Sentiment<select aria-label=\"Sentiment\" value={sentiment} onChange={event => changeFilter(setSentiment, event.target.value)} className={input}><option value=\"\">All sentiments</option><option value=\"not_analyzed\">Not analyzed</option><option value=\"positive\">Positive</option><option value=\"neutral\">Neutral</option><option value=\"negative\">Negative</option></select></label>"
+      },
+      {
+        "line": 74,
+        "text": "      <label className=\"text-sm\">From date<input type=\"date\" value={from} onChange={event => changeFilter(setFrom, event.target.value)} className={input}/></label>"
+      },
+      {
+        "line": 75,
+        "text": "      <label className=\"text-sm\">To date<input type=\"date\" value={to} onChange={event => changeFilter(setTo, event.target.value)} className={input}/></label>"
+      },
+      {
+        "line": 78,
+        "text": "    {loading && <p role=\"status\" className=\"border border-white/10 bg-[#102622] p-5\">Loading feedback…</p>}"
+      },
+      {
+        "line": 79,
+        "text": "    {error && <div role=\"alert\" className=\"border border-red-400/25 bg-[#102622] p-5 text-sm text-red-300\"><p>{error}</p><button className={`${button} mt-4`} onClick={() => setRevision(value => value + 1)}>Retry feedback</button></div>}"
+      },
+      {
+        "line": 81,
+        "text": "      <div role=\"region\" aria-label=\"User feedback records\" tabIndex={0} className=\"max-w-full overflow-x-auto border border-white/10 bg-[#102622]\">"
+      },
+      {
+        "line": 87,
+        "text": "            <td className=\"px-4 py-3\"><span role=\"img\" aria-label={`${entry.rating} out of 5 stars`} className=\"flex gap-0.5 text-[#ffcf70]\">{[1,2,3,4,5].map(value => <Star aria-hidden=\"true\" key={value} size={14} fill={value <= entry.rating ? 'currentColor' : 'none'}/>)}</span></td>"
+      },
+      {
+        "line": 95,
+        "text": "      {data.total === 0 && <p className=\"border border-white/10 bg-[#102622] p-5 text-sm\">No feedback matches these filters. Travelers can submit feedback from their saved trips.</p>}"
+      },
+      {
+        "line": 99,
+        "text": "      <div ref={modalRef} role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"feedback-dialog-title\" tabIndex={-1} className=\"flex max-h-[calc(100dvh-1.5rem)] w-full min-w-0 max-w-5xl flex-col border border-white/20 bg-[#102622] shadow-2xl sm:max-h-[calc(100dvh-3rem)]\">"
+      },
+      {
+        "line": 100,
+        "text": "        <div className=\"flex shrink-0 items-center justify-between gap-4 border-b border-white/15 p-4 sm:px-6\"><h2 id=\"feedback-dialog-title\" className=\"text-lg font-bold\">Feedback details</h2><button ref={closeRef} type=\"button\" aria-label=\"Close feedback details\" className=\"grid size-11 shrink-0 place-items-center border border-white/20 hover:bg-white/10\" onClick={() => setSelected(null)}><X size={20}/></button></div>"
+      },
+      {
+        "line": 104,
+        "text": "          <h3 className=\"mt-6 border-t border-white/15 pt-5 text-lg font-bold\">Related itinerary</h3>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/home/TravelMateLanding.tsx",
+    "matches": [
+      {
+        "line": 41,
+        "text": "type AuthMode = 'login' | 'register' | 'verify' | 'forgot' | 'reset';"
+      },
+      {
+        "line": 90,
+        "text": "    response = await fetch('/api/auth', {"
+      },
+      {
+        "line": 369,
+        "text": "    <div ref={pageRef} className=\"min-h-screen w-full max-w-full overflow-x-hidden bg-[#f2efe6] font-sans text-[#142421] selection:bg-[#ffcf70] selection:text-[#142421]\">"
+      },
+      {
+        "line": 370,
+        "text": "      <a href=\"#main-content\" className=\"sr-only z-[100] bg-white px-4 py-2 text-[#142421] focus:not-sr-only focus:fixed focus:left-4 focus:top-4\">Skip to content</a>"
+      },
+      {
+        "line": 373,
+        "text": "        <div className=\"mx-auto flex h-16 max-w-[1380px] items-center justify-between border border-white/15 bg-[#102824]/88 px-4 text-white shadow-[0_18px_50px_rgba(8,24,22,.22)] backdrop-blur-xl sm:px-6\">"
+      },
+      {
+        "line": 374,
+        "text": "          <a href=\"#top\" className=\"group flex items-center gap-3 font-semibold tracking-[-.02em]\" aria-label=\"TravelMate home\">"
+      },
+      {
+        "line": 375,
+        "text": "            <span className=\"grid size-9 place-items-center bg-[#ffcf70] text-[#102824] transition-transform duration-500 group-hover:-rotate-6\"><Compass size={20} strokeWidth={2.2} /></span>"
+      },
+      {
+        "line": 378,
+        "text": "          <nav aria-label=\"Primary navigation\" className=\"hidden items-center gap-8 text-sm text-white/70 lg:flex\">"
+      },
+      {
+        "line": 379,
+        "text": "            <a className=\"transition-colors hover:text-white\" href=\"#features\">Why TravelMate</a>"
+      },
+      {
+        "line": 380,
+        "text": "            <a className=\"transition-colors hover:text-white\" href=\"#workflow\">How it works</a>"
+      },
+      {
+        "line": 381,
+        "text": "            <a className=\"transition-colors hover:text-white\" href=\"#budget\">Budget</a>"
+      },
+      {
+        "line": 382,
+        "text": "            <a className=\"transition-colors hover:text-white\" href=\"#preview\">Product</a>"
+      },
+      {
+        "line": 383,
+        "text": "            <a className=\"transition-colors hover:text-white\" href=\"#faq\">Questions</a>"
+      },
+      {
+        "line": 387,
+        "text": "            <button type=\"button\" onClick={startPlanning} className=\"bg-[#ffcf70] px-5 py-2.5 text-sm font-bold text-[#102824] hover:bg-[#ffe1a1]\">Plan a trip</button>"
+      },
+      {
+        "line": 389,
+        "text": "          <button type=\"button\" aria-expanded={menu} aria-controls=\"mobile-navigation\" aria-label={menu ? 'Close navigation' : 'Open navigation'} onClick={() => setMenu((current) => !current)} className=\"grid size-10 place-items-center border border-white/20 lg:hidden\">"
+      },
+      {
+        "line": 394,
+        "text": "          <nav id=\"mobile-navigation\" aria-label=\"Mobile navigation\" className=\"mx-auto max-w-[1380px] border-x border-b border-white/15 bg-[#102824] px-4 py-5 text-white shadow-2xl lg:hidden\">"
+      },
+      {
+        "line": 396,
+        "text": "              {([['Why TravelMate', '#features'], ['How it works', '#workflow'], ['Budget', '#budget'], ['Product', '#preview'], ['Questions', '#faq']] as const).map(([label, href]) => <a key={href} href={href} onClick={() => setMenu(false)} className=\"border-b border-white/10 px-2 py-3 text-white/75 hover:text-white\">{label}</a>)}"
+      },
+      {
+        "line": 399,
+        "text": "                <button type=\"button\" onClick={startPlanning} className=\"bg-[#ffcf70] px-4 py-3 font-bold text-[#102824]\">Plan a trip</button>"
+      },
+      {
+        "line": 413,
+        "text": "              <p data-hero-reveal className=\"mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.16em] text-white/78\"><span className=\"h-px w-8 bg-[#ffcf70]\" />From trip idea to a plan you can use</p>"
+      },
+      {
+        "line": 414,
+        "text": "              <h1 data-hero-reveal aria-label=\"AI Travel Planning Made Real\" className=\"max-w-4xl text-balance text-6xl font-semibold leading-[.88] tracking-[-.06em] sm:text-7xl lg:text-8xl\">AI travel planning,<br /><span className=\"text-[#ffcf70]\">made real.</span></h1>"
+      },
+      {
+        "line": 417,
+        "text": "                <button type=\"button\" onClick={startPlanning} className=\"group inline-flex min-h-13 items-center justify-center gap-2 bg-[#ffcf70] px-7 py-3.5 font-bold text-[#102824] hover:bg-[#ffe1a1]\">Create my itinerary <ArrowRight size={18} className=\"transition-transform group-hover:translate-x-1\" /></button>"
+      },
+      {
+        "line": 418,
+        "text": "                <a href=\"#workflow\" className=\"inline-flex min-h-13 items-center justify-center border border-white/45 bg-black/15 px-7 py-3.5 font-semibold text-white backdrop-blur-sm hover:bg-white hover:text-[#102824]\">See the flow</a>"
+      },
+      {
+        "line": 421,
+        "text": "            <article data-hero-reveal className=\"relative mx-auto w-full max-w-lg border border-white/35 bg-[#102824]/78 p-4 text-white shadow-[0_28px_90px_rgba(3,19,17,.38)] backdrop-blur-xl sm:p-5 lg:max-w-none\">"
+      },
+      {
+        "line": 423,
+        "text": "                <div><p className=\"text-[10px] font-bold uppercase tracking-[.18em] text-[#ffcf70]\">A trip, taking shape</p><h2 className=\"mt-1 text-lg font-semibold\">One plan. Room to wander.</h2></div>"
+      },
+      {
+        "line": 444,
+        "text": "        <div className=\"overflow-hidden border-y border-[#142421]/10 bg-[#ffcf70] py-4\" aria-label=\"TravelMate capabilities\">"
+      },
+      {
+        "line": 446,
+        "text": "            {[...capabilityRail, ...capabilityRail].map((item, index) => <span key={`${item}-${index}`} className=\"flex items-center gap-10\"><span>{item}</span><span className=\"size-1.5 bg-[#142421]\" aria-hidden=\"true\" /></span>)}"
+      },
+      {
+        "line": 452,
+        "text": "            <div><p className=\"text-sm font-medium text-[#4d625d]\">Planning is still too fragmented</p><h2 className=\"mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-6xl lg:text-7xl\">A memorable trip should not begin with spreadsheet fatigue.</h2></div>"
+      },
+      {
+        "line": 458,
+        "text": "              ].map(([title, description]) => <div key={title} className=\"grid gap-3 border-b border-[#142421]/25 py-7 sm:grid-cols-[.72fr_1.28fr]\"><h3 className=\"text-lg font-semibold\">{title}</h3><p className=\"leading-7 text-[#4d625d]\">{description}</p></div>)}"
+      },
+      {
+        "line": 463,
+        "text": "        <section id=\"features\" className=\"scroll-mt-24 bg-[#0e2723] px-5 py-32 text-white sm:px-8 md:py-44\">"
+      },
+      {
+        "line": 466,
+        "text": "              <h2 className=\"max-w-4xl text-balance text-5xl font-semibold leading-[.96] tracking-[-.055em] sm:text-6xl lg:text-7xl\">One plan, with the decisions that shape it kept together.</h2>"
+      },
+      {
+        "line": 470,
+        "text": "              <article className=\"group relative min-h-[560px] overflow-hidden bg-[#d8e9df] text-[#142421] lg:col-span-7 lg:row-span-2\">"
+      },
+      {
+        "line": 473,
+        "text": "                <div className=\"absolute inset-x-0 bottom-0 p-7 text-white sm:p-10\"><Route size={28} className=\"mb-6 text-[#ffcf70]\" /><h3 className=\"max-w-2xl text-4xl font-semibold tracking-[-.04em] sm:text-5xl\">A day-by-day plan shaped around you.</h3><p className=\"mt-5 max-w-xl text-lg leading-8 text-white/72\">Dates, interests, group size, travel style, timing, and known conditions become a structured itinerary instead of a generic checklist.</p></div>"
+      },
+      {
+        "line": 475,
+        "text": "              <article className=\"group overflow-hidden bg-[#ffcf70] p-7 text-[#142421] sm:p-10 lg:col-span-5 lg:row-span-1\">"
+      },
+      {
+        "line": 476,
+        "text": "                <WalletCards size={28} /><div className=\"mt-16 flex items-end justify-between gap-8\"><div><h3 className=\"text-3xl font-semibold tracking-[-.035em]\">Budget that stays readable.</h3><p className=\"mt-4 max-w-md leading-7 text-[#40524e]\">See estimated spend, category totals, remaining budget, and explicit over-budget warnings.</p></div><span className=\"hidden text-6xl font-semibold tracking-[-.07em] sm:block\">72%</span></div>"
+      },
+      {
+        "line": 478,
+        "text": "              <article className=\"group overflow-hidden bg-[#e9e5da] p-7 text-[#142421] sm:p-10 lg:col-span-5 lg:row-span-1\">"
+      },
+      {
+        "line": 479,
+        "text": "                <CloudSun size={28} /><div className=\"mt-16\"><h3 className=\"text-3xl font-semibold tracking-[-.035em]\">Conditions without false certainty.</h3><p className=\"mt-4 max-w-md leading-7 text-[#4d625d]\">Forecasts appear only when covered by a provider. Crowd information is marked estimated, live, or unavailable.</p></div>"
+      },
+      {
+        "line": 488,
+        "text": "              <div><p className=\"text-sm font-medium text-[#4d625d]\">From idea to itinerary</p><h2 className=\"mt-5 max-w-4xl text-balance text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-6xl\">A clear flow from first detail to useful action.</h2></div>"
+      },
+      {
+        "line": 490,
+        "text": "            <div className=\"mt-12 flex min-h-[620px] flex-col gap-2 md:h-[620px] md:flex-row\" aria-label=\"Traveler workflow\">"
+      },
+      {
+        "line": 496,
+        "text": "                    <div className={`absolute inset-0 transition-colors duration-500 ${active ? 'bg-[linear-gradient(180deg,rgba(6,25,22,.05),rgba(6,25,22,.9))]' : 'bg-[#102824]/72'}`} />"
+      },
+      {
+        "line": 498,
+        "text": "                      <span className={`mb-4 h-px bg-[#ffcf70] transition-all duration-500 ${active ? 'w-14 opacity-100' : 'w-0 opacity-0'}`} />"
+      },
+      {
+        "line": 499,
+        "text": "                      <h3 className={`font-semibold tracking-[-.035em] transition-all duration-500 ${active ? 'text-3xl opacity-100 sm:text-4xl' : 'text-lg opacity-90 md:[writing-mode:vertical-rl] md:rotate-180'}`}>{title}</h3>"
+      },
+      {
+        "line": 509,
+        "text": "        <section id=\"budget\" className=\"scroll-mt-24 bg-[#ffcf70] px-5 py-32 sm:px-8 md:py-44\">"
+      },
+      {
+        "line": 513,
+        "text": "              <h2 className=\"mt-6 text-balance text-5xl font-semibold leading-[.96] tracking-[-.055em] sm:text-6xl lg:text-7xl\">Know what the plan asks of your time and budget.</h2>"
+      },
+      {
+        "line": 519,
+        "text": "                <article key={day} className=\"stack-card sticky border-b border-[#142421]/35 bg-[#ffcf70] py-7\" style={{ top: `${96 + index * 8}px` }}>"
+      },
+      {
+        "line": 520,
+        "text": "                  <div className=\"grid items-center gap-4 sm:grid-cols-[72px_1fr_150px_100px]\"><span className=\"font-medium text-[#59615a]\">{day}</span><div><h3 className=\"text-xl font-semibold\">{title}</h3><p className=\"mt-1 text-sm text-[#59615a]\">Day {index + 1} of the sample plan</p></div><span className=\"flex items-center gap-2 text-sm\"><CloudSun size={17} />{weather}</span><strong className=\"text-right text-lg\">{cost}</strong></div>"
+      },
+      {
+        "line": 528,
+        "text": "        <section className=\"bg-[#102824] px-5 py-32 text-white sm:px-8 md:py-44\">"
+      },
+      {
+        "line": 530,
+        "text": "            <div className=\"grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-end\"><h2 className=\"max-w-4xl text-balance text-5xl font-semibold leading-[.96] tracking-[-.055em] sm:text-6xl lg:text-7xl\">Useful travel guidance starts with honest context.</h2><p className=\"max-w-xl text-lg leading-8 text-white/62\">The system keeps uncertainty visible instead of quietly turning estimates into facts. You stay in control of edits, regeneration, and every decision that follows.</p></div>"
+      },
+      {
+        "line": 537,
+        "text": "                <article key={String(title)} className={`py-10 md:px-8 ${index > 0 ? 'border-t border-white/20 md:border-l md:border-t-0' : ''}`}><Icon size={27} className=\"text-[#ffcf70]\" /><h3 className=\"mt-12 text-2xl font-semibold\">{String(title)}</h3><p className=\"mt-4 leading-7 text-white/58\">{String(description)}</p></article>"
+      },
+      {
+        "line": 545,
+        "text": "            <div className=\"text-center\"><p className=\"text-sm font-medium text-[#4d625d]\">One workspace instead of another tab</p><h2 className=\"mx-auto mt-5 max-w-4xl text-balance text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-6xl\">See what changes when the plan is the product.</h2></div>"
+      },
+      {
+        "line": 549,
+        "text": "                <thead><tr className=\"border-b border-[#142421]/30\"><th className=\"py-5 pr-5 font-medium\">Planning capability</th><th className=\"px-5 py-5 text-center font-medium\">Notes app</th><th className=\"px-5 py-5 text-center font-medium\">Search tabs</th><th className=\"bg-[#102824] px-5 py-5 text-center font-semibold text-white\">TravelMate</th></tr></thead>"
+      },
+      {
+        "line": 550,
+        "text": "                <tbody>{comparisonRows.map(([label, notes, search, travelmate]) => <tr key={label as string} className=\"border-b border-[#142421]/18 last:border-0\"><th scope=\"row\" className=\"py-5 pr-5 font-medium\">{label}</th>{[notes, search].map((value, index) => <td key={index} className=\"px-5 py-5 text-center text-[#62736f]\">{value ? <Check className=\"mx-auto\" size={18} aria-label=\"Included\" /> : <span aria-label=\"Not included\">—</span>}</td>)}<td className=\"bg-[#102824] px-5 py-5 text-center text-[#ffcf70]\">{travelmate && <Check className=\"mx-auto\" size={19} aria-label=\"Included\" />}</td></tr>)}</tbody>"
+      },
+      {
+        "line": 556,
+        "text": "        <section id=\"preview\" className=\"scroll-mt-24 bg-[#d9e5dd] px-5 py-32 sm:px-8 md:py-44 lg:min-h-[1900px]\">"
+      },
+      {
+        "line": 560,
+        "text": "              <h2 className=\"mt-6 text-balance text-4xl font-semibold leading-[.96] tracking-[-.055em] sm:text-5xl xl:text-6xl\">Move between details without losing the plan.</h2>"
+      },
+      {
+        "line": 581,
+        "text": "              <div><p className=\"text-sm font-medium text-[#4d625d]\">What a useful plan should do</p><div className=\"mt-8 flex gap-2\"><button type=\"button\" onClick={() => setPrinciple((current) => (current + planningPrinciples.length - 1) % planningPrinciples.length)} aria-label=\"Previous principle\" className=\"grid size-12 place-items-center border border-[#142421] hover:bg-[#142421] hover:text-white\"><ArrowLeft size={18} /></button><button type=\"button\" onClick={() => setPrinciple((current) => (current + 1) % planningPrinciples.length)} aria-label=\"Next principle\" className=\"grid size-12 place-items-center border border-[#142421] hover:bg-[#142421] hover:text-white\"><ArrowRight size={18} /></button></div></div>"
+      },
+      {
+        "line": 587,
+        "text": "        <section id=\"faq\" className=\"scroll-mt-24 bg-[#102824] px-5 py-32 text-white sm:px-8 md:py-44\">"
+      },
+      {
+        "line": 589,
+        "text": "            <div><p className=\"text-sm font-medium text-white/50\">Before you begin</p><h2 className=\"mt-6 text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-6xl\">Questions worth answering clearly.</h2></div>"
+      },
+      {
+        "line": 595,
+        "text": "          <article className=\"bg-[#ffcf70] px-5 py-24 text-[#142421] sm:px-8 sm:py-28 lg:px-[max(2rem,calc((100vw-1380px)/2))] lg:pr-16\">"
+      },
+      {
+        "line": 596,
+        "text": "            <Users size={29} /><h2 className=\"mt-16 max-w-xl text-5xl font-semibold leading-[.96] tracking-[-.055em] sm:text-6xl\">Bring the trip you have in mind.</h2><p className=\"mt-6 max-w-lg text-lg leading-8 text-[#40524e]\">Start with your destination, dates, budget, and interests. TravelMate will help organize the rest.</p><button type=\"button\" onClick={() => { show('register'); }} className=\"group mt-9 inline-flex items-center gap-3 bg-[#102824] px-6 py-3.5 font-semibold text-white\">Create traveler account <ArrowRight size={18} className=\"transition-transform group-hover:translate-x-1\" /></button>"
+      },
+      {
+        "line": 598,
+        "text": "          <article className=\"bg-[#d9e5dd] px-5 py-24 text-[#142421] sm:px-8 sm:py-28 lg:px-16\">"
+      },
+      {
+        "line": 599,
+        "text": "            <Hotel size={29} /><h2 className=\"mt-16 max-w-xl text-5xl font-semibold leading-[.96] tracking-[-.055em] sm:text-6xl\">Keep every trip in one place.</h2><p className=\"mt-6 max-w-lg text-lg leading-8 text-[#40524e]\">Sign in to explore your plans, organize the details, and make the most of every journey.</p><button type=\"button\" onClick={() => show('login')} className=\"group mt-9 inline-flex items-center gap-3 border border-[#142421] px-6 py-3.5 font-semibold hover:bg-[#142421] hover:text-white\">Sign in to TravelMate <ArrowRight size={18} className=\"transition-transform group-hover:translate-x-1\" /></button>"
+      },
+      {
+        "line": 604,
+        "text": "      <footer className=\"bg-[#081b18] px-5 py-12 text-white sm:px-8\">"
+      },
+      {
+        "line": 606,
+        "text": "          <div className=\"flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between\"><div><a href=\"#top\" className=\"flex items-center gap-3 text-lg font-semibold\"><span className=\"grid size-9 place-items-center bg-[#ffcf70] text-[#102824]\"><Compass size={19} /></span>TravelMate</a><p className=\"mt-5 max-w-md text-sm leading-6 text-white/45\">AI-powered itinerary planning, budget estimates, clearly sourced travel options, and saved-trip management in one system.</p></div><div className=\"flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/58\"><a href=\"#features\" className=\"hover:text-white\">Why TravelMate</a><a href=\"#workflow\" className=\"hover:text-white\">How it works</a><a href=\"#faq\" className=\"hover:text-white\">Questions</a><button type=\"button\" onClick={() => show('login')} className=\"hover:text-white\">Sign in</button></div></div>"
+      },
+      {
+        "line": 618,
+        "text": "    <article className={`group overflow-hidden shadow-[0_35px_90px_rgba(20,36,33,.16)] ${dark ? 'bg-[#102824] text-white' : warm ? 'bg-[#ffcf70]' : 'bg-[#f5f2e9]'}`}>"
+      },
+      {
+        "line": 620,
+        "text": "        <div className={`p-7 sm:p-10 ${dark ? 'lg:order-2' : ''}`}><h3 className=\"mt-6 text-4xl font-semibold tracking-[-.045em]\">{title}</h3>{children}</div>"
+      },
+      {
+        "line": 661,
+        "text": "    empty: { label: 'Start typing', segments: 0, bar: 'bg-[#d8d8d0]', text: 'text-[#71807c]' },"
+      },
+      {
+        "line": 662,
+        "text": "    weak: { label: 'Weak', segments: 1, bar: 'bg-[#b54537]', text: 'text-[#9f3025]' },"
+      },
+      {
+        "line": 663,
+        "text": "    medium: { label: 'Getting stronger', segments: 2, bar: 'bg-[#c18417]', text: 'text-[#8f6211]' },"
+      },
+      {
+        "line": 664,
+        "text": "    strong: { label: 'Strong', segments: 3, bar: 'bg-[#16745f]', text: 'text-[#12624f]' },"
+      },
+      {
+        "line": 669,
+        "text": "    <div ref={containerRef} className=\"fixed inset-x-0 top-0 z-[80] flex h-dvh items-center justify-center overflow-hidden bg-[#061714]/90 backdrop-blur-md sm:p-6\" onMouseDown={onClose}>"
+      },
+      {
+        "line": 670,
+        "text": "      <section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"auth-dialog-title\" aria-describedby=\"auth-dialog-description\" onMouseDown={(event) => event.stopPropagation()} className=\"relative grid h-full max-h-full w-full min-w-0 grid-rows-[minmax(0,1fr)] overflow-hidden bg-[#f2efe6] text-[#142421] shadow-[0_35px_120px_rgba(0,0,0,.45)] sm:h-auto sm:max-w-lg lg:max-w-5xl lg:grid-cols-[.88fr_1.12fr]\">"
+      },
+      {
+        "line": 678,
+        "text": "            <a href=\"#top\" className=\"inline-flex min-h-11 items-center gap-3 font-semibold\" onClick={onClose}><span className=\"grid size-9 place-items-center bg-[#ffcf70]\"><Compass size={19} /></span>TravelMate</a>"
+      },
+      {
+        "line": 679,
+        "text": "            <button ref={closeButtonRef} type=\"button\" onClick={onClose} aria-label=\"Close account dialog\" className=\"grid size-11 shrink-0 place-items-center border border-[#142421]/20 hover:bg-[#142421] hover:text-white\"><X size={19} /></button>"
+      },
+      {
+        "line": 682,
+        "text": "          <h2 id=\"auth-dialog-title\" className=\"max-w-md text-4xl font-semibold leading-[1.05] tracking-[-.055em] sm:text-5xl\">{title}</h2>"
+      },
+      {
+        "line": 685,
+        "text": "          {message && <p role=\"status\" aria-live=\"polite\" className=\"mt-5 border-l-2 border-[#b6780d] bg-[#ffcf70]/35 p-4 text-sm leading-6\">{message}</p>}"
+      },
+      {
+        "line": 687,
+        "text": "            {mode === 'login' && <><div><a href=\"/api/auth/oauth/google\" className=\"flex min-h-12 w-full items-center justify-center gap-3 border border-[#142421]/25 bg-white px-5 py-3.5 font-semibold transition hover:border-[#142421] hover:bg-[#faf8f1]\"><span aria-hidden=\"true\" className=\"grid size-7 place-items-center rounded-full border border-[#142421]/15 font-bold text-[#4285f4]\">G</span>Continue with Google</a><p className=\"mt-2 text-xs text-[#71807c]\">Google uses your saved account role. New Google accounts start as travelers.</p></div><div className=\"flex items-center gap-3 text-xs text-[#71807c]\"><span className=\"h-px flex-1 bg-[#142421]/15\"/><span>or use email and password</span><span className=\"h-px flex-1 bg-[#142421]/15\"/></div></>}"
+      },
+      {
+        "line": 689,
+        "text": "              <label className=\"block text-sm font-semibold\" htmlFor=\"auth-name\">Full name<input id=\"auth-name\" required minLength={2} autoComplete=\"name\" value={name} onChange={(event) => setName(event.target.value)} className={inputClass} placeholder=\"Your name\" /></label>"
+      },
+      {
+        "line": 691,
+        "text": "            {(mode === 'login' || mode === 'register' || mode === 'forgot') && <label className=\"block text-sm font-semibold\" htmlFor=\"auth-email\">Email address<input id=\"auth-email\" name=\"email\" required type=\"email\" autoComplete=\"email\" value={email} onChange={(event) => setEmail(event.target.value)} className={inputClass} placeholder=\"you@example.com\" /></label>}"
+      },
+      {
+        "line": 692,
+        "text": "            {(mode === 'verify' || mode === 'reset') && <label className=\"block text-sm font-semibold\" htmlFor=\"auth-code\">{mode === 'verify' ? 'Verification code' : 'Password reset code'}<input id=\"auth-code\" required minLength={8} maxLength={8} autoComplete=\"one-time-code\" value={code} onChange={(event) => setCode(event.target.value.toUpperCase())} className={`${inputClass} font-mono text-lg uppercase tracking-[.2em]`} placeholder=\"Enter your code\" /></label>}"
+      },
+      {
+        "line": 693,
+        "text": "            {mode === 'login' && <label className=\"block text-sm font-semibold\" htmlFor=\"auth-password\">Password<input id=\"auth-password\" name=\"password\" required type=\"password\" minLength={8} autoComplete=\"current-password\" value={password} onChange={(event) => setPassword(event.target.value)} className={inputClass} placeholder=\"At least 8 characters\" /></label>}"
+      },
+      {
+        "line": 695,
+        "text": "              <label className=\"block text-sm font-semibold\" htmlFor=\"auth-password\">Password<input id=\"auth-password\" required type=\"password\" minLength={8} maxLength={64} pattern={STRONG_PASSWORD_PATTERN.source} autoComplete=\"new-password\" aria-describedby=\"auth-password-strength auth-password-requirements\" aria-invalid={password.length > 0 && !isStrongPassword(password)} value={password} onChange={(event) => setPassword(event.target.value)} className={`${inputClass} ${password.length > 0 && !isStrongPassword(password) ? 'border-[#b54537]' : ''}`} placeholder=\"Create a strong password\" title={getPasswordValidationError(password) || STRONG_PASSWORD_REQUIREMENTS} /></label>"
+      },
+      {
+        "line": 696,
+        "text": "              <div id=\"auth-password-strength\" role=\"status\" aria-live=\"polite\" aria-label={`Password strength: ${strengthIndicator.label}`} className=\"-mt-2 space-y-2\"><div className=\"flex items-center justify-between text-xs\"><span className=\"font-medium text-[#71807c]\">Password strength</span><span className={`font-semibold ${strengthIndicator.text}`}>{strengthIndicator.label}</span></div><div className=\"grid grid-cols-3 gap-1.5\" aria-hidden=\"true\">{[1, 2, 3].map((segment) => <span key={segment} className={`h-1.5 ${segment <= strengthIndicator.segments ? strengthIndicator.bar : 'bg-[#d8d8d0]'}`} />)}</div></div>"
+      },
+      {
+        "line": 698,
+        "text": "              <label className=\"block text-sm font-semibold\" htmlFor=\"auth-confirm-password\">Confirm password<input id=\"auth-confirm-password\" required type=\"password\" minLength={8} maxLength={64} autoComplete=\"new-password\" aria-describedby=\"auth-confirm-password-message\" aria-invalid={confirmPassword.length > 0 && password !== confirmPassword} value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className={inputClass} placeholder=\"Re-enter your password\" /></label>"
+      },
+      {
+        "line": 701,
+        "text": "            <button disabled={busy} className=\"mt-2 inline-flex w-full items-center justify-center gap-2 bg-[#142421] px-5 py-4 font-semibold text-white hover:bg-[#23423c] disabled:cursor-wait disabled:opacity-55\">{submitLabel}<ArrowRight size={18} /></button>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/AccommodationPicker.tsx",
+    "matches": [
+      {
+        "line": 23,
+        "text": "    <div className=\"flex items-center justify-between gap-2\"><label htmlFor=\"accommodation\">Accommodation</label><button type=\"button\" disabled={!enabled || needsArea || busy} onClick={onRefresh} className=\"font-bold text-cyan-300 hover:text-cyan-200 disabled:opacity-50\">{busy ? 'Finding stays...' : 'Refresh stays'}</button></div>"
+      },
+      {
+        "line": 37,
+        "text": "      <div><label htmlFor=\"manual-stay-name\">Accommodation name</label><input id=\"manual-stay-name\" className={inputStyle} maxLength={150} value={selection?.planned?.name || ''} onChange={event => onChange({ value: 'manual', planned: { name: event.target.value, address: selection?.planned?.address || '', source: 'manual' } })} placeholder=\"Hotel, hostel, resort, or guesthouse name\" /></div>"
+      },
+      {
+        "line": 38,
+        "text": "      <div><label htmlFor=\"manual-stay-address\">Accommodation location</label><input id=\"manual-stay-address\" className={inputStyle} maxLength={300} value={selection?.planned?.address || ''} onChange={event => onChange({ value: 'manual', planned: { name: selection?.planned?.name || '', address: event.target.value, source: 'manual' } })} placeholder=\"Address or area\" /></div>"
+      },
+      {
+        "line": 43,
+        "text": "    {nearby.length > 0 && <p className=\"mt-1 text-[10px] text-slate-500\">Map listings: <a className=\"underline\" href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noreferrer\">© OpenStreetMap contributors</a>{mapped && <> · <a className=\"underline\" href={mapped.sourceUrl} target=\"_blank\" rel=\"noreferrer\">View property location</a></>}</p>}"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/DestinationAreaPicker.tsx",
+    "matches": [
+      {
+        "line": 46,
+        "text": "    <label className=\"block\" htmlFor=\"destination-area-search\">Suggested cities and towns within {location.label}</label>"
+      },
+      {
+        "line": 47,
+        "text": "    <input id=\"destination-area-search\" role=\"combobox\" aria-label=\"City or town within selected destination\" aria-autocomplete=\"list\" aria-expanded={open && areas.areas.length > 0} aria-controls=\"destination-area-options\" aria-activedescendant={active >= 0 ? `destination-area-${active}` : undefined} aria-describedby=\"destination-area-status\" value={areas.query} maxLength={80} onFocus={() => setOpen(true)} onChange={event => { areas.search(event.target.value); setActive(-1); setOpen(true); }} onKeyDown={keyboard} placeholder=\"Search suggested cities or towns\" autoComplete=\"off\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400\" />"
+      },
+      {
+        "line": 48,
+        "text": "    {open && areas.areas.length > 0 && <ul id=\"destination-area-options\" role=\"listbox\" aria-label=\"Suggested cities in this area\" className=\"max-h-60 overflow-y-auto rounded-xl border border-slate-700 bg-slate-950/80 p-1\">"
+      },
+      {
+        "line": 49,
+        "text": "      {areas.areas.map((city,index) => <li key={city.id} id={`destination-area-${index}`} role=\"option\" aria-selected={active === index}><button type=\"button\" onClick={() => onSelect(city)} onMouseEnter={() => setActive(index)} className={`min-h-11 w-full rounded-lg px-3 py-2 text-left hover:bg-slate-800 focus:bg-slate-800 ${active === index ? 'bg-slate-800' : ''}`} aria-label={`Choose ${city.name}`}><strong className=\"block text-white\">{city.name}</strong><span className=\"block text-[11px] text-slate-400\">{city.description}</span></button></li>)}"
+      },
+      {
+        "line": 58,
+        "text": "    {areas.sourceUrls.length > 0 && <p className=\"text-[10px] text-slate-500\">Geography: <a href=\"https://www.geonames.org/\" target=\"_blank\" rel=\"noreferrer\" className=\"underline\">GeoNames</a>{areas.sourceUrls.some(url => url.includes('openstreetmap.org')) && <> · <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noreferrer\" className=\"underline\">© OpenStreetMap contributors</a></>} · checked {new Date(areas.fetchedAt).toLocaleDateString()}</p>}"
+      },
+      {
+        "line": 59,
+        "text": "    {help && <section aria-label=\"Compare suggested areas\" className=\"space-y-3 rounded-xl border border-amber-300/30 bg-slate-950/50 p-3\">"
+      },
+      {
+        "line": 60,
+        "text": "      <h3 className=\"font-bold text-amber-200\">Compare areas before choosing</h3>"
+      },
+      {
+        "line": 65,
+        "text": "      {comparison.key !== comparisonKey || !comparison.result && !comparison.error ? <p role=\"status\">Loading mapped interest information...</p> : comparison.error ? <p role=\"status\" className=\"text-amber-200\">{comparison.error}</p> : <p className=\"text-[10px] text-slate-400\">{comparison.result?.disclaimer} <a href=\"https://www.openstreetmap.org/copyright\" className=\"underline\" target=\"_blank\" rel=\"noreferrer\">© OpenStreetMap contributors</a> · retrieved {new Date(comparison.result!.fetchedAt).toLocaleString()}</p>}"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/ExpenseAssumptions.tsx",
+    "matches": [
+      {
+        "line": 9,
+        "text": "      {([['rooms', 'Rooms', Math.ceil(travelers / 2)], ['nightlyRoomEstimate', 'Nightly estimate per room', 'Budget allowance'], ['foodDailyPerPerson', 'Daily food per person', 'Budget allowance'], ['transportFare', 'Daily transport fare', 'Budget allowance'], ['fees', 'Additional group fees', 0], ['contingencyPercent', 'Contingency % of subtotal', 10]] as const).map(([field, label, fallback]) => <label key={field}>{label}<input type=\"number\" min={field === 'rooms' ? 1 : 0} max={field === 'rooms' ? 20 : field === 'contingencyPercent' ? 50 : 10000000} disabled={quotedStay && (field === 'rooms' || field === 'nightlyRoomEstimate')} step={field === 'rooms' || field === 'contingencyPercent' || ZERO_DECIMAL_CURRENCIES.includes(currency) ? 1 : 0.01} value={value[field] ?? ''} placeholder={String(fallback)} onChange={event => onChange({ ...value, [field]: event.target.value === '' ? undefined : Number(event.target.value) })} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white placeholder:text-slate-600 disabled:opacity-50\"/></label>)}"
+      },
+      {
+        "line": 10,
+        "text": "      <label>Transport fare basis<select value={value.transportFareType ?? ''} onChange={event => onChange({ ...value, transportFareType: event.target.value ? event.target.value as 'shared-fare' | 'per-person' : undefined })} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white\"><option value=\"\">Use selected mode assumption</option><option value=\"shared-fare\">One shared fare for the group</option><option value=\"per-person\">Fare per traveler</option></select></label>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/GroundingSummary.tsx",
+    "matches": [
+      {
+        "line": 10,
+        "text": "    <details><summary className=\"cursor-pointer text-white/65\">Price and place sources</summary><p>{evidence.basis}</p><p>Source: {evidence.source} · {new Date(evidence.fetchedAt).toLocaleString()} · {evidence.currency}</p>{activity.place && <p><a className=\"underline\" href={activity.place.sourceUrl} target=\"_blank\" rel=\"noreferrer\">{activity.place.name}</a> · {activity.place.city}, {activity.place.country} · {activity.place.placeId} · retrieved {new Date(activity.place.fetchedAt).toLocaleString()}<br/>Opening hours: {activity.place.openingHours}<br/>Address: {activity.place.address}</p>}</details>"
+      },
+      {
+        "line": 17,
+        "text": "  return <section aria-label=\"Expense sources and confidence\" className=\"my-5 border-y border-slate-800 py-5 text-sm\">"
+      },
+      {
+        "line": 18,
+        "text": "    <h2 className=\"font-bold\">Expense sources and confidence</h2>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/ItineraryWorkspace.tsx",
+    "matches": [
+      {
+        "line": 30,
+        "text": "      <div><h2 className=\"text-xl font-bold\">{itinerary.destination}</h2><p className=\"text-xs uppercase tracking-widest text-cyan-300\">{itinerary.source === 'gemini' ? 'Gemini generated' : itinerary.source === 'openai' ? 'OpenAI generated' : 'Demo fallback'}{itinerary.manuallyEdited || manualDirty ? ' · manually edited' : ''}</p><p className=\"mt-1 text-xs text-white/45\">{readOnly ? 'Read-only view of the current saved itinerary.' : editingTripId ? 'This plan is saved. Save again after manual changes.' : manualDirty ? 'Automatic save failed; a browser draft is protecting this plan.' : 'Saving this generated plan...'}</p></div>"
+      },
+      {
+        "line": 44,
+        "text": "          {day.imageAttribution && <a href={day.imageAttribution.sourceUrl} target=\"_blank\" rel=\"noreferrer\" title={`${day.imageAttribution.creator} · ${day.imageAttribution.license}`} className=\"absolute bottom-2 right-2 max-w-[75%] truncate rounded bg-slate-950/80 px-2 py-1 text-[9px] text-slate-300\">Photo: {day.imageAttribution.creator} · {day.imageAttribution.license}</a>}"
+      },
+      {
+        "line": 47,
+        "text": "          <h3 className=\"font-bold\">{day.theme}</h3><p className=\"text-xs text-slate-500\">{day.date}</p>"
+      },
+      {
+        "line": 54,
+        "text": "          <ul className=\"mt-3 space-y-2\" aria-label={`Day ${day.day} activities`}>{day.activities.length === 0 ? <li className=\"rounded-lg border border-dashed border-slate-700 px-3 py-5 text-center text-xs text-slate-500\">{readOnly ? 'No activities recorded for this day.' : 'No activities yet. Add one to build this day.'}</li> : day.activities.map((item, activityIndex) => <li key={`${item.time}-${item.title}-${activityIndex}`} className=\"rounded-lg border border-slate-800 bg-slate-950/40 p-3 text-sm\"><div className=\"flex items-start justify-between gap-3\"><span className=\"min-w-0\"><span className=\"mr-2 text-xs text-cyan-300\">{item.time}</span><strong className=\"font-semibold\">{item.title}</strong>{readOnly && <p className=\"mt-2 whitespace-pre-wrap text-sm text-white/65 [overflow-wrap:anywhere]\">{item.description}</p>}<small className=\"mt-1 block text-slate-500\">{formatMoney(item.estimatedCost, itinerary.currency)} {item.priceEvidence ? 'group amount' : partyEstimateLabel(itinerary.partyType || 'solo')}</small><ActivityEvidence activity={item} currency={itinerary.currency}/><ReferenceAmount amount={item.estimatedCost} currency={itinerary.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/></span><span className=\"flex shrink-0 items-center gap-0.5\">{!readOnly && <button disabled={activityIndex === 0} onClick={() => onReorderActivity(dayIndex, activityIndex, -1)} aria-label={`Move ${item.title} earlier`} title=\"Move earlier\" className=\"rounded p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white disabled:opacity-25\"><ChevronUp size={14}/></button>}{!readOnly && <button disabled={activityIndex === day.activities.length - 1} onClick={() => onReorderActivity(dayIndex, activityIndex, 1)} aria-label={`Move ${item.title} later`} title=\"Move later\" className=\"rounded p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white disabled:opacity-25\"><ChevronDown size={14}/></button>}{!readOnly && <button onClick={() => onEditActivity(dayIndex, activityIndex)} aria-label={`Edit ${item.title}`} title=\"Edit activity\" className=\"rounded p-1.5 text-slate-400 hover:bg-slate-800 hover:text-cyan-300\"><Pencil size={14}/></button>}{!readOnly && <button onClick={() => onRemoveActivity(dayIndex, activityIndex)} aria-label={`Remove ${item.title}`} title=\"Remove activity\" className=\"rounded p-1.5 text-slate-400 hover:bg-red-950 hover:text-red-300\"><Trash2 size={14}/></button>}</span></div></li>)}</ul>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/ReportProblem.tsx",
+    "matches": [
+      {
+        "line": 9,
+        "text": "  const input = 'mt-2 min-h-12 w-full border border-white/20 bg-[#071a16] px-4 py-3 text-base text-white';"
+      },
+      {
+        "line": 16,
+        "text": "    <Flag size={25} className=\"text-[#ffcf70]\"/><h3 className=\"mt-5 text-2xl font-bold\">Report a problem</h3>"
+      },
+      {
+        "line": 18,
+        "text": "    <label className=\"mt-6 block text-sm font-semibold\">Subject<input required minLength={5} maxLength={120} value={title} onChange={event => setTitle(event.target.value)} className={input} placeholder=\"What do you need help with?\"/></label>"
+      },
+      {
+        "line": 19,
+        "text": "    <label className=\"mt-5 block text-sm font-semibold\">Details<textarea required minLength={10} maxLength={2000} rows={6} value={details} onChange={event => setDetails(event.target.value)} className={input} placeholder=\"Describe the issue and the steps that led to it.\"/></label>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/SavedTripLifecycle.tsx",
+    "matches": [
+      {
+        "line": 63,
+        "text": "        <div><h2 id=\"saved-plans-heading\" className=\"text-xl font-black tracking-[-0.03em]\">Saved plans</h2><p className=\"mt-1 text-sm text-white/45\">Archive completed ideas without deleting them, and return to any saved itinerary version.</p></div>"
+      },
+      {
+        "line": 64,
+        "text": "        <div className=\"flex border border-white/10 p-1 text-xs font-bold\"><button type=\"button\" onClick={() => setShowArchived(false)} className={`px-4 py-2 ${!showArchived ? 'bg-[#f1ead8] text-[#14231f]' : 'text-white/55'}`}>Active {activeTrips.length}</button><button type=\"button\" onClick={() => setShowArchived(true)} className={`px-4 py-2 ${showArchived ? 'bg-[#f1ead8] text-[#14231f]' : 'text-white/55'}`}>Archived {archivedTrips.length}</button></div>"
+      },
+      {
+        "line": 73,
+        "text": "        return <article key={trip.id} className=\"group min-w-0 overflow-hidden border border-white/10 bg-[#102622] transition-colors duration-300 hover:border-white/25\">"
+      },
+      {
+        "line": 77,
+        "text": "            <div className=\"relative z-10\"><div className=\"flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:justify-between\"><div className=\"min-w-0\"><span className={`text-[10px] font-bold uppercase tracking-[0.14em] ${trip.status === 'archived' ? 'text-amber-200' : past ? 'text-white/50' : 'text-emerald-200'}`}>{trip.status === 'archived' ? 'Archived trip' : past ? 'Previous trip' : 'Upcoming trip'}</span><h3 className=\"mt-1 max-w-xl break-words text-xl font-bold text-white drop-shadow-md\">{trip.destination}</h3><p className=\"mt-1 text-xs text-white/70\">{trip.startDate} – {trip.endDate} · {trip.travelers} traveler{trip.travelers === 1 ? '' : 's'}</p></div><strong className=\"shrink-0 bg-[#081b18]/70 px-2.5 py-1.5 font-mono text-sm text-amber-200 backdrop-blur-sm\">{formatMoney(trip.budget, trip.currency)}</strong></div><p className=\"mt-3 text-xs text-cyan-100\">{sourceLabel(trip.itinerary)} · updated {new Date(trip.updatedAt || trip.createdAt).toLocaleString()}</p>"
+      },
+      {
+        "line": 79,
+        "text": "              {trip.status !== 'archived' && <><button disabled={busy} onClick={() => onView(trip)} className=\"inline-flex items-center gap-1.5 border border-white/25 bg-[#081b18]/55 px-3 py-2 text-xs font-bold backdrop-blur-sm hover:bg-white/10\"><Eye size={14}/>View</button><button disabled={busy} onClick={() => onEdit(trip)} className=\"inline-flex items-center gap-1.5 border border-white/25 bg-[#081b18]/55 px-3 py-2 text-xs font-bold backdrop-blur-sm hover:bg-white/10\"><Pencil size={14}/>Edit</button><button disabled={busy} onClick={() => void onAction({ action: 'duplicate-trip', id: trip.id }, 'Trip duplicated. Its version history starts with the copied plan.')} className=\"inline-flex items-center gap-1.5 border border-white/25 bg-[#081b18]/55 px-3 py-2 text-xs font-bold backdrop-blur-sm hover:bg-white/10\"><Copy size={14}/>Duplicate</button></>}"
+      },
+      {
+        "line": 80,
+        "text": "              <button type=\"button\" disabled={busy} aria-expanded={feedbackTrip === trip.id} onClick={() => setFeedbackTrip(feedbackTrip === trip.id ? null : trip.id)} className=\"inline-flex items-center gap-1.5 border border-white/25 bg-[#081b18]/55 px-3 py-2 text-xs font-bold hover:bg-white/10\">Rate this trip</button>"
+      },
+      {
+        "line": 85,
+        "text": "            {cover?.attribution && <a href={cover.attribution.sourceUrl} target=\"_blank\" rel=\"noreferrer\" className=\"mt-4 block w-fit max-w-full truncate text-[9px] text-white/45 hover:text-white/75\">Photo: {cover.attribution.creator} · {cover.attribution.license}</a>}"
+      },
+      {
+        "line": 90,
+        "text": "            <h4 className=\"text-xs font-bold uppercase tracking-[0.14em] text-white/40\">Version history</h4>"
+      },
+      {
+        "line": 106,
+        "text": "      <div className=\"mt-8 border-t border-white/10 pt-6\"><div className=\"flex items-center gap-3\"><History size={18} className=\"text-cyan-200\"/><div><h3 className=\"font-bold\">Recent AI generations</h3><p className=\"text-xs text-white/40\">Persistent request history helps prevent duplicate provider calls.</p></div></div>{generations.length === 0 ? <p className=\"mt-4 text-sm text-white/40\">No generation attempts recorded yet.</p> : <div className=\"mt-4 grid gap-px bg-white/10 sm:grid-cols-2 xl:grid-cols-3\">{generations.slice(0, 6).map((generation) => <div key={generation.id} className=\"bg-[#0b1d1a] p-4\"><span className={`text-[10px] font-bold uppercase tracking-wider ${generation.status === 'completed' ? 'text-emerald-200' : generation.status === 'failed' ? 'text-red-300' : 'text-amber-200'}`}>{generation.status}</span><strong className=\"mt-1 block truncate text-sm\">{generation.destination}</strong><p className=\"mt-1 text-[11px] text-white/35\">{new Date(generation.createdAt).toLocaleString()}{generation.errorCode ? ` · ${generation.errorCode}` : ''}</p></div>)}</div>}</div>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/StartingLocationField.tsx",
+    "matches": [
+      {
+        "line": 21,
+        "text": "    <div className=\"flex flex-wrap items-center justify-between gap-3\"><label htmlFor={id} className=\"text-xs font-medium text-slate-300\">{label}</label><button type=\"button\" onClick={() => { setFocused(false); control.detect(); }} disabled={control.detecting} className=\"inline-flex min-h-9 items-center gap-2 border border-cyan-300/30 px-3 py-2 text-[11px] font-bold text-cyan-200 transition hover:border-cyan-200 hover:bg-cyan-200 hover:text-[#14231f] disabled:opacity-50\"><LocateFixed size={14}/>{control.detecting ? 'Finding your location...' : 'Use my current location'}</button></div>"
+      },
+      {
+        "line": 23,
+        "text": "    {expanded && <ul id={`${id}-suggestions`} role=\"listbox\" aria-label=\"Starting location suggestions\" className=\"absolute z-30 mt-1 max-h-72 w-full overflow-y-auto rounded-xl border border-slate-700 bg-slate-950 p-1 shadow-xl\">{control.suggestions.map((location, index) => <li key={`${location.id}:${location.label}`} id={`${id}-option-${index}`} role=\"option\" aria-selected={active === index}><button type=\"button\" onMouseDown={event => event.preventDefault()} onClick={() => { control.select(location); setActive(-1); setFocused(false); }} className={`w-full rounded-lg px-3 py-2 text-left text-sm text-white hover:bg-slate-800 ${active === index ? 'bg-slate-800' : ''}`}><span className=\"block font-bold\">{location.name}</span><span className=\"block text-xs text-slate-400\">{location.placeType || 'City'} · {location.label}</span></button></li>)}</ul>}"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TravelComparisonWorkspace.tsx",
+    "matches": [
+      {
+        "line": 54,
+        "text": "        <div className=\"min-w-0\"><h2 className=\"break-words font-bold\">Search one trip across providers</h2><p className=\"mt-1 break-words text-sm text-slate-400\">Compare normalized flight, hotel, and activity results. Prices are references only; TravelMate does not complete external bookings.</p></div>"
+      },
+      {
+        "line": 58,
+        "text": "        <label className=\"text-xs text-slate-400\">Destination<input value={selectedDestination ? destination : ''} readOnly placeholder=\"Select in Plan a trip first\" className=\"mt-1 min-h-11 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 text-slate-300\"/></label>"
+      },
+      {
+        "line": 59,
+        "text": "        <label className=\"text-xs text-slate-400\">Departure<input type=\"date\" value={startDate} readOnly className=\"mt-1 min-h-11 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 text-slate-300\"/></label>"
+      },
+      {
+        "line": 60,
+        "text": "        <label className=\"text-xs text-slate-400\">Return<input type=\"date\" value={endDate} readOnly className=\"mt-1 min-h-11 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 text-slate-300\"/></label>"
+      },
+      {
+        "line": 67,
+        "text": "      <div className=\"flex flex-wrap items-end justify-between gap-2 border-b border-slate-800 pb-3\"><div><p className=\"text-xs font-bold uppercase tracking-wider text-cyan-300\">Flights</p><h2 id=\"flight-results-heading\" className=\"text-lg font-bold\">{flightOrigin} to {destination}</h2></div>{travelOptions && <div className=\"flex flex-col items-end gap-1\"><ProviderFreshness freshness={travelOptions.freshness?.flights}/><span className=\"text-xs text-slate-500\">{travelOptions.provider.isLive ? 'Amadeus production' : 'Amadeus test/non-live'}</span></div>}</div>"
+      },
+      {
+        "line": 68,
+        "text": "      {busy && !travelOptions ? <OfferResultsSkeleton label=\"Loading flight offers...\" /> : !travelOptions ? <p className=\"py-8 text-center text-sm text-slate-500\">Run a comparison to retrieve flight offers.</p> : travelOptions.flights.length === 0 ? <p className=\"py-8 text-center text-sm text-slate-400\">{travelOptions.flightMessage}</p> : <div className=\"mt-4 grid gap-3 lg:grid-cols-2\">{travelOptions.flights.map((flight) => <article key={flight.id} className={`rounded-xl border p-4 ${selectedFlightId === flight.id ? 'border-cyan-300 bg-cyan-300/10' : 'border-slate-800 bg-slate-900/45'}`}><div className=\"flex items-start justify-between gap-3\"><div><span className=\"text-xs font-bold uppercase text-cyan-300\">{flight.airline} · {flight.stops === 0 ? 'Nonstop' : `${flight.stops} stop${flight.stops === 1 ? '' : 's'}`}</span><h3 className=\"mt-1 text-lg font-bold\">{flight.origin} → {flight.destination}</h3></div><span className=\"text-right\"><strong className=\"text-lg text-amber-300\">{flight.currency} {flight.price.toLocaleString()}</strong>{isCurrencyCode(flight.currency) && <ReferenceAmount amount={flight.price} currency={flight.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/>}</span></div><div className=\"mt-4 grid grid-cols-2 gap-3 text-sm\"><div><small className=\"text-slate-500\">Depart</small><p>{offerTime(flight.departure)}</p></div><div><small className=\"text-slate-500\">Arrive</small><p>{offerTime(flight.arrival)}</p></div>{flight.returnDeparture && <div><small className=\"text-slate-500\">Return departure</small><p>{offerTime(flight.returnDeparture)}</p></div>}{flight.returnArrival && <div><small className=\"text-slate-500\">Return arrival</small><p>{offerTime(flight.returnArrival)}</p></div>}</div><p className=\"mt-3 text-xs text-slate-500\">Duration {flight.duration} · {flight.seatsAvailable === undefined ? 'Seat count unavailable' : `${flight.seatsAvailable} bookable seat${flight.seatsAvailable === 1 ? '' : 's'}`} · fetched {new Date(flight.fetchedAt).toLocaleString()}</p><p className=\"mt-2 text-xs text-amber-200\">Search result only. Recheck fare and availability with the provider before booking.</p><button type=\"button\" onClick={() => onSelectFlight(flight)} className=\"mt-4 rounded-lg border border-cyan-400/60 px-3 py-2 text-sm font-bold text-cyan-200\">{selectedFlightId === flight.id ? 'Remove from budget' : 'Include in trip budget'}</button></article>)}</div>}"
+      },
+      {
+        "line": 72,
+        "text": "      <div className=\"flex flex-wrap items-end justify-between gap-2 border-b border-slate-800 pb-3\"><div><p className=\"text-xs font-bold uppercase tracking-wider text-emerald-300\">Hotels</p><h2 id=\"hotel-results-heading\" className=\"text-lg font-bold\">TravelMate listings and Amadeus offers</h2></div><ProviderFreshness freshness={stayFreshness}/></div>"
+      },
+      {
+        "line": 74,
+        "text": "      <div className=\"mt-4 grid gap-3 lg:grid-cols-2\">{stayOptions.map((stay) => { const nights = Math.max(1, tripDays - 1); return <article key={`compare-${stay.id}`} className=\"rounded-xl border border-slate-800 bg-slate-900/45 p-4\"><span className=\"text-xs font-bold uppercase text-emerald-300\">TravelMate database · not live</span><h3 className=\"mt-1 font-bold\">{stay.name}</h3><p className=\"text-sm text-slate-400\">{stay.address}</p><strong className=\"mt-3 block text-amber-300\">PHP {(stay.price * nights).toLocaleString()} · {nights} night{nights === 1 ? '' : 's'}</strong><ReferenceAmount amount={stay.price * nights} currency=\"PHP\" referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/><p className=\"mt-2 text-xs text-slate-500\">PHP {stay.price.toLocaleString()}/night · {stay.available}/{stay.capacity} guest slots recorded</p><button onClick={() => onSelectLocalStay(stay)} className=\"mt-4 rounded-lg border border-emerald-500/50 px-3 py-2 text-sm font-bold text-emerald-300\">Select for plan</button></article>; })}{liveAccommodations.map((stay) => <article key={`compare-${stay.id}`} className=\"rounded-xl border border-slate-800 bg-slate-900/45 p-4\"><span className=\"text-xs font-bold uppercase text-cyan-300\">Amadeus {stay.isLive ? 'live' : 'test/non-live'}</span><h3 className=\"mt-1 font-bold\">{stay.name}</h3><p className=\"text-sm text-slate-400\">{stay.address}</p><strong className=\"mt-3 block text-amber-300\">{stay.currency} {stay.total.toLocaleString()} total</strong>{isCurrencyCode(stay.currency) && <ReferenceAmount amount={stay.total} currency={stay.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/>}<p className=\"mt-2 text-xs text-slate-500\">{stay.currency} {stay.nightlyRate.toLocaleString()}/night · fetched {new Date(stay.fetchedAt).toLocaleString()}</p><p className=\"mt-2 text-xs text-slate-400\">{stay.roomDescription}</p><button onClick={() => onSelectLiveStay(stay)} className=\"mt-4 rounded-lg border border-cyan-500/50 px-3 py-2 text-sm font-bold text-cyan-300\">Select for plan</button></article>)}</div>"
+      },
+      {
+        "line": 79,
+        "text": "      <div className=\"flex flex-wrap items-end justify-between gap-2 border-b border-slate-800 pb-3\"><div><p className=\"text-xs font-bold uppercase tracking-wider text-violet-300\">Activities</p><h2 id=\"activity-results-heading\" className=\"text-lg font-bold\">Local and external experiences</h2></div>{travelOptions && <ProviderFreshness freshness={travelOptions.freshness?.activities}/>}</div>"
+      },
+      {
+        "line": 80,
+        "text": "      {busy && !travelOptions ? <OfferResultsSkeleton label=\"Loading activity options...\" /> : !travelOptions ? <p className=\"py-8 text-center text-sm text-slate-500\">Run a comparison to retrieve activity options.</p> : travelOptions.activities.length === 0 ? <p className=\"py-8 text-center text-sm text-slate-400\">{travelOptions.activityMessage}</p> : <div className=\"mt-4 grid gap-3 lg:grid-cols-2\">{travelOptions.activities.map((activity) => <article key={activity.id} className={`rounded-xl border p-4 ${selectedActivityIds.includes(activity.id) ? 'border-violet-300 bg-violet-300/10' : 'border-slate-800 bg-slate-900/45'}`}><div className=\"flex items-start justify-between gap-3\"><div><span className=\"text-xs font-bold uppercase text-violet-300\">{activity.provider === 'amadeus' ? `Amadeus ${activity.isLive ? 'live' : 'test/non-live'}` : 'TravelMate approved listing'}</span><h3 className=\"mt-1 font-bold\">{activity.name}</h3></div><span className=\"shrink-0 text-right\"><strong className=\"text-amber-300\">{activity.currency} {activity.price.toLocaleString()} / traveler</strong>{isCurrencyCode(activity.currency) && <ReferenceAmount amount={activity.price} currency={activity.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/>}</span></div><p className=\"mt-2 text-sm text-slate-400\">{activity.description}</p><p className=\"mt-3 text-xs text-slate-500\">{activity.location}{activity.rating !== undefined ? ` · Rating ${activity.rating}/5` : ''} · fetched {new Date(activity.fetchedAt).toLocaleString()}</p><div className=\"mt-4 flex flex-wrap gap-2\"><button onClick={() => onAddActivity(activity.name)} className=\"inline-flex items-center gap-2 rounded-lg border border-violet-500/50 px-3 py-2 text-sm font-bold text-violet-300\"><Ticket size={14}/>Add to preferences</button><button type=\"button\" onClick={() => onToggleActivityCost(activity)} className=\"rounded-lg border border-violet-400/60 px-3 py-2 text-sm font-bold text-violet-200\">{selectedActivityIds.includes(activity.id) ? 'Remove cost' : `Include ${travelers}-traveler cost`}</button>{activity.referenceUrl && <a href={activity.referenceUrl} target=\"_blank\" rel=\"noreferrer\" className=\"rounded-lg border border-slate-600 px-3 py-2 text-sm font-bold\">Provider details</a>}</div></article>)}</div>}"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TravelerAccountCenter.tsx",
+    "matches": [
+      {
+        "line": 14,
+        "text": "const inputClass = 'mt-2 min-h-12 w-full border border-white/15 bg-[#071a16] px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/35 hover:border-white/30 focus:border-[#ffcf70] focus:ring-2 focus:ring-[#ffcf70]/25';"
+      },
+      {
+        "line": 23,
+        "text": "        <div className=\"flex flex-col justify-between bg-[#102824] p-6 sm:p-8 lg:col-span-7 lg:p-10\">"
+      },
+      {
+        "line": 27,
+        "text": "              <span className={`inline-flex min-h-9 items-center gap-2 border px-3 text-xs font-bold ${verified ? 'border-emerald-300/35 bg-emerald-300/10 text-emerald-200' : 'border-[#ffcf70]/35 bg-[#ffcf70]/10 text-[#ffcf70]'}`}>"
+      },
+      {
+        "line": 31,
+        "text": "            <h2 className=\"mt-8 max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.045em] sm:text-5xl\">Your details, ready for every trip.</h2>"
+      },
+      {
+        "line": 35,
+        "text": "            <span className=\"grid size-14 shrink-0 place-items-center bg-[#ffcf70] text-lg font-black text-[#102824]\">{initials}</span>"
+      },
+      {
+        "line": 40,
+        "text": "        <div className=\"grid grid-cols-2 bg-[#0d211d] text-white lg:col-span-5\">"
+      },
+      {
+        "line": 57,
+        "text": "        <form onSubmit={(event) => { event.preventDefault(); void onSaveProfile(event.currentTarget); }} className=\"bg-[#102622] p-6 sm:p-8 lg:col-span-7 lg:p-10\">"
+      },
+      {
+        "line": 59,
+        "text": "            <span className=\"grid size-11 shrink-0 place-items-center border border-[#ffcf70]/30 bg-[#ffcf70]/5 text-[#ffcf70]\"><UserRound size={19} /></span>"
+      },
+      {
+        "line": 60,
+        "text": "            <div><h3 className=\"text-xl font-black tracking-[-0.03em] text-white\">Contact details</h3><p className=\"mt-1 text-sm text-white/55\">Keep your TravelMate account details up to date.</p></div>"
+      },
+      {
+        "line": 63,
+        "text": "            <label className=\"text-xs font-bold text-white/75\">Full name<input required minLength={2} maxLength={80} name=\"name\" defaultValue={user.name} autoComplete=\"name\" className={inputClass} /></label>"
+      },
+      {
+        "line": 64,
+        "text": "            <label className=\"text-xs font-bold text-white/75\">Email address<input readOnly value={user.email} autoComplete=\"email\" aria-describedby=\"account-email-note\" className={`${inputClass} cursor-not-allowed bg-white/[0.07] text-white/55`} /><span id=\"account-email-note\" className=\"mt-2 block text-[11px] font-normal text-white/45\">Email changes require account support.</span></label>"
+      },
+      {
+        "line": 65,
+        "text": "            <label className=\"text-xs font-bold text-white/75 sm:col-span-2\">Phone number<input maxLength={30} name=\"phone\" defaultValue={user.phone || ''} autoComplete=\"tel\" placeholder=\"Add a contact number\" className={inputClass} /></label>"
+      },
+      {
+        "line": 66,
+        "text": "            <label className=\"text-xs font-bold text-white/75 sm:col-span-2\">Profile photo URL<input type=\"url\" maxLength={2048} name=\"avatarUrl\" defaultValue={user.avatarUrl || ''} placeholder=\"https://?\" className={inputClass}/><span className=\"mt-2 block text-xs font-normal text-white/45\">Use an HTTPS image URL, or leave blank for a default avatar.</span></label>"
+      },
+      {
+        "line": 67,
+        "text": "            <label className=\"text-xs font-bold text-white/75 sm:col-span-2\">Travel profile<textarea maxLength={500} name=\"bio\" defaultValue={user.bio || ''} rows={5} placeholder=\"Share your travel style, accessibility needs, or preferences\" className={inputClass} /></label>"
+      },
+      {
+        "line": 69,
+        "text": "          <button disabled={busy} className=\"group mt-7 inline-flex min-h-12 items-center gap-3 bg-[#ffcf70] px-6 py-3 text-sm font-extrabold text-[#102824] transition hover:bg-[#ffe1a1] disabled:opacity-50\">{busy ? 'Saving changes...' : 'Save profile'}<ArrowRight size={17} className=\"transition-transform group-hover:translate-x-1\" /></button>"
+      },
+      {
+        "line": 72,
+        "text": "        <aside className=\"bg-[#14231f] p-6 sm:p-8 lg:col-span-5 lg:p-10\">"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TravelerDashboard.tsx",
+    "matches": [
+      {
+        "line": 44,
+        "text": "type Tab = 'overview' | 'planner' | 'budget' | 'compare' | 'bookings' | 'notifications' | 'profile';"
+      },
+      {
+        "line": 71,
+        "text": "  const response = await fetch(body ? '/api/platform' : '/api/platform?scope=traveler&summary=true', body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : undefined);"
+      },
+      {
+        "line": 217,
+        "text": "        if (!window.confirm(`Restore your unsaved ${draft.trip.destination} itinerary draft${draft.savedAt ? ` from ${new Date(draft.savedAt).toLocaleString()}` : ''}?`)) {"
+      },
+      {
+        "line": 292,
+        "text": "        const result = await handleResponse<NotificationsResponse>(await fetch('/api/platform/notifications', { signal: AbortSignal.timeout(10_000) }));"
+      },
+      {
+        "line": 405,
+        "text": "      const comparisonResult = await fetch(`/api/travel-options?${comparisonParams}`, { signal: controller.signal }).then((response) => handleResponse<unknown>(response)).then(parseTravelOptionsResponse);"
+      },
+      {
+        "line": 586,
+        "text": "    if (!activity || !window.confirm(`Remove “${activity.title}” from Day ${dayIndex + 1}?`)) return;"
+      },
+      {
+        "line": 606,
+        "text": "    if (manualDirty && !window.confirm('Start a new trip? Your current unsaved edits remain available in browser draft recovery.')) return;"
+      },
+      {
+        "line": 619,
+        "text": "      const trip = savedItinerary(summary.itinerary) ? summary : (await handleResponse<TripDetailResponse>(await fetch(`/api/platform/trips/${encodeURIComponent(summary.id)}`, { signal: AbortSignal.timeout(15_000) }))).trip;"
+      },
+      {
+        "line": 649,
+        "text": "      const result = await handleResponse<TripVersionsResponse>(await fetch(`/api/platform/trips/${encodeURIComponent(tripId)}/versions${suffix}`, { signal: AbortSignal.timeout(15_000) }));"
+      },
+      {
+        "line": 665,
+        "text": "      const result = await handleResponse<PlatformResponse>(await fetch(`/api/platform?scope=traveler&summary=true&cursor=${encodeURIComponent(cursor)}`, { signal: AbortSignal.timeout(15_000) }));"
+      },
+      {
+        "line": 678,
+        "text": "      const response = await fetch('/api/profile', {"
+      },
+      {
+        "line": 751,
+        "text": "    <div ref={pageRef} className=\"traveler-dashboard min-h-screen w-full max-w-full overflow-x-clip bg-[#0b1d1a] pt-20 text-slate-100\">"
+      },
+      {
+        "line": 752,
+        "text": "      <a href=\"#traveler-main-content\" className=\"sr-only z-[100] bg-[#f1ead8] px-4 py-2 font-bold text-[#14231f] focus:not-sr-only focus:fixed focus:left-4 focus:top-4\">Skip to trip workspace</a>"
+      },
+      {
+        "line": 754,
+        "text": "        <div className=\"mx-auto flex h-16 w-full max-w-[1380px] items-center justify-between border border-white/15 bg-[#102824]/88 px-4 text-white shadow-[0_18px_50px_rgba(8,24,22,.22)] backdrop-blur-xl sm:px-6\">"
+      },
+      {
+        "line": 755,
+        "text": "          <Link href=\"/\" className=\"group flex shrink-0 items-center gap-3 font-semibold\" aria-label=\"TravelMate home\">"
+      },
+      {
+        "line": 756,
+        "text": "            <span className=\"grid size-9 place-items-center bg-[#ffcf70] text-[#102824] transition-transform duration-500 group-hover:-rotate-6\"><Compass size={20} strokeWidth={2.2}/></span>"
+      },
+      {
+        "line": 759,
+        "text": "          <button type=\"button\" onClick={() => setProfileMenuOpen(true)} aria-label={`Open profile menu for ${data.user.name}`} aria-haspopup=\"dialog\" aria-expanded={profileMenuOpen} aria-controls=\"traveler-profile-menu\" className=\"flex min-w-0 items-center gap-2 border border-white/15 bg-white/[0.04] py-1.5 pl-1.5 pr-3 text-left transition-colors hover:border-[#ffcf70]/50 hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#ffcf70] sm:gap-3\">"
+      },
+      {
+        "line": 760,
+        "text": "            <span className=\"grid size-9 shrink-0 place-items-center bg-[#ffcf70] text-xs font-black text-[#102824]\">{userInitials}</span>"
+      },
+      {
+        "line": 768,
+        "text": "        <button type=\"button\" aria-label=\"Close profile menu\" onClick={() => setProfileMenuOpen(false)} className=\"traveler-profile-backdrop absolute inset-0 bg-[#061714]/65 backdrop-blur-sm\" />"
+      },
+      {
+        "line": 769,
+        "text": "        <aside ref={profileMenuRef} id=\"traveler-profile-menu\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"traveler-profile-menu-title\" tabIndex={-1} className=\"traveler-profile-drawer absolute inset-y-0 right-0 flex w-full max-w-sm flex-col border-l border-white/15 bg-[#102824] text-white shadow-[-24px_0_70px_rgba(0,0,0,.35)]\">"
+      },
+      {
+        "line": 771,
+        "text": "            <div><p className=\"text-[10px] font-bold uppercase tracking-[.16em] text-[#ffcf70]\">TravelMate</p><h2 id=\"traveler-profile-menu-title\" className=\"mt-1 text-lg font-semibold\">Your account</h2></div>"
+      },
+      {
+        "line": 772,
+        "text": "            <button ref={profileMenuCloseRef} type=\"button\" aria-label=\"Close profile menu\" onClick={() => setProfileMenuOpen(false)} className=\"grid size-10 place-items-center border border-white/20 text-white/75 transition-colors hover:bg-white/10 hover:text-white\"><X size={18}/></button>"
+      },
+      {
+        "line": 776,
+        "text": "              <span className=\"grid size-12 shrink-0 place-items-center bg-[#ffcf70] text-sm font-black text-[#102824]\">{userInitials}</span>"
+      },
+      {
+        "line": 779,
+        "text": "            <div className=\"mt-4 flex items-center justify-between border-b border-white/10 pb-4 text-xs\"><span className=\"text-white/55\">Email status</span><span className={`border px-2 py-1 font-bold ${data.user.emailVerified ? 'border-emerald-300/35 bg-emerald-300/10 text-emerald-200' : 'border-[#ffcf70]/35 bg-[#ffcf70]/10 text-[#ffcf70]'}`}>{data.user.emailVerified ? 'Verified' : 'Email not verified'}</span></div>"
+      },
+      {
+        "line": 788,
+        "text": "      {tab !== 'overview' && <div className=\"border-b border-white/10 bg-[#102622] px-4 py-3 sm:px-6\"><div className=\"mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-6 gap-y-1 text-xs text-white/52\"><strong className=\"text-white/78\">Current trip context</strong><span>{selectedDestination ? destination : 'Choose and confirm a destination'}</span><span>{startDate} to {endDate}</span><span>{currencyResolved && Number.isFinite(budget) ? formatMoney(budget, currency) : 'Currency auto-detected after destination'}{currencyResolved&&<ReferenceAmount amount={budget} currency={currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/>}</span>{itinerary && <span className=\"text-emerald-200\">Generated plan available</span>}</div></div>}"
+      },
+      {
+        "line": 793,
+        "text": "            <nav aria-label=\"Traveler workspace\" className=\"traveler-mobile-nav flex max-w-full snap-x gap-px overflow-x-auto border border-white/10 bg-white/10 p-px lg:flex-col lg:overflow-visible\">"
+      },
+      {
+        "line": 794,
+        "text": "              {([['overview','Home',Home],['planner','Plan a trip',MapPin],['bookings','Saved trips',CalendarDays],['notifications','Notifications',Bell]] as const).map(([id,label,Icon]) => <button key={id} aria-current={tab===id?'page':undefined} onClick={() => id === 'planner' ? startNewTrip() : setTab(id)} className={`group relative flex shrink-0 snap-start items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-colors lg:w-full ${tab===id?'bg-[#f1ead8] text-[#14231f]':'bg-[#0b1d1a] text-white/55 hover:bg-[#16302b] hover:text-white'}`}><span className={`absolute inset-y-0 left-0 w-0.5 ${tab===id?'bg-amber-400':'bg-transparent'}`}/><Icon size={17}/>{label}{id === 'notifications' && data.notifications.filter((item) => !item.readAt).length > 0 && <span className=\"ml-auto bg-amber-300 px-1.5 text-[10px] font-black text-[#14231f]\">{data.notifications.filter((item) => !item.readAt).length}</span>}</button>)}"
+      },
+      {
+        "line": 796,
+        "text": "              {([['budget','Budget review',WalletCards],['compare','Travel options',Plane]] as const).map(([id,label,Icon]) => <button key={id} aria-current={tab===id?'page':undefined} onClick={() => setTab(id)} className={`group relative flex shrink-0 snap-start items-center gap-3 px-4 py-3.5 text-sm font-semibold transition-colors lg:w-full ${tab===id?'bg-[#f1ead8] text-[#14231f]':'bg-[#0b1d1a] text-white/55 hover:bg-[#16302b] hover:text-white'}`}><span className={`absolute inset-y-0 left-0 w-0.5 ${tab===id?'bg-amber-400':'bg-transparent'}`}/><Icon size={17}/>{label}</button>)}"
+      },
+      {
+        "line": 804,
+        "text": "            <div className=\"min-w-0 max-w-4xl\"><h1 ref={workspaceHeadingRef} tabIndex={-1} className=\"break-words text-[clamp(2rem,4vw,3.75rem)] font-black leading-[0.96] tracking-[-0.05em] outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0b1d1a]\">{currentTabCopy.title}</h1><p className=\"mt-3 max-w-2xl text-sm leading-6 text-white/52\">{currentTabCopy.description}</p></div>"
+      },
+      {
+        "line": 826,
+        "text": "              <section className=\"relative min-h-[300px] overflow-hidden border border-white/10 bg-[#efe8d6] text-[#14231f]\">"
+      },
+      {
+        "line": 830,
+        "text": "                  <h2 className=\"mt-3 max-w-3xl text-4xl font-black leading-[0.95] tracking-[-0.055em] sm:text-6xl\">Four details are enough to begin.</h2>"
+      },
+      {
+        "line": 835,
+        "text": "              <section aria-label=\"Trip brief\" className=\"relative overflow-hidden border border-amber-200/20 bg-[#ffcf70] p-4 text-[#14231f] shadow-[0_18px_55px_rgba(0,0,0,.14)] sm:p-5\">"
+      },
+      {
+        "line": 838,
+        "text": "                  <div className=\"min-w-0\"><p className=\"text-[10px] font-black uppercase tracking-[.18em] text-[#49635c]\">Your trip brief</p><h2 className=\"mt-1 text-xl font-black tracking-[-0.035em]\">Shape the outline, then let TravelMate fill the days.</h2></div>"
+      },
+      {
+        "line": 848,
+        "text": "                <article className=\"bg-[#14302a] p-5 sm:p-7 xl:col-span-7\">"
+      },
+      {
+        "line": 849,
+        "text": "                  <div className=\"mb-7 flex items-start gap-4 border-b border-white/12 pb-5\"><span className=\"grid h-11 w-11 shrink-0 place-items-center border border-cyan-300/35 bg-cyan-300/5 text-cyan-200\"><MapPin size={19}/></span><div><p className=\"text-[10px] font-black uppercase tracking-[.16em] text-cyan-200/70\">01 · Start with the essentials</p><h2 className=\"mt-1 text-xl font-black tracking-[-0.03em]\">Required trip details</h2><p className=\"mt-1 text-xs text-white/50\">These fields give TravelMate enough information to build a plan.</p></div></div>"
+      },
+      {
+        "line": 851,
+        "text": "                    <div className=\"relative sm:col-span-2 text-xs font-medium text-slate-300\"><label htmlFor=\"destination-search\">Destination</label><input id=\"destination-search\" required minLength={2} role=\"combobox\" aria-autocomplete=\"list\" aria-expanded={locationSuggestions.length>0} aria-controls=\"destination-suggestions\" aria-activedescendant={activeSuggestionIndex>=0?`destination-option-${activeSuggestionIndex}`:undefined} aria-describedby=\"destination-status\" value={destination} onChange={e=>{changeDestination(e.target.value);setActiveSuggestionIndex(-1);}} onKeyDown={handleDestinationKeyDown} placeholder=\"Search city, province, or country\" autoComplete=\"off\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition placeholder:text-slate-600 hover:border-slate-600 focus:border-cyan-400\"/>{locationSuggestions.length>0&&<ul id=\"destination-suggestions\" role=\"listbox\" className=\"absolute z-30 mt-1 max-h-64 w-full overflow-y-auto rounded-xl border border-slate-700 bg-slate-950 p-1 shadow-2xl\">{locationSuggestions.map((location,index)=><li id={`destination-option-${index}`} key={location.id} role=\"option\" aria-selected={activeSuggestionIndex===index||selectedDestination?.id===location.id}><button type=\"button\" onMouseEnter={()=>setActiveSuggestionIndex(index)} onClick={()=>{confirmDestination(location);setActiveSuggestionIndex(-1);}} className={`w-full rounded-lg px-3 py-2 text-left hover:bg-slate-800 focus:bg-slate-800 ${activeSuggestionIndex===index?'bg-slate-800':''}`}><strong className=\"block text-sm text-white\">{location.name}</strong><span className=\"text-[11px] text-slate-400\">{location.contextLabel}</span></button></li>)}<li role=\"presentation\"><button type=\"button\" onClick={()=>void confirmManualDestination(destination)} className=\"min-h-11 w-full rounded-lg px-3 py-2 text-left text-xs font-bold text-amber-200 hover:bg-slate-800\">Use “{destination.trim()}” manually</button></li><li role=\"presentation\">{hasMoreSuggestions&&<button type=\"button\" onClick={showMoreSuggestions} className=\"min-h-11 w-full rounded-lg px-3 py-2 text-left text-xs font-bold text-amber-200 hover:bg-slate-800\">Show more destinations</button>}</li></ul>}<p className=\"mt-1 text-[10px] text-slate-500\">Destination data: <a href=\"https://www.geonames.org/\" target=\"_blank\" rel=\"noreferrer\" className=\"underline\">GeoNames</a> · <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noreferrer\" className=\"underline\">© OpenStreetMap contributors</a></p><p id=\"destination-status\" aria-live=\"polite\" className={`mt-1 text-[11px] ${selectedDestination?'text-emerald-300':'text-slate-500'}`}>{locationsBusy?'Searching destinations...':selectedDestination?`Confirmed: ${selectedDestination.label}`:locationMessage||'Choose a suggestion to confirm the destination.'}</p>{!selectedDestination&&!locationsBusy&&destination.trim().length>=2&&locationSuggestions.length===0&&<button type=\"button\" onClick={()=>confirmManualDestination(destination)} className=\"mt-2 border border-amber-300/40 px-3 py-2 text-xs font-bold text-amber-200\">Use “{destination.trim()}” manually</button>}</div>"
+      },
+      {
+        "line": 852,
+        "text": "                    <label className=\"text-xs font-medium text-slate-300\">{partyBudgetLabel(partyType, travelers)}<input type=\"number\" min=\"0\" step={ZERO_DECIMAL_CURRENCIES.includes(currency)?'1':'0.01'} value={budget} onChange={e=>setBudget(Number(e.target.value))} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition hover:border-slate-600 focus:border-amber-400\" /><span className=\"mt-1.5 block text-[11px] font-normal text-amber-200\">{budget > 0 ? partyBudgetExplanation(partyType, travelers) : 'Enter your total trip budget to continue.'}</span><ReferenceAmount amount={budget} currency={currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes} className=\"mt-1 block text-[11px] font-normal text-cyan-200\"/></label>"
+      },
+      {
+        "line": 853,
+        "text": "                    <div className=\"text-xs font-medium text-slate-300\"><div className=\"grid grid-cols-2 gap-2\"><label>Destination currency<select value={selectedDestination&&currencyResolved?currency:''} disabled={!selectedDestination||contextBusy||!currencyNeedsFallback} onChange={e=>changeCurrency(e.target.value as CurrencyCode)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-amber-400 disabled:opacity-60\"><option value=\"\">{contextBusy?'Detecting...':selectedDestination?'Select':'Auto'}</option>{SUPPORTED_CURRENCIES.map(code=><option key={code} value={code}>{code}</option>)}</select></label><label>Show equivalents in<select value={referenceCurrency} onChange={e=>setReferenceCurrency(e.target.value as CurrencyCode)} className=\"mt-1.5 w-full rounded-xl border border-cyan-700/70 bg-slate-950/80 px-3 py-2 text-white transition hover:border-cyan-500 focus:border-cyan-400\">{SUPPORTED_CURRENCIES.map(code=><option key={code} value={code}>{code} · {CURRENCY_NAMES[code]}</option>)}</select></label></div><span className=\"mt-1.5 block text-[10px] text-slate-500\">{currencyResolved?`${currency} (${CURRENCY_NAMES[currency]}) detected for the destination.`:currencyNeedsFallback?'Automatic detection unavailable; choose a destination currency.':'Select a destination first.'}</span>{currencyResolved&&currency!==referenceCurrency&&<span className=\"mt-1 block text-[10px] text-cyan-200/70\">{exchangeBusy?<span role=\"status\" aria-label=\"Loading reference rate...\"><Skeleton className=\"inline-block h-3 w-36 align-middle\" /></span>:exchangeQuotes[currency]?`1 ${currency} ≈ ${formatMoney(exchangeQuotes[currency]!.rate,referenceCurrency)} · Frankfurter reference dated ${exchangeQuotes[currency]!.asOf}`:exchangeMessage||'Reference conversion unavailable.'}</span>}</div>"
+      },
+      {
+        "line": 854,
+        "text": "                    <label className=\"text-xs font-medium text-slate-300\">Start date<input required type=\"date\" min={localDateInputValue()} value={startDate} onChange={e=>{const next=e.target.value;setStartDate(next);if(endDate<next||endDate>addCalendarDays(next,13))setEndDate(addCalendarDays(next,6));setStaySelectionState(null);setTravelOptions(null);setComparisonMessage('');setItinerary(null);setWeather(null);}} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400\" /></label>"
+      },
+      {
+        "line": 855,
+        "text": "                    <label className=\"text-xs font-medium text-slate-300\">End date<input required type=\"date\" min={startDate} max={maximumEndDate} value={endDate} onChange={e=>{setEndDate(e.target.value);setStaySelectionState(null);setTravelOptions(null);setComparisonMessage('');setItinerary(null);setWeather(null);}} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400\" /><span className={`mt-1.5 block text-[10px] ${tripDays>=1&&tripDays<=31?'text-emerald-300':'text-amber-300'}`}>{tripDays>=1&&tripDays<=31?`${tripDays} travel day${tripDays===1?'':'s'} selected`:'Choose 1–31 days'}</span></label>"
+      },
+      {
+        "line": 856,
+        "text": "                    <label className=\"text-xs font-medium text-slate-300\">Traveling as<select value={partyType} onChange={e=>changePartyType(e.target.value as PartyType)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400\">{Object.entries(PARTY_TYPE_LABELS).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>"
+      },
+      {
+        "line": 857,
+        "text": "                    <label className=\"text-xs font-medium text-slate-300\">Travelers<input type=\"number\" min={partyType==='solo'?1:2} max=\"20\" disabled={partyType==='solo'||partyType==='couple'} value={travelers} onChange={e=>{setTravelers(Number(e.target.value));setStaySelectionState(null);setTravelOptions(null);setComparisonMessage('');}} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400 disabled:opacity-50\" /></label>"
+      },
+      {
+        "line": 861,
+        "text": "                <article className=\"bg-[#19362f] p-5 sm:p-7 xl:col-span-5\">"
+      },
+      {
+        "line": 862,
+        "text": "                  <div className=\"mb-7 flex items-start gap-4 border-b border-white/12 pb-5\"><span className=\"grid h-11 w-11 shrink-0 place-items-center border border-amber-300/35 bg-amber-300/5 text-amber-200\"><Compass size={19}/></span><div><p className=\"text-[10px] font-black uppercase tracking-[.16em] text-amber-200/70\">02 · Make it feel like yours</p><h2 className=\"mt-1 text-xl font-black tracking-[-0.03em]\">Optional preferences</h2><p className=\"mt-1 text-xs text-white/50\">Skip these if you are unsure. You can revise them later.</p></div></div>"
+      },
+      {
+        "line": 866,
+        "text": "                    <label className=\"sm:col-span-2 text-xs font-medium text-slate-300\">Interests<input value={interests} onChange={e=>setInterests(e.target.value)} placeholder=\"food, culture, nature\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition placeholder:text-slate-600 hover:border-slate-600 focus:border-violet-400\" /></label>"
+      },
+      {
+        "line": 867,
+        "text": "                    <label className=\"text-xs font-medium text-slate-300\">Travel style<select value={travelStyle} onChange={e=>setTravelStyle(e.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-violet-400\"><option value=\"budget\">Budget</option><option value=\"balanced\">Balanced</option><option value=\"comfort\">Comfort</option><option value=\"luxury\">Luxury</option><option value=\"family-friendly\">Family-friendly</option></select></label>"
+      },
+      {
+        "line": 868,
+        "text": "                    <label className=\"text-xs font-medium text-slate-300\">Stay preference<select value={accommodationPreference} onChange={e=>setAccommodationPreference(e.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-violet-400\"><option value=\"budget-friendly\">Budget-friendly</option><option value=\"central location\">Central location</option><option value=\"hostel\">Hostel</option><option value=\"condo\">Condo / apartment</option><option value=\"resort\">Resort</option><option value=\"family-friendly\">Family-friendly</option><option value=\"luxury\">Luxury</option></select></label>"
+      },
+      {
+        "line": 869,
+        "text": "                    <label className=\"sm:col-span-2 text-xs font-medium text-slate-300\">Preferred activities<input value={preferredActivities} onChange={e=>setPreferredActivities(e.target.value)} placeholder=\"island hopping, museums\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition placeholder:text-slate-600 hover:border-slate-600 focus:border-violet-400\" /></label>"
+      },
+      {
+        "line": 870,
+        "text": "                    <div className=\"sm:col-span-2 text-xs font-medium text-slate-300\"><div className=\"flex items-center justify-between gap-2\"><label htmlFor=\"transportation\">Transportation</label>{selectedDestination&&<button type=\"button\" disabled={contextBusy} onClick={retryContext} className=\"font-bold text-cyan-300 hover:text-cyan-200 disabled:opacity-50\">{contextBusy?'Finding options...':'Refresh options'}</button>}</div><select id=\"transportation\" disabled={!selectedDestination||contextBusy||transportationOptions.length===0} value={transportationPreference} onChange={e=>setTransportationPreference(e.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-violet-400 disabled:opacity-60\"><option value=\"\">{!selectedDestination?'Select a destination first':contextBusy?'Finding transportation options...':transportationOptions.length?'Choose a destination-relevant mode':'No verified options available'}</option>{transportationOptions.map(mode=><option key={mode.id} value={mode.label.toLowerCase()}>{mode.label}</option>)}</select>{contextMessage&&<p aria-live=\"polite\" className=\"mt-1 text-[11px] text-slate-500\">{contextMessage}</p>}</div>"
+      },
+      {
+        "line": 873,
+        "text": "                <article className=\"bg-[#102822] p-5 sm:p-7 xl:col-span-12\">"
+      },
+      {
+        "line": 874,
+        "text": "                  <div className=\"flex flex-wrap items-start justify-between gap-4\"><div><p className=\"text-[10px] font-black uppercase tracking-[.16em] text-white/45\">03 · Add context if you need it</p><h2 className=\"mt-1 text-xl font-black tracking-[-0.03em]\">Trip origin and optional expenses</h2><p className=\"mt-1 max-w-3xl text-xs leading-5 text-white/52\">Your starting location is required to plan the journey and compare flights. Add pre-trip expenses only when you want them included in the budget.</p></div>{includePreTripCosts&&<div className=\"text-right\"><span className=\"block text-[10px] font-bold uppercase tracking-wider text-amber-200\">Pre-trip total</span><strong className=\"text-xl text-amber-300\">{formatMoney(preTripTotal,currency)}</strong></div>}</div>"
+      },
+      {
+        "line": 876,
+        "text": "                  {includePreTripCosts&&<div className=\"mt-6 border-t border-white/10 pt-5\"><div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-3\">{([['airportTransfers','Airport transfers'],['passport','Passport / renewal'],['visaOrAuthorization','Visa / authorization'],['departureTaxes','Travel tax'],['insurance','Insurance'],['other','Other costs']] as const).map(([field,label])=><label key={field} className=\"text-xs font-medium text-slate-300\">{label}<input type=\"number\" min=\"0\" step={ZERO_DECIMAL_CURRENCIES.includes(currency)?'1':'0.01'} value={preTripCosts[field]||''} onChange={e=>updatePreTripAmount(field,e.target.value)} placeholder=\"0\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white placeholder:text-slate-600\"/></label>)}</div><p className=\"mt-5 border-l-2 border-amber-300/50 pl-3 text-[11px] leading-5 text-white/48\">Enter whole-party estimates in {currency}. Verify passport, visa, and tax amounts using official sources; leave non-applicable costs at zero.</p></div>}"
+      },
+      {
+        "line": 882,
+        "text": "                <div className=\"min-w-0\"><p className=\"text-[10px] font-black uppercase tracking-[.16em] text-[#49635c]\">Ready when you are</p><h2 className=\"mt-1 truncate text-xl font-black tracking-[-0.035em]\">{selectedDestination?destination:'Your next destination'}</h2><p className=\"mt-1 text-xs text-[#345047]\">{tripDays>=1&&tripDays<=31?`${tripDays} days`: 'Select valid dates'} · {travelers} traveler{travelers===1?'':'s'} · {currencyResolved&&Number.isFinite(budget)?formatMoney(budget,currency):'currency pending'}</p>{currencyResolved&&<ReferenceAmount amount={budget} currency={currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes} className=\"mt-1 block text-[11px] font-semibold text-[#29463f]\"/>}{generationFailed&&message&&<p role=\"alert\" className=\"mt-3 max-w-2xl border-l-2 border-[#14231f] pl-3 text-sm font-semibold leading-5\">{message}</p>}</div>"
+      },
+      {
+        "line": 883,
+        "text": "                <button disabled={busy||tripDays<1||tripDays>31||!selectedDestination||!currencyResolved||!Number.isFinite(budget)||budget<=0} onClick={generate} className=\"group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 bg-[#14231f] px-6 py-3 font-extrabold text-[#f5edd9] transition hover:bg-[#284a41] disabled:opacity-50\">{busy?'Building your trip...':generationFailed?'Retry generation':'Generate my trip'}<ArrowRight size={17} className=\"transition-transform group-hover:translate-x-1\"/></button>"
+      },
+      {
+        "line": 889,
+        "text": "                <div className=\"flex items-start gap-3\"><CloudSun className={`mt-0.5 shrink-0 ${weather.source==='unavailable'?'text-amber-300':'text-cyan-300'}`}/><div><h2 id=\"conditions-heading\" className=\"font-bold\">{weather.source==='unavailable'?`Weather unavailable for ${weather.city}`:<>{weather.city}: {weather.temperature}°C, {weather.description}</>}</h2><p className=\"mt-1 text-xs leading-5 text-slate-400\">{weather.source==='unavailable'?'No current conditions or alerts are being claimed.':weather.alerts[0] || (weather.source==='mock'?'No live alert data.':'No severe current-weather alert.')} · Source: {weather.source === 'open-meteo' ? 'Open-Meteo API' : weather.source === 'openweathermap' ? 'OpenWeatherMap API' : weather.source === 'unavailable' ? 'unavailable' : 'legacy mock/demo data'}</p><p className={`mt-1 text-xs ${weather.forecastAvailable?'text-cyan-200':'text-amber-300'}`}>{weather.forecastMessage}</p><div className=\"mt-2\"><ProviderFreshness freshness={weather.freshness}/></div></div></div>"
+      },
+      {
+        "line": 914,
+        "text": "            {itinerary?.selectedTravelCosts && itinerary.selectedTravelCosts.total > 0 && <section className=\"mt-4 border border-cyan-300/25 bg-cyan-300/5 p-4\"><h2 className=\"font-bold\">Committed and pre-trip costs included</h2><p className=\"mt-1 text-sm text-slate-400\">Selected quote amounts and your own estimates are included once in group spending. Activity totals assume the headline fare is per person; confirm date, party and fee coverage.</p><div className=\"mt-3 space-y-2 text-sm\">{itinerary.selectedTravelCosts.flight && <div className=\"flex justify-between gap-3\"><span>{itinerary.selectedTravelCosts.flight.name}</span><strong>{formatMoney(itinerary.selectedTravelCosts.flight.total, itinerary.currency)}</strong></div>}{itinerary.selectedTravelCosts.activities.map((activity) => <div key={activity.id} className=\"flex justify-between gap-3\"><span>{activity.name} · {activity.travelers} travelers · {activity.priceBasis ? \"group estimate; fare basis needs confirmation\" : \"provider amount; recheck before booking\"}</span><strong>{formatMoney(activity.total, itinerary.currency)}</strong></div>)}{itinerary.selectedTravelCosts.preTrip && <div className=\"mt-3 border-t border-white/10 pt-3\"><div className=\"mb-2 flex justify-between gap-3\"><span><strong>Pre-trip estimates</strong>{itinerary.selectedTravelCosts.preTrip.startingLocation ? ` · from ${itinerary.selectedTravelCosts.preTrip.startingLocation}` : ''}</span><strong>{formatMoney(itinerary.selectedTravelCosts.preTrip.total,itinerary.currency)}</strong></div>{([['Airport transfers',itinerary.selectedTravelCosts.preTrip.airportTransferOutbound + itinerary.selectedTravelCosts.preTrip.airportTransferReturn],['Passport / renewal',itinerary.selectedTravelCosts.preTrip.passport],['Visa / authorization',itinerary.selectedTravelCosts.preTrip.visaOrAuthorization],['Travel tax',itinerary.selectedTravelCosts.preTrip.departureTaxes],['Insurance',itinerary.selectedTravelCosts.preTrip.insurance],['Other costs',itinerary.selectedTravelCosts.preTrip.other]] as const).filter(([,amount])=>amount>0).map(([label,amount])=><div key={label} className=\"flex justify-between gap-3 text-xs text-slate-400\"><span>{label}</span><span>{formatMoney(amount,itinerary.currency)}</span></div>)}<p className=\"mt-2 text-[11px] text-amber-200\">User-entered estimates; verify document and government fees with official sources.</p></div>}<div className=\"flex justify-between gap-3 border-t border-white/10 pt-2\"><strong>Committed-cost total</strong><strong>{formatMoney(itinerary.selectedTravelCosts.total, itinerary.currency)}</strong></div></div></section>}"
+      },
+      {
+        "line": 916,
+        "text": "              <div className=\"flex flex-wrap items-start justify-between gap-4\"><div className=\"flex items-start gap-3\"><span className=\"grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-950/60\"><WalletCards size={19} className={optimization.status==='over_budget'?'text-red-300':optimization.status==='near_limit'?'text-amber-300':'text-emerald-300'}/></span><div><p className=\"text-xs font-bold uppercase tracking-wider text-slate-400\">Budget optimization</p><h2 id=\"budget-optimization-heading\" className=\"mt-1 font-bold\">{optimization.status==='over_budget'?`Reduce the estimate by ${formatMoney(optimization.amountToTarget,itinerary!.currency)}`:optimization.status==='near_limit'?`Save ${formatMoney(optimization.amountToTarget,itinerary!.currency)} to protect the reserve`:'These estimates fit the allocation; verify missing prices'}</h2>{optimization.status!=='within_budget'&&<ReferenceAmount amount={optimization.amountToTarget} currency={itinerary!.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/>}<p className=\"mt-1 text-sm text-slate-400\">Target spend: {formatMoney(optimization.targetSpend,itinerary!.currency)}.</p><ReferenceAmount amount={optimization.targetSpend} currency={itinerary!.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/></div></div>{optimization.suggestions.length>0&&<button onClick={()=>setTab('planner')} className=\"inline-flex min-h-10 items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-bold hover:bg-slate-800\">Review itinerary<ArrowRight size={15}/></button>}</div>"
+      },
+      {
+        "line": 917,
+        "text": "              {optimization.suggestions.length>0&&<><div className=\"mt-5 grid gap-3 lg:grid-cols-2\">{optimization.suggestions.map(suggestion=><article key={suggestion.id} className=\"rounded-lg border border-slate-800 bg-slate-950/40 p-4\"><div className=\"flex items-start justify-between gap-3\"><div><span className=\"text-[10px] font-bold uppercase tracking-wider text-cyan-300\">{suggestion.category}{suggestion.affectedDay?` · Day ${suggestion.affectedDay}`:''}</span><h3 className=\"mt-1 font-bold\">{suggestion.title}</h3></div><span className=\"shrink-0 text-right\"><strong className=\"text-emerald-300\">Save ~{formatMoney(suggestion.estimatedSavings,itinerary!.currency)}</strong><ReferenceAmount amount={suggestion.estimatedSavings} currency={itinerary!.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/></span></div><p className=\"mt-3 text-sm text-slate-300\">{suggestion.description}</p><p className=\"mt-2 text-xs leading-relaxed text-amber-200\"><strong>Tradeoff:</strong> {suggestion.tradeoff}</p></article>)}</div><div className=\"mt-4 grid gap-3 border-t border-slate-800 pt-4 sm:grid-cols-2\"><div><p className=\"text-xs uppercase text-slate-500\">Potential combined savings</p><strong className=\"text-xl text-emerald-300\">~{formatMoney(optimization.combinedEstimatedSavings,itinerary!.currency)}</strong><ReferenceAmount amount={optimization.combinedEstimatedSavings} currency={itinerary!.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/></div><div><p className=\"text-xs uppercase text-slate-500\">Projected spend if all are applied</p><strong className=\"text-xl\">~{formatMoney(optimization.projectedSpendIfAllApplied,itinerary!.currency)}</strong><ReferenceAmount amount={optimization.projectedSpendIfAllApplied} currency={itinerary!.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/>{optimization.remainingGapAfterSuggestions>0&&<p className=\"mt-1 text-xs text-red-300\">Still {formatMoney(optimization.remainingGapAfterSuggestions,itinerary!.currency)} above the target.<ReferenceAmount amount={optimization.remainingGapAfterSuggestions} currency={itinerary!.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/></p>}</div></div></>}"
+      },
+      {
+        "line": 920,
+        "text": "            {itinerary?.costSharing&&itinerary.costSharing.travelers>1&&<div className=\"mt-5 rounded-md border border-slate-800 p-4\"><h2 className=\"font-bold\">Equal-share guide</h2><p className=\"mt-1 text-sm text-slate-400\">{PARTY_TYPE_LABELS[itinerary.costSharing.partyType]} with {itinerary.costSharing.travelers} travelers. The entered budget is one combined total; these are optional equal shares per traveler.</p><div className=\"mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4\">{itinerary.costSharing.plannedSpendShares.map((amount,index)=><div key={index} className=\"border-t border-slate-700 py-2\"><small className=\"text-slate-500\">Traveler {index+1}</small><p className=\"font-mono\">{formatMoney(amount,itinerary.currency)}</p><ReferenceAmount amount={amount} currency={itinerary.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/></div>)}</div></div>}"
+      },
+      {
+        "line": 922,
+        "text": "          </> : <section className=\"border border-dashed border-white/15 bg-white/[0.025] p-8 sm:p-12\"><WalletCards size={25} className=\"text-amber-300\"/><h2 className=\"mt-6 max-w-xl text-3xl font-black tracking-[-0.04em]\">Budget review begins after itinerary generation.</h2><p className=\"mt-4 max-w-2xl text-sm leading-6 text-white/50\">TravelMate needs the generated activities, transportation, food estimate, and any selected accommodation before it can explain planned spending and possible savings.</p><button type=\"button\" onClick={()=>setTab('planner')} className=\"group mt-7 inline-flex min-h-11 items-center gap-2 bg-amber-300 px-5 py-2 text-sm font-extrabold text-[#14231f]\">Go to trip details <ArrowRight size={16} className=\"transition-transform group-hover:translate-x-1\"/></button></section>}</div>}"
+      },
+      {
+        "line": 964,
+        "text": "              onDelete={(trip)=>{if(window.confirm(`Permanently delete the archived trip to ${trip.destination}? This also removes its version history and cannot be undone.`))void action({action:'delete-trip',id:trip.id},'Archived trip permanently deleted.').then(ok=>{if(ok&&editingTripId===trip.id)setEditingTripId(null);});}}"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TravelerItineraryDialogs.tsx",
+    "matches": [
+      {
+        "line": 28,
+        "text": "    <div ref={modalRef} className=\"fixed inset-0 z-50 overflow-y-auto bg-black/80 p-3 sm:p-6\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"activity-editor-title\" aria-describedby=\"activity-editor-description\" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>"
+      },
+      {
+        "line": 29,
+        "text": "      <form key={`${editor.dayIndex}-${editor.activityIndex ?? 'new'}`} onSubmit={(event: FormEvent<HTMLFormElement>) => { event.preventDefault(); onSubmit(event.currentTarget); }} className=\"mx-auto mt-8 max-w-xl rounded-2xl border border-slate-700 bg-[#0b1626] p-5 shadow-2xl sm:p-6\">"
+      },
+      {
+        "line": 30,
+        "text": "        <div className=\"flex items-start justify-between gap-4\"><div><p className=\"text-xs font-bold uppercase tracking-wider text-amber-300\">Day {day.day} · {day.date}</p><h2 id=\"activity-editor-title\" className=\"mt-1 text-xl font-bold\">{activity ? 'Edit activity' : 'Add custom activity'}</h2><p id=\"activity-editor-description\" className=\"mt-1 text-sm text-slate-400\">Costs are entered for the whole group and totals update automatically.</p></div><button type=\"button\" onClick={onClose} aria-label=\"Close activity editor\" className=\"grid h-9 w-9 shrink-0 place-items-center rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white\"><X size={18}/></button></div>"
+      },
+      {
+        "line": 32,
+        "text": "          <label className=\"sm:col-span-2 text-xs font-medium text-slate-300\">Activity title<input ref={titleRef} required maxLength={160} name=\"title\" defaultValue={activity?.title || ''} placeholder=\"e.g. Visit the National Museum\" className=\"mt-1.5 min-h-11 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white placeholder:text-slate-600 focus:border-amber-400\"/></label>"
+      },
+      {
+        "line": 33,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">Time<input required maxLength={30} name=\"time\" defaultValue={activity?.time || '09:00 AM'} placeholder=\"09:00 AM\" className=\"mt-1.5 min-h-11 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white focus:border-amber-400\"/></label>"
+      },
+      {
+        "line": 34,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">Category<select required name=\"category\" defaultValue={activity?.category || 'activity'} className=\"mt-1.5 min-h-11 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white focus:border-amber-400\"><option value=\"activity\">Activity</option><option value=\"food\">Food</option><option value=\"transport\">Transport</option><option value=\"accommodation\">Accommodation</option><option value=\"misc\">Miscellaneous</option></select></label>"
+      },
+      {
+        "line": 35,
+        "text": "          <label className=\"sm:col-span-2 text-xs font-medium text-slate-300\">Estimated group cost ({currency})<input required type=\"number\" min=\"0\" max=\"10000000\" step={ZERO_DECIMAL_CURRENCIES.includes(currency) ? '1' : '0.01'} name=\"estimatedCost\" defaultValue={activity?.estimatedCost ?? 0} className=\"mt-1.5 min-h-11 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white focus:border-amber-400\"/></label>"
+      },
+      {
+        "line": 36,
+        "text": "          <label className=\"sm:col-span-2 text-xs font-medium text-slate-300\">Description<textarea maxLength={1000} name=\"description\" defaultValue={activity?.description || ''} rows={4} placeholder=\"Add helpful details, location, or reminders.\" className=\"mt-1.5 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-white placeholder:text-slate-600 focus:border-amber-400\"/></label>"
+      },
+      {
+        "line": 69,
+        "text": "    <div ref={modalRef} className=\"fixed inset-0 z-50 grid place-items-center overflow-hidden bg-black/80 p-3 sm:p-6\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"day-dialog-title\" aria-describedby=\"day-dialog-description\" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>"
+      },
+      {
+        "line": 70,
+        "text": "      <div className=\"mx-auto flex max-h-[calc(100dvh-1.5rem)] w-full max-w-4xl flex-col overflow-hidden rounded-md border border-slate-700 bg-[#07111f] shadow-2xl sm:max-h-[calc(100dvh-3rem)]\">"
+      },
+      {
+        "line": 73,
+        "text": "          <button ref={closeRef} type=\"button\" onClick={onClose} aria-label=\"Close day details\" title=\"Close details\" className=\"absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-md bg-slate-950/90 hover:bg-slate-800\"><X size={20}/></button>"
+      },
+      {
+        "line": 75,
+        "text": "          <button type=\"button\" disabled={day.activities.length < 2} onClick={() => goToActivity(-1)} aria-label=\"Previous activity\" title=\"Previous activity\" className=\"absolute left-3 top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center bg-slate-950/90 text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-35\"><ChevronLeft size={21}/></button>"
+      },
+      {
+        "line": 76,
+        "text": "          <button type=\"button\" disabled={day.activities.length < 2} onClick={() => goToActivity(1)} aria-label=\"Next activity\" title=\"Next activity\" className=\"absolute right-3 top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center bg-slate-950/90 text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-35\"><ChevronRight size={21}/></button>"
+      },
+      {
+        "line": 78,
+        "text": "          {heroAttribution && <a href={heroAttribution.sourceUrl} target=\"_blank\" rel=\"noreferrer\" title={`${heroAttribution.creator} · ${heroAttribution.license}`} className=\"absolute right-3 top-14 max-w-[65%] truncate rounded bg-slate-950/85 px-2 py-1 text-[10px] text-slate-200\">Photo: {heroAttribution.creator} · {heroAttribution.license}</a>}"
+      },
+      {
+        "line": 85,
+        "text": "                <h3 className=\"mt-1 break-words text-base font-bold text-white sm:text-lg\">{activeActivity.title}</h3>"
+      },
+      {
+        "line": 96,
+        "text": "          <div className=\"flex flex-wrap justify-between gap-3\"><div><h2 id=\"day-dialog-title\" className=\"text-xl font-bold\">Day {day.day}: {day.theme}</h2><p id=\"day-dialog-description\" className=\"text-sm text-slate-400\">{day.date} · {itinerary.destination}</p></div><div className=\"text-right\"><strong className=\"font-mono text-lg\">{formatMoney(day.totalCost, itinerary.currency)}</strong><ReferenceAmount amount={day.totalCost} currency={itinerary.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/><p className=\"flex items-center justify-end gap-1 text-xs text-emerald-200\"><BusFront size={13}/>Ride/boat fare {formatMoney(day.rideFare || 0, itinerary.currency)}</p><ReferenceAmount amount={day.rideFare || 0} currency={itinerary.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/><button type=\"button\" disabled={photoRefreshDay === day.day} onClick={() => onRefreshPhotos(day)} className=\"mt-2 inline-flex items-center gap-1.5 rounded border border-slate-700 px-2 py-1 text-xs text-slate-300 hover:border-cyan-500 hover:text-cyan-200 disabled:opacity-50\"><RefreshCw size={13} className={photoRefreshDay === day.day ? 'animate-spin' : ''}/>{photoRefreshDay === day.day ? 'Refreshing photos...' : 'Refresh activity photos'}</button></div></div>"
+      },
+      {
+        "line": 100,
+        "text": "            <div className=\"relative aspect-[4/3] overflow-hidden rounded-md bg-slate-900\"><PlacePhoto src={item.imageUrl} alt={`${item.title} in ${itinerary.destination}`} sizes=\"128px\" emptyMessage=\"Photo unavailable\"/>{item.imageAttribution && <a href={item.imageAttribution.sourceUrl} target=\"_blank\" rel=\"noreferrer\" title={`${item.imageAttribution.creator} · ${item.imageAttribution.license}`} className=\"absolute bottom-1 right-1 rounded bg-slate-950/85 px-1 text-[8px] text-slate-200\">Photo info</a>}</div>"
+      },
+      {
+        "line": 101,
+        "text": "            <div><p className=\"text-xs uppercase text-cyan-300\">{item.time} · {item.category}</p><h3 className=\"font-semibold\">{item.title}</h3><p className=\"mt-1 text-xs leading-relaxed text-slate-400\">{item.description}</p><ActivityEvidence activity={item} currency={itinerary.currency}/><p className=\"mt-2 font-mono text-sm sm:hidden\">Estimated price: {travelers > 1 && item.unitCost !== undefined && (!item.priceEvidence || [\"per-person\", \"daily-per-person\"].includes(item.priceEvidence.unit)) ? `${formatMoney(item.unitCost, itinerary.currency)}/person · ${formatMoney(item.estimatedCost, itinerary.currency)} group` : formatMoney(item.estimatedCost, itinerary.currency)}</p><ReferenceAmount amount={item.estimatedCost} currency={itinerary.currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes} className=\"sm:hidden block text-[10px] font-normal text-cyan-200/70\"/></div>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TravelerJourneyOverview.tsx",
+    "matches": [
+      {
+        "line": 130,
+        "text": "        <article className=\"group relative min-h-[470px] overflow-hidden bg-[#102824] p-6 text-white sm:p-10 lg:col-span-8 lg:p-12\">"
+      },
+      {
+        "line": 135,
+        "text": "            <p className=\"flex items-center gap-3 text-sm font-semibold text-white/92\"><span className=\"h-px w-8 bg-[#ffcf70]\" />Welcome, {firstName}. Your next trip starts here.</p>"
+      },
+      {
+        "line": 137,
+        "text": "              <h2 id=\"travel-home-title\" className=\"max-w-[13ch] text-balance text-5xl font-black leading-[0.94] tracking-[-0.045em] sm:text-6xl lg:text-6xl\">Turn one trip into a plan you understand.</h2>"
+      },
+      {
+        "line": 140,
+        "text": "                <button type=\"button\" onClick={nextAction.onClick} className=\"group inline-flex min-h-12 items-center justify-center gap-3 bg-[#ffcf70] px-6 py-3 text-sm font-extrabold text-[#14231f] transition hover:bg-[#ffe1a1]\">{nextAction.action}<ArrowRight size={17} className=\"transition-transform group-hover:translate-x-1\" /></button>"
+      },
+      {
+        "line": 147,
+        "text": "        <aside className=\"flex min-h-[470px] flex-col bg-[#ffcf70] p-6 text-[#14231f] sm:p-9 lg:col-span-4\">"
+      },
+      {
+        "line": 149,
+        "text": "            <div><p className=\"text-xs font-black uppercase tracking-[.14em] text-[#49635c]\">{nextAction.stage}</p><h3 className=\"mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em]\">{nextAction.title}</h3></div>"
+      },
+      {
+        "line": 159,
+        "text": "        <div className=\"mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between\"><div><p className=\"text-sm font-semibold text-[#ffcf70]\">The complete planning lifecycle</p><h2 id=\"lifecycle-title\" className=\"mt-2 max-w-4xl text-3xl font-black tracking-[-0.045em] sm:text-5xl\">Six states, one connected trip.</h2></div><p className=\"max-w-md text-sm leading-6 text-white/48\">Select any state to see what you control, what the system handles, and what you receive.</p></div>"
+      },
+      {
+        "line": 165,
+        "text": "              <article key={step.title} data-journey-card data-lifecycle-card onMouseEnter={() => setActiveStep(index)} onFocus={() => setActiveStep(index)} className={`group overflow-hidden transition-[flex-grow,background-color,color] duration-500 ${active ? 'bg-[#ffcf70] text-[#102824] lg:flex-[2.4]' : 'bg-[#102824] text-white lg:flex-1'}`}>"
+      },
+      {
+        "line": 167,
+        "text": "                  <button type=\"button\" onClick={() => setActiveStep(index)} aria-expanded={active} aria-label={`Explain ${step.title}`} className=\"flex w-full items-center justify-between gap-3 text-left\"><span className={`grid h-10 w-10 shrink-0 place-items-center border ${active ? 'border-[#14231f]/25' : 'border-white/15'}`}><Icon size={18} /></span><span className={`text-[10px] font-bold ${active ? 'text-[#446057]' : 'text-white/38'}`}>{stepState(index)}</span></button>"
+      },
+      {
+        "line": 168,
+        "text": "                  <div className=\"mt-auto pt-8\"><h3 className={`font-black tracking-[-0.04em] ${active ? 'text-2xl sm:text-3xl' : 'text-xl lg:[writing-mode:vertical-rl] lg:rotate-180'}`}>{active ? step.title : step.shortTitle}</h3><div className={`grid transition-[grid-template-rows,opacity] duration-500 ${active ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}><div className=\"overflow-hidden\"><dl className=\"mt-6 space-y-4 text-sm leading-6\"><div><dt className=\"text-xs font-black uppercase tracking-[0.12em] text-[#49635c]\">You</dt><dd>{step.youDo}</dd></div><div><dt className=\"text-xs font-black uppercase tracking-[0.12em] text-[#49635c]\">TravelMate</dt><dd>{step.systemDoes}</dd></div></dl><p className=\"mt-5 flex items-start gap-2 border-t border-[#14231f]/20 pt-4 text-xs font-bold leading-5\"><Check size={15} className=\"mt-0.5 shrink-0\" />{step.result}</p><button type=\"button\" onClick={(event) => { event.stopPropagation(); runStepAction(index); }} className=\"mt-5 inline-flex items-center gap-2 border-b border-[#14231f] pb-1 text-xs font-black\">{step.action}<ArrowRight size={14} /></button></div></div></div>"
+      },
+      {
+        "line": 176,
+        "text": "      <section aria-labelledby=\"system-work-title\" className=\"overflow-hidden border border-white/10 bg-[#0d211d]\">"
+      },
+      {
+        "line": 177,
+        "text": "        <div className=\"border-b border-white/10 p-6 sm:p-9\"><p className=\"text-sm font-semibold text-cyan-200\">What happens after you select Generate</p><h2 id=\"system-work-title\" className=\"mt-3 max-w-4xl text-3xl font-black tracking-[-0.045em] sm:text-4xl\">The system does the assembly. You make the decisions.</h2></div>"
+      },
+      {
+        "line": 178,
+        "text": "        <div data-lifecycle-rail className=\"flex w-full flex-wrap gap-y-4 border-b border-white/10 py-5 text-sm font-bold text-white/58 lg:w-max lg:flex-nowrap\" aria-label=\"TravelMate generation pipeline\">"
+      },
+      {
+        "line": 184,
+        "text": "          <article data-lifecycle-stack className=\"bg-[#14231f] p-6 sm:p-8 md:col-span-4\"><CalendarCheck className=\"text-amber-300\" /><h3 className=\"mt-8 text-xl font-black\">Your responsibility</h3><p className=\"mt-3 text-sm leading-6 text-white/52\">Provide honest preferences, review the result, choose changes, and save your manual edits.</p></article>"
+      },
+      {
+        "line": 185,
+        "text": "          <article data-lifecycle-stack className=\"bg-[#14231f] p-6 sm:p-8 md:col-span-4\"><WalletCards className=\"text-cyan-200\" /><h3 className=\"mt-8 text-xl font-black\">TravelMate’s responsibility</h3><p className=\"mt-3 text-sm leading-6 text-white/52\">Keep the itinerary, estimates, provider options, and conditions connected and clearly labeled.</p></article>"
+      },
+      {
+        "line": 186,
+        "text": "          <article data-lifecycle-stack className=\"bg-[#14231f] p-6 sm:p-8 md:col-span-4\"><CloudSun className=\"text-emerald-200\" /><h3 className=\"mt-8 text-xl font-black\">The product boundary</h3><p className=\"mt-3 text-sm leading-6 text-white/52\">TravelMate assists planning. It does not promise availability, invent live data, or complete airline and hotel checkout.</p></article>"
+      },
+      {
+        "line": 191,
+        "text": "        <div className=\"min-h-[190px] bg-[#dce7df] p-6 text-[#14231f] sm:p-9\"><p className=\"text-sm font-semibold text-[#547068]\">Keep this in mind</p><h2 id=\"planning-note-heading\" className=\"mt-4 max-w-3xl text-3xl font-black tracking-[-0.045em] sm:text-4xl\">{PLANNING_NOTES[planningNote][0]}</h2><p className=\"mt-4 max-w-3xl text-sm leading-6 text-[#48625c]\">{PLANNING_NOTES[planningNote][1]}</p><div className=\"mt-6 flex flex-wrap gap-3\"><button type=\"button\" onClick={onOpenBudget} className=\"border-b border-[#14231f] pb-1 text-xs font-black\">See budget review</button><button type=\"button\" onClick={onOpenOptions} className=\"border-b border-[#14231f] pb-1 text-xs font-black\">See travel options</button></div></div>"
+      },
+      {
+        "line": 192,
+        "text": "        <div className=\"flex border-t border-[#14231f]/15 bg-[#cddbd1] lg:w-28 lg:flex-col lg:border-l lg:border-t-0\"><button type=\"button\" aria-label=\"Previous planning guidance\" onClick={() => setPlanningNote((planningNote + PLANNING_NOTES.length - 1) % PLANNING_NOTES.length)} className=\"grid h-16 flex-1 place-items-center border-r border-[#14231f]/15 text-[#14231f] transition hover:bg-amber-300 lg:h-auto lg:border-b lg:border-r-0\"><ArrowLeft size={18} /></button><button type=\"button\" aria-label=\"Next planning guidance\" onClick={() => setPlanningNote((planningNote + 1) % PLANNING_NOTES.length)} className=\"grid h-16 flex-1 place-items-center text-[#14231f] transition hover:bg-amber-300\"><ArrowRight size={18} /></button></div>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TravelerNotifications.tsx",
+    "matches": [
+      {
+        "line": 21,
+        "text": "    <div className=\"flex flex-wrap items-center justify-between gap-4 bg-amber-300 p-6 text-[#14231f]\"><div><Bell size={22}/><strong className=\"mt-3 block text-3xl font-black\">{data.notifications.filter(item => !item.readAt).length} unread</strong></div><button disabled={busy} onClick={() => void action({ action: 'mark-all-notifications-read' }, 'All notifications marked as read.')} className=\"min-h-11 bg-[#14231f] px-4 text-sm font-black text-white\">Mark all read</button></div>"
+      },
+      {
+        "line": 22,
+        "text": "    <div className=\"divide-y divide-white/10 border border-white/10 bg-[#102622]\">"
+      },
+      {
+        "line": 29,
+        "text": "      <div ref={modalRef} role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"notification-title\" tabIndex={-1} className=\"flex max-h-[calc(100dvh-1.5rem)] w-full min-w-0 max-w-2xl flex-col border border-white/20 bg-[#102622] shadow-2xl sm:max-h-[calc(100dvh-3rem)]\">"
+      },
+      {
+        "line": 30,
+        "text": "        <div className=\"flex shrink-0 items-center justify-between gap-4 border-b border-white/15 p-4 sm:px-6\"><span className=\"flex items-center gap-2 font-bold text-[#ffcf70]\"><Bell size={19}/>Notification details</span><button ref={closeRef} type=\"button\" onClick={() => setSelectedId(null)} aria-label=\"Close notification details\" className=\"grid size-11 shrink-0 place-items-center border border-white/20 hover:bg-white/10\"><X size={20}/></button></div>"
+      },
+      {
+        "line": 32,
+        "text": "          <h2 id=\"notification-title\" className=\"text-xl font-bold [overflow-wrap:anywhere]\">{selected.title}</h2>"
+      },
+      {
+        "line": 34,
+        "text": "          <h3 className=\"mt-6 font-bold\">Full message</h3><p className=\"mt-2 whitespace-pre-wrap text-sm leading-7 text-white/80 [overflow-wrap:anywhere]\">{selected.body}</p>"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TripFeedbackForm.tsx",
+    "matches": [
+      {
+        "line": 10,
+        "text": "  return <section className=\"mb-5 w-full\"><button type=\"button\" aria-expanded={open} onClick={() => setOpen(value => !value)} className=\"min-h-11 border border-[#ffcf70]/50 px-4 py-2 text-sm font-bold text-[#ffcf70] hover:bg-[#ffcf70]/10\">Rate this trip</button>{open && <TripFeedbackForm key={itineraryId} itineraryId={itineraryId} destination={destination}/>}</section>;"
+      },
+      {
+        "line": 28,
+        "text": "    void fetch(`/api/feedback/itinerary/${encodeURIComponent(itineraryId)}`, { cache: 'no-store', signal: controller.signal }).then(handleResponse<{ result: FeedbackSubmissionResponse['result'] | null }>).then(({ result }) => {"
+      },
+      {
+        "line": 35,
+        "text": "  return <form aria-label={`Feedback for ${destination}`} className=\"mt-4 border border-[#17332c]/20 bg-[#f2efe5] p-5 text-[#102622] sm:p-6\" onSubmit={async event => {"
+      },
+      {
+        "line": 42,
+        "text": "      await handleResponse<FeedbackSubmissionResponse>(await fetch('/api/feedback', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ itineraryId, rating, category, comment: comment.trim() }) }));"
+      },
+      {
+        "line": 47,
+        "text": "    <h4 className=\"text-lg font-bold\">{existing ? 'Your trip feedback' : 'Rate this trip'}</h4>"
+      },
+      {
+        "line": 51,
+        "text": "      <fieldset><legend className=\"text-sm font-bold\">Rating</legend><div role=\"radiogroup\" aria-label=\"Rating\" className=\"mt-2 flex flex-wrap gap-1\">{[1,2,3,4,5].map(value => <label key={value} className=\"relative grid h-11 w-11 cursor-pointer place-items-center hover:bg-[#ffcf70]/20\"><input type=\"radio\" name=\"rating\" aria-label={`${value} star${value === 1 ? '' : 's'}`} value={value} checked={rating === value} onChange={() => setRating(value)} className=\"peer absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0\"/><Star aria-hidden=\"true\" size={30} fill={value <= rating ? '#ffcf70' : 'none'} className=\"pointer-events-none text-[#6a571c] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2\"/></label>)}</div><p className=\"mt-1 text-xs text-[#4f6862]\">{rating ? `${rating} out of 5 stars` : 'Choose a star rating.'}</p></fieldset>"
+      },
+      {
+        "line": 52,
+        "text": "      <label className=\"block text-sm font-bold\">Category<select aria-label=\"Category\" required value={category} onChange={event => setCategory(event.target.value as FeedbackCategory)} className={input}>{Object.entries(FEEDBACK_CATEGORY_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>"
+      },
+      {
+        "line": 53,
+        "text": "      <label className=\"block text-sm font-bold\">Feedback comment<textarea required minLength={10} maxLength={2000} rows={4} value={comment} onChange={event => setComment(event.target.value)} className={input}/></label>"
+      },
+      {
+        "line": 59,
+        "text": "    {loaded && <button disabled={busy} className=\"mt-4 min-h-11 bg-[#102622] px-5 py-3 text-sm font-bold text-[#f2efe5] hover:bg-[#24483e] disabled:opacity-50\">{busy ? 'Saving…' : existing ? 'Update Feedback' : 'Submit Feedback'}</button>}"
+      }
+    ]
+  },
+  {
+    "path": "components/features/traveler/TripPlannerForm.tsx",
+    "matches": [
+      {
+        "line": 70,
+        "text": "    <section className=\"relative min-h-[300px] overflow-hidden border border-white/10 bg-[#efe8d6] text-[#14231f]\">"
+      },
+      {
+        "line": 72,
+        "text": "      <div className=\"relative flex min-h-[300px] w-full max-w-4xl flex-col justify-end p-6 sm:p-10\"><p className=\"text-sm font-semibold text-[#4a655e]\">How this page works</p><h2 className=\"mt-3 max-w-3xl text-4xl font-black leading-[0.95] tracking-[-0.055em] sm:text-6xl\">Four details are enough to begin.</h2><p className=\"mt-5 max-w-2xl text-sm leading-6 text-[#49635c]\">Choose a destination, dates, group size, and total budget. Add optional preferences if you want more personalization, then generate a plan to review before saving.</p></div>"
+      },
+      {
+        "line": 76,
+        "text": "      <article className=\"bg-[#102622] p-5 sm:p-7 xl:col-span-7\">"
+      },
+      {
+        "line": 77,
+        "text": "        <div className=\"mb-7 flex items-start gap-4 border-b border-white/10 pb-5\"><span className=\"grid h-11 w-11 shrink-0 place-items-center border border-cyan-300/30 text-cyan-200\"><MapPin size={19}/></span><div><h2 className=\"text-xl font-black tracking-[-0.03em]\">Required trip details</h2><p className=\"mt-1 text-xs text-white/42\">These fields give TravelMate enough information to build a plan.</p></div></div>"
+      },
+      {
+        "line": 79,
+        "text": "          <div className=\"relative text-xs font-medium text-slate-300 sm:col-span-2\"><label htmlFor=\"destination-search\">Destination</label><input id=\"destination-search\" required minLength={2} role=\"combobox\" aria-autocomplete=\"list\" aria-expanded={locationSuggestions.length > 0} aria-controls=\"destination-suggestions\" aria-describedby=\"destination-status\" value={destination} onChange={(event) => props.onDestinationChange(event.target.value)} placeholder=\"Search city, province, or country\" autoComplete=\"off\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition placeholder:text-slate-600 hover:border-slate-600 focus:border-cyan-400\"/>{locationSuggestions.length > 0 && <ul id=\"destination-suggestions\" role=\"listbox\" className=\"absolute z-30 mt-1 max-h-64 w-full overflow-y-auto rounded-xl border border-slate-700 bg-slate-950 p-1 shadow-2xl\">{locationSuggestions.map((location) => <li key={location.id} role=\"option\" aria-selected={selectedDestination?.id === location.id}><button type=\"button\" onClick={() => props.onDestinationSelect(location)} className=\"w-full rounded-lg px-3 py-2 text-left hover:bg-slate-800 focus:bg-slate-800\"><strong className=\"block text-sm text-white\">{location.name}</strong><span className=\"text-[11px] text-slate-400\">{location.contextLabel}</span></button></li>)}</ul>}<p id=\"destination-status\" aria-live=\"polite\" className={`mt-1 text-[11px] ${selectedDestination ? 'text-emerald-300' : 'text-slate-500'}`}>{locationsBusy ? 'Searching destinations...' : selectedDestination ? `Confirmed: ${selectedDestination.label}` : locationMessage || 'Choose a suggestion to confirm the destination.'}</p></div>"
+      },
+      {
+        "line": 80,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">{partyBudgetLabel(partyType, travelers)}<input type=\"number\" min=\"1\" step={ZERO_DECIMAL_CURRENCIES.includes(currency) ? '1' : '0.01'} value={budget} onChange={(event) => props.onBudgetChange(Number(event.target.value))} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition hover:border-slate-600 focus:border-amber-400\"/><span className=\"mt-1.5 block text-[11px] font-normal text-amber-200\">{partyBudgetExplanation(partyType, travelers)}</span><ReferenceAmount amount={budget} currency={currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes} className=\"mt-1 block text-[11px] font-normal text-cyan-200\"/></label>"
+      },
+      {
+        "line": 81,
+        "text": "          <div className=\"text-xs font-medium text-slate-300\"><div className=\"grid grid-cols-2 gap-2\"><label>Destination currency<select value={selectedDestination && currencyResolved ? currency : ''} disabled={!selectedDestination || contextBusy || !currencyNeedsFallback} onChange={(event) => props.onCurrencyChange(event.target.value as CurrencyCode)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-amber-400 disabled:opacity-60\"><option value=\"\">{contextBusy ? 'Detecting...' : selectedDestination ? 'Select' : 'Auto'}</option>{SUPPORTED_CURRENCIES.map((code) => <option key={code} value={code}>{code}</option>)}</select></label><label>Show equivalents in<select value={referenceCurrency} onChange={(event) => props.onReferenceCurrencyChange(event.target.value as CurrencyCode)} className=\"mt-1.5 w-full rounded-xl border border-cyan-700/70 bg-slate-950/80 px-3 py-2 text-white transition hover:border-cyan-500 focus:border-cyan-400\">{SUPPORTED_CURRENCIES.map((code) => <option key={code} value={code}>{code} · {CURRENCY_NAMES[code]}</option>)}</select></label></div><span className=\"mt-1.5 block text-[10px] text-slate-500\">{currencyResolved ? `${currency} (${CURRENCY_NAMES[currency]}) detected for the destination.` : currencyNeedsFallback ? 'Automatic detection unavailable; choose a destination currency.' : 'Select a destination first.'}</span>{currencyResolved && currency !== referenceCurrency && <span className=\"mt-1 block text-[10px] text-cyan-200/70\">{exchangeBusy ? 'Loading reference rate...' : exchangeQuotes[currency] ? `1 ${currency} ≈ ${formatMoney(exchangeQuotes[currency]!.rate, referenceCurrency)} · Frankfurter reference dated ${exchangeQuotes[currency]!.asOf}` : exchangeMessage || 'Reference conversion unavailable.'}</span>}</div>"
+      },
+      {
+        "line": 82,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">Start date<input required type=\"date\" min={localDateInputValue()} value={startDate} onChange={(event) => props.onStartDateChange(event.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400\"/></label>"
+      },
+      {
+        "line": 83,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">End date<input required type=\"date\" min={startDate} max={maximumEndDate} value={endDate} onChange={(event) => props.onEndDateChange(event.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400\"/><span className={`mt-1.5 block text-[10px] ${tripDays >= 1 && tripDays <= 31 ? 'text-emerald-300' : 'text-amber-300'}`}>{tripDays >= 1 && tripDays <= 31 ? `${tripDays} travel day${tripDays === 1 ? '' : 's'} selected` : 'Choose 1–31 days'}</span></label>"
+      },
+      {
+        "line": 84,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">Traveling as<select value={partyType} onChange={(event) => props.onPartyTypeChange(event.target.value as PartyType)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400\">{Object.entries(PARTY_TYPE_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>"
+      },
+      {
+        "line": 85,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">Travelers<input type=\"number\" min={partyType === 'solo' ? 1 : 2} max=\"20\" disabled={partyType === 'solo' || partyType === 'couple'} value={travelers} onChange={(event) => props.onTravelersChange(Number(event.target.value))} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition hover:border-slate-600 focus:border-cyan-400 disabled:opacity-50\"/></label>"
+      },
+      {
+        "line": 89,
+        "text": "      <article className=\"bg-[#14231f] p-5 sm:p-7 xl:col-span-5\">"
+      },
+      {
+        "line": 90,
+        "text": "        <div className=\"mb-7 flex items-start gap-4 border-b border-white/10 pb-5\"><span className=\"grid h-11 w-11 shrink-0 place-items-center border border-amber-300/30 text-amber-200\"><Compass size={19}/></span><div><h2 className=\"text-xl font-black tracking-[-0.03em]\">Optional preferences</h2><p className=\"mt-1 text-xs text-white/42\">Skip these if you are unsure. You can revise them and regenerate later.</p></div></div>"
+      },
+      {
+        "line": 92,
+        "text": "          <div className=\"text-xs font-medium text-slate-300 sm:col-span-2\"><div className=\"flex items-center justify-between gap-2\"><label htmlFor=\"accommodation\">Accommodation</label><button type=\"button\" disabled={!selectedDestination || !currencyResolved || staysBusy || tripDays < 1 || tripDays > 31} onClick={props.onRetryAccommodations} className=\"font-bold text-cyan-300 hover:text-cyan-200 disabled:opacity-50\">{staysBusy ? 'Finding stays...' : 'Refresh stays'}</button></div><select id=\"accommodation\" disabled={!selectedDestination || !currencyResolved || staysBusy} value={selectedLiveStayId ? `live:${selectedLiveStayId}` : selectedStayId ? `local:${selectedStayId}` : ''} onChange={(event) => { const [source, ...idParts] = event.target.value.split(':'); props.onStayChange(source as 'local' | 'live' | '', idParts.join(':')); }} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-violet-400 disabled:opacity-60\"><option value=\"\">{!selectedDestination ? 'Select a destination first' : staysBusy ? 'Finding stays...' : stayOptions.length || liveAccommodations.some((stay) => stay.currency === currency) ? 'No accommodation selected' : 'No accommodation data available'}</option>{stayOptions.length > 0 && <optgroup label=\"TravelMate stays (PHP)\">{stayOptions.map((stay) => <option key={stay.id} value={`local:${stay.id}`}>{stay.name} - {formatMoney(stay.price, 'PHP')}/night</option>)}</optgroup>}{liveAccommodations.some((stay) => stay.currency === currency) && <optgroup label={`Amadeus hotels (${currency})`}>{liveAccommodations.filter((stay) => stay.currency === currency).map((stay) => <option key={stay.id} value={`live:${stay.id}`}>{stay.isLive ? 'LIVE' : 'TEST'} · {stay.name} - {formatMoney(stay.nightlyRate, currency)}/night{stay.rating ? ` · ${stay.rating}/5` : ''}</option>)}</optgroup>}</select>{currencyResolved && currency !== 'PHP' && <p className=\"mt-1 text-[11px] text-slate-500\">TravelMate marketplace stays use PHP; only external offers returned in {currency} can be attached without an exchange-rate assumption.</p>}{selectedLiveAccommodation && <><p className=\"mt-1 text-[11px] text-cyan-200\">{selectedLiveAccommodation.type}{selectedLiveAccommodation.rating ? ` · ${selectedLiveAccommodation.rating}/5` : ''} · {selectedLiveAccommodation.address} · {formatMoney(selectedLiveAccommodation.total, currency)} for {Math.max(1, tripDays - 1)} night{Math.max(1, tripDays - 1) === 1 ? '' : 's'} · {selectedLiveAccommodation.roomDescription}</p><ReferenceAmount amount={selectedLiveAccommodation.total} currency={currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes}/></>}{stayMessage && <p aria-live=\"polite\" className=\"mt-1 text-[11px] text-slate-500\">{stayMessage}</p>}{selectedDestination && <div className=\"mt-2\"><ProviderFreshness freshness={stayFreshness}/></div>}</div>"
+      },
+      {
+        "line": 93,
+        "text": "          <label className=\"text-xs font-medium text-slate-300 sm:col-span-2\">Interests<input value={interests} onChange={(event) => props.onInterestsChange(event.target.value)} placeholder=\"food, culture, nature\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition placeholder:text-slate-600 hover:border-slate-600 focus:border-violet-400\"/></label>"
+      },
+      {
+        "line": 94,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">Travel style<select value={travelStyle} onChange={(event) => props.onTravelStyleChange(event.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-violet-400\"><option value=\"budget\">Budget</option><option value=\"balanced\">Balanced</option><option value=\"comfort\">Comfort</option><option value=\"luxury\">Luxury</option><option value=\"family-friendly\">Family-friendly</option></select></label>"
+      },
+      {
+        "line": 95,
+        "text": "          <label className=\"text-xs font-medium text-slate-300\">Stay preference<select value={accommodationPreference} onChange={(event) => props.onAccommodationPreferenceChange(event.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-violet-400\"><option value=\"budget-friendly\">Budget-friendly</option><option value=\"central location\">Central location</option><option value=\"resort\">Resort</option><option value=\"family-friendly\">Family-friendly</option><option value=\"luxury\">Luxury</option></select></label>"
+      },
+      {
+        "line": 96,
+        "text": "          <label className=\"text-xs font-medium text-slate-300 sm:col-span-2\">Preferred activities<input value={preferredActivities} onChange={(event) => props.onPreferredActivitiesChange(event.target.value)} placeholder=\"island hopping, museums\" className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-2 text-white transition placeholder:text-slate-600 hover:border-slate-600 focus:border-violet-400\"/></label>"
+      },
+      {
+        "line": 97,
+        "text": "          <div className=\"text-xs font-medium text-slate-300 sm:col-span-2\"><div className=\"flex items-center justify-between gap-2\"><label htmlFor=\"transportation\">Transportation</label>{selectedDestination && <button type=\"button\" disabled={contextBusy} onClick={props.onRetryContext} className=\"font-bold text-cyan-300 hover:text-cyan-200 disabled:opacity-50\">{contextBusy ? 'Finding options...' : 'Refresh options'}</button>}</div><select id=\"transportation\" disabled={!selectedDestination || contextBusy || transportationOptions.length === 0} value={transportationPreference} onChange={(event) => props.onTransportationChange(event.target.value)} className=\"mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950/80 px-3 py-2 text-white transition hover:border-slate-600 focus:border-violet-400 disabled:opacity-60\"><option value=\"\">{!selectedDestination ? 'Select a destination first' : contextBusy ? 'Finding transportation options...' : transportationOptions.length ? 'Choose a destination-relevant mode' : 'No verified options available'}</option>{transportationOptions.map((mode) => <option key={mode.id} value={mode.label.toLowerCase()}>{mode.label}</option>)}</select>{contextMessage && <p aria-live=\"polite\" className=\"mt-1 text-[11px] text-slate-500\">{contextMessage}</p>}</div>"
+      },
+      {
+        "line": 103,
+        "text": "      <div className=\"min-w-0\"><h2 className=\"truncate text-xl font-black tracking-[-0.035em]\">{selectedDestination ? destination : 'Your next destination'}</h2><p className=\"mt-1 text-xs text-[#345047]\">{tripDays >= 1 && tripDays <= 31 ? `${tripDays} days` : 'Select valid dates'} · {travelers} traveler{travelers === 1 ? '' : 's'} · {currencyResolved && Number.isFinite(budget) ? formatMoney(budget, currency) : 'currency pending'}</p>{currencyResolved && <ReferenceAmount amount={budget} currency={currency} referenceCurrency={referenceCurrency} quotes={exchangeQuotes} className=\"mt-1 block text-[11px] font-semibold text-[#29463f]\"/>}<p className=\"mt-2 text-xs font-semibold text-[#29463f]\">Successful generation saves a reviewable plan automatically. Save changes keeps any manual edits.</p></div>"
+      },
+      {
+        "line": 104,
+        "text": "      <button disabled={busy || tripDays < 1 || tripDays > 31 || !selectedDestination || !currencyResolved || !Number.isFinite(budget) || budget <= 0} onClick={props.onGenerate} className=\"group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 bg-[#14231f] px-6 py-3 font-extrabold text-[#f5edd9] transition hover:bg-[#284a41] disabled:opacity-50\">{busy ? 'Building your trip...' : generationFailed ? 'Retry generation' : 'Generate my trip'}<ArrowRight size={17} className=\"transition-transform group-hover:translate-x-1\"/></button>"
+      }
+    ]
+  },
+  {
+    "path": "hooks/use-exchange-rates.ts",
+    "matches": [
+      {
+        "line": 30,
+        "text": "      const results = await Promise.allSettled(currencies.map(source => exchangeRateClient.fetch(source, reference, controller.signal)));"
+      }
+    ]
+  },
+  {
+    "path": "services/api.service.ts",
+    "matches": [
+      {
+        "line": 61,
+        "text": "    res = await fetch('/api/itinerary', {"
+      },
+      {
+        "line": 77,
+        "text": "    res = await fetch('/api/itinerary/images', {"
+      },
+      {
+        "line": 112,
+        "text": "  try { res = await fetch(url, { method: 'GET', signal: AbortSignal.timeout(20_000) }); }"
+      }
+    ]
+  },
+  {
+    "path": "services/destination-area-client.ts",
+    "matches": [
+      {
+        "line": 7,
+        "text": "export function createDestinationAreaClient(fetcher: typeof fetch = (...args) => fetch(...args), now = Date.now) {"
+      }
+    ]
+  },
+  {
+    "path": "services/destination-planning.service.ts",
+    "matches": [
+      {
+        "line": 7,
+        "text": "  const response = await fetch(`/api/locations?q=${encodeURIComponent(query.trim())}`, { signal });"
+      },
+      {
+        "line": 13,
+        "text": "  const response = await fetch(`/api/locations/resolve?q=${encodeURIComponent(query.trim())}`, { signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(35000)]) : AbortSignal.timeout(35000) });"
+      },
+      {
+        "line": 20,
+        "text": "  const response = await fetch(`/api/locations/current?${params}`, { signal: signal ? AbortSignal.any([signal, timeout]) : timeout });"
+      },
+      {
+        "line": 27,
+        "text": "  return handleResponse<DestinationContext>(await fetch(`/api/destination-context?${params}`, { signal }));"
+      },
+      {
+        "line": 31,
+        "text": "  return exchangeRateClient.fetch(base, quote, signal);"
+      },
+      {
+        "line": 60,
+        "text": "  const response = await fetch(`/api/accommodations?${params}`, { signal });"
+      }
+    ]
+  },
+  {
+    "path": "services/exchange-rate-client.ts",
+    "matches": [
+      {
+        "line": 51,
+        "text": "  const fetcher = options.fetcher ?? ((...args: Parameters<typeof fetch>) => fetch(...args));"
+      },
+      {
+        "line": 109,
+        "text": "    fetch(base: CurrencyCode, quote: CurrencyCode, signal?: AbortSignal): Promise<ExchangeRateQuote> {"
+      }
+    ]
+  },
+  {
+    "path": "services/session.service.ts",
+    "matches": [
+      {
+        "line": 7,
+        "text": "    response = await fetch('/api/auth', {"
+      },
+      {
+        "line": 31,
+        "text": "      response = await fetch('/api/auth', {"
+      }
+    ]
+  }
+]

@@ -1,19 +1,22 @@
 # TravelMate development
 
-TravelMate uses two independently running TypeScript projects:
+TravelMate uses two TypeScript projects:
 
 ```text
 Next.js frontend (port 3000) -> Express backend (port 5000) -> Prisma -> Neon PostgreSQL
 ```
 
-`MASTERPROMPT.md` is the product source of truth. The dashboard expresses its
+`MASTERPROMPT.md` records the original product direction, while
+`PRODUCT_BASELINE.md` documents current implemented behavior. The dashboard expresses its
 core workflow as **Define → Generate → Understand → Refine → Save → Reopen**;
 budget, travel options, weather, and crowd context support that same trip rather
 than acting as unrelated products.
 
 ## Documentation map
 
-- `MASTERPROMPT.md` — authoritative product requirements and definition of done.
+- `docs/README.md` — supporting documentation index with requirements traceability,
+  editable diagrams and test execution guidance.
+- `PRODUCT_BASELINE.md` — current workflow, persistence behavior, and verification checklist.
 - `CAPSTONE_READINESS_TRACKER.md` — current phase scores, verification evidence,
   and prioritized release blockers.
 - `IMPLEMENTATION_STATUS.md` — concise feature-by-feature implementation audit.
@@ -52,21 +55,17 @@ npm.cmd run db:setup
 
 ## Development
 
-Open two terminals.
-
-Terminal 1 — backend:
-
-```powershell
-cd C:\Users\Admin\Desktop\TRAVELMATE\travelmate-backend-api
-npm.cmd run dev
-```
-
-Terminal 2 — frontend:
+Start both services from the frontend directory:
 
 ```powershell
 cd C:\Users\Admin\Desktop\TRAVELMATE\travelmate-frontend-new
 npm.cmd run dev
 ```
+
+This starts the sibling backend automatically and waits for the API before
+starting Next.js. An already running backend is reused. Ctrl+C stops the services
+started by this command. To manage the services separately, run `npm.cmd run dev`
+in the backend and `npm.cmd run dev:frontend` in the frontend.
 
 Open http://localhost:3000 in the browser. The backend API and health endpoint
 run at http://localhost:5000.

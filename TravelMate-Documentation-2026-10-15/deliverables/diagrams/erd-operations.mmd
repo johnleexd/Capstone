@@ -1,0 +1,12 @@
+erDiagram
+ User ||--o{ Notification : receives
+ User ||--o{ AuditEvent : actor
+ RateLimitBucket {
+ string key PK
+ int count
+ datetime resetAt
+ }
+ Moderation {
+ string id PK
+ string subjectId "scalar no FK"
+ }

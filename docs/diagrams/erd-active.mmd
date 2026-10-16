@@ -1,0 +1,8 @@
+erDiagram
+ User ||--o{ Trip : owns
+ User ||--o{ ItineraryGeneration : requests
+ Trip ||--o{ ItineraryVersion : versions
+ User ||--o{ VisitedPlace : records
+ Trip o|--o{ VisitedPlace : optional_reference
+ User o|--o{ Feedback : optional_author
+ Trip o|--o{ Feedback : optional_reference

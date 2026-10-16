@@ -1,0 +1,12 @@
+stateDiagram-v2
+ [*] --> active : save
+ active --> completed : complete
+ completed --> active : reopen
+ active --> archived : archive
+ completed --> archived : archive preserve completedAt
+ archived --> active : restore if no completedAt
+ archived --> completed : restore if completedAt
+ active --> deleted : confirm deletion
+ completed --> deleted : confirm deletion
+ archived --> deleted : confirm deletion
+ note right of completed : Actual visits require separate confirmation

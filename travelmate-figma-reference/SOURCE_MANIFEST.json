@@ -1,0 +1,482 @@
+[
+  {
+    "path": "app/(guest)/(index)/page.tsx",
+    "bytes": 151,
+    "sha256": "2c326a5aa6e8be1f9d33ad913d7c5d8910001ac7bac1a6761b8befbd3be6766e"
+  },
+  {
+    "path": "app/account/appeal/page.tsx",
+    "bytes": 6600,
+    "sha256": "1cb55eb9e072efa9b700ed1677db967ab1af56558f714a5fc48d50df38b28608"
+  },
+  {
+    "path": "app/admin/dashboard/loading.tsx",
+    "bytes": 204,
+    "sha256": "c672f8960e5f1151ad7a6472e416b965bb5d9e9ada1f57ea09fdf35e07e7f9b7"
+  },
+  {
+    "path": "app/admin/dashboard/page.tsx",
+    "bytes": 157,
+    "sha256": "dcec8f1aefae9083dbbde4d2b6d2c1aa6720f0ec3e70b904fa25cbf8db0e6e4f"
+  },
+  {
+    "path": "app/dashboard/loading.tsx",
+    "bytes": 146,
+    "sha256": "ddb7ea65c0394fbb9a3e702bb86745e646298019cef005da5cf06a447da45abc"
+  },
+  {
+    "path": "app/dashboard/page.tsx",
+    "bytes": 349,
+    "sha256": "fcb347d4e4017b6ee632f476a6d6c00bcf07bcad81ecfe217955f5146dc13f69"
+  },
+  {
+    "path": "app/error.tsx",
+    "bytes": 855,
+    "sha256": "bd83710876e9d45fe4dd0ef75ed3d88ea08e1271649591a65fe86b34f0b3fa2e"
+  },
+  {
+    "path": "app/favicon.ico",
+    "bytes": 25931,
+    "sha256": "2b8ad2d33455a8f736fc3a8ebf8f0bdea8848ad4c0db48a2833bd0f9cd775932"
+  },
+  {
+    "path": "app/layout.tsx",
+    "bytes": 743,
+    "sha256": "c88992de602f6d098bfbe09102e7a0ca4a1fe89902ab891bb61a4a28dc0bc304"
+  },
+  {
+    "path": "app/not-found.tsx",
+    "bytes": 626,
+    "sha256": "3bf95c10c7f2812bde7cdd523059550df02ac70ea2d98f0f34822d02114a183c"
+  },
+  {
+    "path": "components/common/ContentSkeletons.tsx",
+    "bytes": 2341,
+    "sha256": "15b1760c7bd991a46f4de283a2907a520451aa33d5d32e2396fae06bcd06e1d1"
+  },
+  {
+    "path": "components/common/DashboardLoadState.tsx",
+    "bytes": 1241,
+    "sha256": "410aa48e398e707a7981e88998d01e0e442bba945e46c43a34b6caa15b93c714"
+  },
+  {
+    "path": "components/common/PlacePhoto.tsx",
+    "bytes": 1603,
+    "sha256": "d2aac776780630bcf0e254c7fa155edafc6f65742ce807269ef4e2dd1d7fba91"
+  },
+  {
+    "path": "components/common/ProviderFreshness.tsx",
+    "bytes": 1331,
+    "sha256": "6bfc5db07a70a91f2bc6e4a7d568929039606e7adb16dbb4bdd8885b7ca7f4b5"
+  },
+  {
+    "path": "components/common/ReferenceAmount.tsx",
+    "bytes": 1005,
+    "sha256": "93834cf4c2b44741da99c40539433ed30a561106b1922a9d9af5ab94df623f23"
+  },
+  {
+    "path": "components/common/Skeleton.tsx",
+    "bytes": 640,
+    "sha256": "78d8a5df01342b0a1c57cd9abdf2f22416043d60ee9949084ab6c635c6d65595"
+  },
+  {
+    "path": "components/common/UserAvatar.tsx",
+    "bytes": 1090,
+    "sha256": "54f09d8e5d62d1276ce1f6588f515a7aef719401a5a824bf532d16c6dc596b53"
+  },
+  {
+    "path": "components/common/WorkspaceSkeleton.tsx",
+    "bytes": 4597,
+    "sha256": "99e724a51c01edc71d80c6af0575cf9b637e66a1deac58635f2f37d4f9bc8068"
+  },
+  {
+    "path": "components/features/admin/AdminDashboard.tsx",
+    "bytes": 15032,
+    "sha256": "69963ba6a93b162f9444fcf6df8e966bf44b6f929086f50269707e107d4acd52"
+  },
+  {
+    "path": "components/features/admin/AdminPanels.tsx",
+    "bytes": 22303,
+    "sha256": "59038ede080c2b7404dfb3edb02285aca0f23849457c25c187ff92afcf1d9813"
+  },
+  {
+    "path": "components/features/admin/UserFeedbackView.tsx",
+    "bytes": 13396,
+    "sha256": "2fd6e52defe067fc949bb219c3dbc9df9ae3191729c95f0b64c5d121ee2b9f9e"
+  },
+  {
+    "path": "components/features/home/TravelMateLanding.tsx",
+    "bytes": 58806,
+    "sha256": "c743e64bb98c136f49df6c00f12ac8bb4e1d55926b37faa7783be8338bdad6f5"
+  },
+  {
+    "path": "components/features/traveler/AccommodationPicker.tsx",
+    "bytes": 5988,
+    "sha256": "cd33fe8af649b8e56889ff6555753aa97360aa3249f8335d341ac8ced6f9c2b2"
+  },
+  {
+    "path": "components/features/traveler/DestinationAreaPicker.tsx",
+    "bytes": 9112,
+    "sha256": "69dbb900569d252cebf4f9e0ef13f192661e27683ab5c9b9c187de008ad42d35"
+  },
+  {
+    "path": "components/features/traveler/ExpenseAssumptions.tsx",
+    "bytes": 2665,
+    "sha256": "e83bae873a14bbf534752943875d33d85296834a3994f12254e0ad321ee1c835"
+  },
+  {
+    "path": "components/features/traveler/GroundingSummary.tsx",
+    "bytes": 5177,
+    "sha256": "8dd01268a0e19c482dc0db0e486ce41a2b642e5f3a370dedc5777da96172d223"
+  },
+  {
+    "path": "components/features/traveler/ItineraryWorkspace.tsx",
+    "bytes": 13456,
+    "sha256": "1e4e908be002f24eb1c63624be3cbed42bf6619a5c33e1198294eb0c6dcd41c6"
+  },
+  {
+    "path": "components/features/traveler/ReportProblem.tsx",
+    "bytes": 1738,
+    "sha256": "03ccc778bf6d2ff873bbd0df2702154f89986322c389626eae323d2655549092"
+  },
+  {
+    "path": "components/features/traveler/SavedTripLifecycle.tsx",
+    "bytes": 13327,
+    "sha256": "034b66357d1cae1a992b381ed325322eaca9b0b2f8f096e7e5fdf4d07e4d1657"
+  },
+  {
+    "path": "components/features/traveler/StartingLocationField.tsx",
+    "bytes": 3872,
+    "sha256": "833a64a0f2d22b7d2cb044509ce9575b970afa02e04be3a53f984dcdeea5e84c"
+  },
+  {
+    "path": "components/features/traveler/TravelComparisonWorkspace.tsx",
+    "bytes": 13366,
+    "sha256": "ced8c9a1f50dcdbd5346f1b067395c007d0c5802405eea7fb52d63bd3d2afc1c"
+  },
+  {
+    "path": "components/features/traveler/TravelerAccountCenter.tsx",
+    "bytes": 6850,
+    "sha256": "f93c2e330c03ce1d08c08f837bf1a2bd8c71306cc57c14e17e914eae7db7c619"
+  },
+  {
+    "path": "components/features/traveler/TravelerDashboard.tsx",
+    "bytes": 101036,
+    "sha256": "d084097571430ae9becc9f8d9b0b4c45f4cae52fb0f5c676732dbcd221a1c2c1"
+  },
+  {
+    "path": "components/features/traveler/TravelerItineraryDialogs.tsx",
+    "bytes": 16211,
+    "sha256": "14f99d1f2d4b45476a64f50271b08121c94308581ba10eddac0c81ddd87e8cc3"
+  },
+  {
+    "path": "components/features/traveler/TravelerJourneyOverview.tsx",
+    "bytes": 17263,
+    "sha256": "7e2d5ba60cbcba32e975c0d407dbd7ae79333c349f14cb0c372c412be4ef9dd7"
+  },
+  {
+    "path": "components/features/traveler/TravelerNotifications.tsx",
+    "bytes": 5267,
+    "sha256": "aefa3c47a653c69bb274cac36792e79379379685baa7de61a1cb7309221efaf1"
+  },
+  {
+    "path": "components/features/traveler/TripFeedbackForm.tsx",
+    "bytes": 6050,
+    "sha256": "3671b78e3062b71fd21546cce16214cd9189e643a87d32e4fe58e8dabfb41928"
+  },
+  {
+    "path": "components/features/traveler/TripPlannerForm.tsx",
+    "bytes": 19879,
+    "sha256": "7ce69a548309ee7d181401bbb9cb3615e5b774c4bd1704619cb4118555e21c66"
+  },
+  {
+    "path": "components/provider/styled-components-registry.tsx",
+    "bytes": 826,
+    "sha256": "3959a94dfd862a9744cbada522c058cc37af524e5cfd9483e977fb257854b298"
+  },
+  {
+    "path": "components/ui/button.tsx",
+    "bytes": 3452,
+    "sha256": "2f1ae57ead6c34698f2326070a132f41fc869b54d8f30070336cacd1649c65f0"
+  },
+  {
+    "path": "components/ui/card.tsx",
+    "bytes": 2733,
+    "sha256": "4bf8c82ad7deda4e625105647c40c3a27f5d69ea81cd4ad0a3837e198f98bfe2"
+  },
+  {
+    "path": "components/ui/dialog.tsx",
+    "bytes": 4402,
+    "sha256": "60bf8bdbcc839d59e62a495892e555d83788b78499e1382888048653bd989f73"
+  },
+  {
+    "path": "components/ui/input.tsx",
+    "bytes": 987,
+    "sha256": "96a49a981e294b6b9652a53fd4bfabc2f942d29180a80ba16bc82ccc955841ff"
+  },
+  {
+    "path": "components/ui/table.tsx",
+    "bytes": 2518,
+    "sha256": "00961b6cbca3cf9145c965377efa20a746051860ea6940bda24aea48057e9d42"
+  },
+  {
+    "path": "hooks/use-destination-areas.ts",
+    "bytes": 2599,
+    "sha256": "3f20f2775fc5866d4811edec29457ff4ff238a79759384f7761171a2d21ed0bb"
+  },
+  {
+    "path": "hooks/use-destination-planning.ts",
+    "bytes": 14320,
+    "sha256": "31eca9fc386911d17bf9321b2741fbfee187fabb6b032871e1084dfa77f2cfa4"
+  },
+  {
+    "path": "hooks/use-exchange-rates.ts",
+    "bytes": 2767,
+    "sha256": "8048f2f00f435b410f6aecf32747b6ae30c2aa063f561c8cea8324bf36e41fe1"
+  },
+  {
+    "path": "hooks/use-modal-accessibility.ts",
+    "bytes": 2600,
+    "sha256": "70f8a71bd50954237a1f057e467092c95e1f893f351aa02fbbc8b2829ebe4c67"
+  },
+  {
+    "path": "hooks/use-starting-location.ts",
+    "bytes": 5467,
+    "sha256": "0ed5042fc203c0eeb7ec8f2bbd7ab44dc3d61fb4f6e37fb3e428f73e27b0bd14"
+  },
+  {
+    "path": "services/api-response.ts",
+    "bytes": 1523,
+    "sha256": "256519e28f9f2960959c0275a948b5d0f4d3fa19a9b306a2caf4b7a612a21b6d"
+  },
+  {
+    "path": "services/api.service.ts",
+    "bytes": 7979,
+    "sha256": "fe687d37565d7fdafecc5a6c212c3f42e946690d36fbf4b1692569c4485d8bc0"
+  },
+  {
+    "path": "services/destination-area-client.ts",
+    "bytes": 4724,
+    "sha256": "a85fddeb1120e2314684dc86ef1b0344749d4774a4febd87720748fb2b5c0212"
+  },
+  {
+    "path": "services/destination-planning.service.ts",
+    "bytes": 3645,
+    "sha256": "e5f281278e3eff40cdca64eb4cac7219387d1b9229f517621cfb0c4d585dca85"
+  },
+  {
+    "path": "services/exchange-rate-client.ts",
+    "bytes": 6164,
+    "sha256": "877c32d6a6334563e923f97a181bb989bbf7e3756e882f6e58163571cbafaa3a"
+  },
+  {
+    "path": "services/provider-response.ts",
+    "bytes": 5983,
+    "sha256": "0e8a8edb3e76783c6a8065f44170a4b7d7dbf5107fbb1d966bb2079ebb9d13ae"
+  },
+  {
+    "path": "services/session.service.ts",
+    "bytes": 2007,
+    "sha256": "0e7f2e622bf67a67df9e140d3cea3f07e85eef0e9a0d010023a52e4fa8e0a3eb"
+  },
+  {
+    "path": "lib/accommodation-recommendation.ts",
+    "bytes": 2381,
+    "sha256": "3fae22907012ec1ad70ab83ba429ca03a77bb797aaa705bbd313d7c6cfcec41f"
+  },
+  {
+    "path": "lib/browser-storage.ts",
+    "bytes": 707,
+    "sha256": "7e33bd1e7abff8e24b04e6b88fe693834c9a956351aa7f47af8e424b2bce1af5"
+  },
+  {
+    "path": "lib/budget-optimization.ts",
+    "bytes": 4875,
+    "sha256": "bbd9362e419fdb4387d2a44bf3354fcdd5b509766af4fab4cab25a1c42946e29"
+  },
+  {
+    "path": "lib/conditions.ts",
+    "bytes": 859,
+    "sha256": "8dcb387cc176ca1a772c355c6f37ccc06b075d8bcadfb55e5e9010e33c11f64d"
+  },
+  {
+    "path": "lib/contracts.ts",
+    "bytes": 1723,
+    "sha256": "c27fbec5478d595511840e909db9af5f9d1cf006ac8a5f440043b6ae3d2bde67"
+  },
+  {
+    "path": "lib/currency-conversion.ts",
+    "bytes": 764,
+    "sha256": "7659575bee5f4a74be36584188e2c4e2f33974f210442d74dc9dc85a8df39c73"
+  },
+  {
+    "path": "lib/date.ts",
+    "bytes": 992,
+    "sha256": "f255d43c1d8a61e43907199e85f1373f7a37a929809acbda54deec7e4474b1ae"
+  },
+  {
+    "path": "lib/domain.ts",
+    "bytes": 9031,
+    "sha256": "574330f1643b2699fc0760cd6cd8b64d3c9cf3a87350a0702e8d11f86aa6bc60"
+  },
+  {
+    "path": "lib/expense-assumptions.ts",
+    "bytes": 1228,
+    "sha256": "4054fb6201fb7a159aac3e3b770f9ec29eaeb35fc7b9e222f9f87e90c8e59198"
+  },
+  {
+    "path": "lib/feedback.ts",
+    "bytes": 267,
+    "sha256": "3f7016d6d762eb68c87101dc67839173e50c5dcdf44da51e7dc9c6909aafd3a4"
+  },
+  {
+    "path": "lib/generated/api-error-contract.ts",
+    "bytes": 1192,
+    "sha256": "80097de99bced45bcfe8bebce0d7471f9084eb62231a794203dfbbdf3011a20f"
+  },
+  {
+    "path": "lib/generated/core-contracts.ts",
+    "bytes": 13955,
+    "sha256": "b2c06ab95b4960e35e27d4437eabd000a54aeda564d3f83fcb17335861a1f2df"
+  },
+  {
+    "path": "lib/generated/destination-contracts.ts",
+    "bytes": 4165,
+    "sha256": "335aa7f832b1714ca21365348ac08fd5d710169eef58a6f261f2520abb23746f"
+  },
+  {
+    "path": "lib/generated/travel-option-contracts.ts",
+    "bytes": 1313,
+    "sha256": "7bc0fd4e88d5a02b1a3242982a1349578e468859569188b2dd48b3074394bdb7"
+  },
+  {
+    "path": "lib/generated/weather-contracts.ts",
+    "bytes": 1116,
+    "sha256": "fe4b54291700d27fe5f9682a1ed41654e6c69388e8fc6d821cd7068ea6e8e6a6"
+  },
+  {
+    "path": "lib/itinerary-editor.ts",
+    "bytes": 6703,
+    "sha256": "5178de2e9d71ce1944cf5b36a93e64015984fdcb0ff49c53c80564985c3c1f5f"
+  },
+  {
+    "path": "lib/oauth-request-headers.ts",
+    "bytes": 675,
+    "sha256": "517239472bcf52da843ad8d9635df57fed9ab6dbbd3ab8aa48a8b01f81ce83ba"
+  },
+  {
+    "path": "lib/password-validation.ts",
+    "bytes": 1637,
+    "sha256": "c22d07c197fd4653aedf2d7d8eafae4e8bca1cc4371f446dac830a4d75499713"
+  },
+  {
+    "path": "lib/place-image.ts",
+    "bytes": 2741,
+    "sha256": "e5ed37eb2247c68a1ff162b90c20facc0827c7cabd2149e980c083d00eb825d6"
+  },
+  {
+    "path": "lib/trip-data.ts",
+    "bytes": 573,
+    "sha256": "a9e2d819f5bfdd037522fc5595182d21505e0811db71f7a4f2f7041b5a53a90c"
+  },
+  {
+    "path": "lib/utils.ts",
+    "bytes": 172,
+    "sha256": "74a147991a119f1c4cdc25a4d9b22713632fa32eb136e55ab6939b006d71b9d6"
+  },
+  {
+    "path": "styles/globals.css",
+    "bytes": 6933,
+    "sha256": "a8c671ab4a4b586f462c168cc01e04729be8b9133cf3cc7adb329e2f7330735d"
+  },
+  {
+    "path": "constants/cebu-locations.ts",
+    "bytes": 1136,
+    "sha256": "a1d322b511e419c6d2449545d3770f0ca88693628b810600d297093d85251d6a"
+  },
+  {
+    "path": "constants/theme.ts",
+    "bytes": 1738,
+    "sha256": "9ac4b7f9c83d0fe004c7008faac11a4b158dc73844de11378784a7eb56b34a18"
+  },
+  {
+    "path": "public/beach-bg.png",
+    "bytes": 849305,
+    "sha256": "62abcfd91806bce813fcb14d8aa5e97b2e10cdd063ce5dd655946d16a4a6b246"
+  },
+  {
+    "path": "public/cordova-10000-roses.png",
+    "bytes": 2257090,
+    "sha256": "d66228030751bfd80910edf3c3a4f5bc6650180c1897d25102705797fc859222"
+  },
+  {
+    "path": "public/cordova-cclex.png",
+    "bytes": 2515862,
+    "sha256": "d9e46827a8340421135230ed3fd0d8b22477732023b844ea020a0db69e001478"
+  },
+  {
+    "path": "public/cordova-gilutongan.png",
+    "bytes": 2827160,
+    "sha256": "443a5255e88438fdf88db443b64f3dd61c42cd7f8a21375ffe917d5a52e11c70"
+  },
+  {
+    "path": "public/cordova-mangrove.png",
+    "bytes": 2351962,
+    "sha256": "ee96c49ebbd4ff8c8789b3795504168550cb560b14db0a68af9df8686c6c22bf"
+  },
+  {
+    "path": "public/cordova-nalusuan.png",
+    "bytes": 2366099,
+    "sha256": "f7f9dd740de2811550ac008606576dae49133554bb98c9997343189bd380857f"
+  },
+  {
+    "path": "public/cordova-resort.png",
+    "bytes": 3030246,
+    "sha256": "ccfa00b5d3b0e28d46ce680b30e6d286a46bffa0bf8bda9934085533837b398d"
+  },
+  {
+    "path": "public/cordova-seafood.png",
+    "bytes": 2372475,
+    "sha256": "698ac75a7bbf8b766ac81146b698d9c5938c6ff28cd32e8aaefaa4ab7035b511"
+  },
+  {
+    "path": "public/file.svg",
+    "bytes": 391,
+    "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4"
+  },
+  {
+    "path": "public/globe.svg",
+    "bytes": 1035,
+    "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf"
+  },
+  {
+    "path": "public/mountain-hero-bg.png",
+    "bytes": 571138,
+    "sha256": "1cdafd77f0cd5d598f175dc71ff244a4b29c47b7cb1512a40ae0bc72f3b48312"
+  },
+  {
+    "path": "public/next.svg",
+    "bytes": 1375,
+    "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc"
+  },
+  {
+    "path": "public/solea-mactan.jpg",
+    "bytes": 110080,
+    "sha256": "33abb3854681239ecf3d67b4e5cf87ac1ae023f4b58fc5087fab7a4ddbcaeccd"
+  },
+  {
+    "path": "public/travel-illustration.png",
+    "bytes": 546354,
+    "sha256": "555ff5eef8a90d370daff5229cb6c22d0955a0cc9238f4d18fee2e9022e583a0"
+  },
+  {
+    "path": "public/vercel.svg",
+    "bytes": 128,
+    "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4"
+  },
+  {
+    "path": "public/window.svg",
+    "bytes": 385,
+    "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1"
+  }
+]

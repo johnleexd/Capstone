@@ -1,0 +1,17 @@
+﻿source,url_or_boundary,features
+travelmate-frontend-new/app/(guest)/(index)/page.tsx,/,TM-F-001
+travelmate-frontend-new/app/account/appeal/page.tsx,/account/appeal,TM-F-015
+travelmate-frontend-new/app/admin/dashboard/loading.tsx,Framework boundary,"TM-F-070,TM-F-071,TM-F-073,TM-F-074,TM-F-075,TM-F-076,TM-F-077,TM-F-078,TM-F-079"
+travelmate-frontend-new/app/admin/dashboard/page.tsx,/admin/dashboard,"TM-F-070,TM-F-071,TM-F-073,TM-F-074,TM-F-075,TM-F-076,TM-F-077,TM-F-078,TM-F-079"
+travelmate-frontend-new/app/dashboard/gps/page.tsx,/dashboard/gps,TM-F-064
+travelmate-frontend-new/app/dashboard/loading.tsx,Framework boundary,"TM-F-025,TM-F-041,TM-F-052,TM-F-055,TM-F-056,TM-F-057,TM-F-058,TM-F-059,TM-F-065"
+travelmate-frontend-new/app/dashboard/page.tsx,/dashboard,"TM-F-025,TM-F-041,TM-F-052,TM-F-055,TM-F-056,TM-F-057,TM-F-058,TM-F-059,TM-F-065"
+travelmate-frontend-new/app/error.tsx,Framework boundary,"TM-F-080,TM-F-084"
+travelmate-frontend-new/app/gps/page.tsx,/gps,TM-F-064
+travelmate-frontend-new/app/layout.tsx,Framework boundary,"TM-F-080,TM-F-084"
+travelmate-frontend-new/app/not-found.tsx,Framework boundary,"TM-F-080,TM-F-084"
+travelmate-frontend-new/app/privacy/page.tsx,/privacy,TM-F-006
+travelmate-frontend-new/app/terms/page.tsx,/terms,TM-F-006
+travelmate-frontend-new/app/api/auth/oauth/google/callback/route.ts,Google OAuth forwarding / proxy helper,TM-F-011
+travelmate-frontend-new/app/api/auth/oauth/google/proxy.ts,Google OAuth forwarding / proxy helper,TM-F-011
+travelmate-frontend-new/app/api/auth/oauth/google/route.ts,Google OAuth forwarding / proxy helper,TM-F-011

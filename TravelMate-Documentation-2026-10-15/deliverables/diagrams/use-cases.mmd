@@ -1,0 +1,13 @@
+flowchart TB
+  guest["Guest<br/>Unauthenticated state"]
+  public["Discover and enter account<br/>Earth, country card, credits, legal pages, register/login/recovery"]
+  trav["Traveler<br/>Active account"]
+  plan["Plan and manage own travel<br/>Destination, generation, costs, saved versions, maps, day actions and actual visits"]
+  susp["Suspended traveler<br/>Restricted account"]
+  appeal["Read notices and appeal<br/>One pending appeal; no ordinary workspace access"]
+  admin["Administrator<br/>Provisioned role"]
+  manage["Review and moderate<br/>Users, reports, appeals, feedback, notices, metrics and system records"]
+  guest --> public
+  trav --> plan
+  susp --> appeal
+  admin --> manage
